@@ -1,0 +1,204 @@
+### Create Project
+POST http://localhost:4004/odata/v4/Management/Projects
+Content-Type: application/json
+
+{
+  "projectId": 2,
+  "projectName": "Redit Project",
+  "timeAssigned": 100,
+  "assignedToP": 101,
+  "projectChanges": 1,
+  "clientName": "Client A",
+  "status": "Active",
+  "description": "Project description",
+  "urgency": "High",
+  "createdBy": 556,
+  "modifiedBy": 556
+}
+ 
+### Get Project by ID
+GET http://localhost:4004/odata/v4/Management/Projects(1)
+ 
+
+### Update Project
+PUT http://localhost:4004/odata/v4/Management/Projects(1)
+Content-Type: application/json
+ 
+{
+  "projectName": "Updated Project",
+  "timeAssigned": 120,
+  "assignedToP": 101,
+  "projectChanges": 3,
+  "clientName": "Client B",
+  "status": "In Progress",
+  "description": "Updated description",
+  "urgency": "Medium",
+  "createdBy": 234,
+  "modifiedBy": 445
+}
+ 
+
+### Delete Project
+DELETE http://localhost:4004/odata/v4/Management/Projects(3) 
+Content-Type: application/json
+ 
+{}
+ 
+### Get Projects by Manager (Employee ID)
+GET http://localhost:4004/odata/v4/Management/Projects?$filter=assignedToP eq 101 
+ 
+ 
+###
+ 
+ 
+### Search for Project by Name
+GET http://localhost:4004/odata/v4/Management/Projects?$filter=projectName eq 'SMDT Project'
+###
+ 
+### Get All Projects
+GET http://localhost:4004/odata/v4/Management/Projects 
+ 
+###
+ 
+### Filter Projects
+GET http://localhost:4004/odata/v4/Management/Projects?$filter=status eq 'Active' and clientName eq 'Client A' and urgency eq 'High' HTTP/1.1
+ 
+
+
+### Create SubProject
+POST http://localhost:4004/odata/v4/Management/SubProjects 
+Content-Type: application/json
+ 
+{
+  "moduleId": 3,
+  "projectId": 1,
+  "moduleName": "SubProject SDMTTech",
+  "assignedToE": 102,
+  "projectManagerId": 101,
+  "timeAssigned": 80,
+  "moduleStatus": "Active",
+  "createdBy": 556,
+  "modifiedBy": 556
+}
+ 
+###
+ 
+### Get SubProject by ID
+GET http://localhost:4004/odata/v4/Management/SubProjects(2) 
+ 
+###
+
+### Update SubProject
+PUT http://localhost:4004/odata/v4/Management/SubProjects(2) 
+Content-Type: application/json
+ 
+{
+  "moduleName": "Updated TechSDMT Project",
+  "moduleStatus": "In Progress",
+  "createdBy": 556,
+  "modifiedBy": 556
+}
+
+
+
+### Delete SubProject
+DELETE http://localhost:4004/odata/v4/Management/SubProjects(2) 
+Content-Type: application/json
+ 
+{}
+
+ 
+### Get SubProjects by Project ID
+GET http://localhost:4004/odata/v4/Management/SubProjects?$filter=projectId eq 1 
+ 
+###
+ 
+### Get SubProjects by Assigned Employee ID
+GET http://localhost:4004/odata/v4/Management/SubProjects?$filter=assignedToE eq 102 
+
+  
+### Create Employee
+POST http://localhost:4004/odata/v4/Management/Employees 
+Content-Type: application/json
+ 
+{
+  "empCode": 101,
+  "empName": "Ravindra Kumar",
+  "projectId": 1,
+  "rating": 4,
+  "timeTaken": 120,
+  "managerId": 103,
+  "permissionToEdit": "YES",
+  "permissionToView": "YES",
+  "permissionToCreateP": "NO",
+  "permissionToCreateSP": "YES",
+  "permissionToCreateE": "NO"
+}
+ 
+###
+ 
+### Get Employee by ID
+GET http://localhost:4004/odata/v4/Management/Employees(101)
+ 
+ 
+### Update Employee
+PUT http://localhost:4004/odata/v4/Management/Employees(101) 
+Content-Type: application/json
+ 
+{
+  "empName": "Shivam SDMT",
+  "projectId": 1,
+  "rating": 5,
+  "timeTaken": 85,
+  "permissionToEdit": "Yes",
+  "permissionToView": "Yes",
+  "permissionToCreateP": "Yes",
+  "permissionToCreateSP": "Yes",
+  "permissionToCreateE": "Yes"
+}
+ 
+
+
+### Search for Employee by Name
+GET http://localhost:4004/odata/v4/Management/Employees?$filter=empName eq 'Ravindra Kumar' 
+ 
+###
+ 
+### Get Employees by Manager ID
+GET http://localhost:4004/odata/v4/Management/Employees?$filter=managerId eq 103 
+ 
+ 
+### Delete Employee
+DELETE http://localhost:4004/odata/v4/Management/Employees(101) 
+Content-Type: application/json
+ 
+{}
+ 
+ 
+
+
+
+### Generate Project Report
+
+POST  http://localhost:4004/odata/v4/Management/generateProjectReport
+Content-Type: application/json
+
+{
+  "status": "Not Running",
+  "assignedToP": 777,
+  "startDate": "2025-01-01T00:00:00Z",
+  "endDate": "2025-01-31T23:59:59Z"
+}
+
+ 
+
+ 
+###
+ 
+### Generate Employee Report
+GET http://localhost:4004/odata/v4/Management/generateEmployeeReport?$filter=empCode 
+ 
+### Generate SubProject Report
+GET http://localhost:4004/odata/v4/Management/generateSubProjectReport?$filter=projectId 
+
+
