@@ -14,7 +14,7 @@ entity Projects {
     urgency          : String;
     createdBy        : Integer;
     modifiedBy       : Integer;
-    cost             : Decimal; 
+    // cost             : Decimal; 
     startDate        : DateTime;  
     endDate          : DateTime;
     status           : String;
