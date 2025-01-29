@@ -1,4 +1,4 @@
-package com.sumo_management.handlers;
+package com.sumo_management.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sap.cds.services.ErrorStatuses;
 import com.sap.cds.services.ServiceException;
+import com.sap.cds.services.cds.CqnService;
 import com.sap.cds.services.cds.RemoteService;
 import com.sap.cds.services.handler.EventHandler;
 import com.sap.cds.services.handler.annotations.After;
@@ -49,6 +50,7 @@ public class ManagementHandlers implements EventHandler {
      * Handle project report generation with filtering and logic similar to ManageApplicationServiceHandler
      */
     @On(entity = Projects_.CDS_NAME)
+    
     public void generateProjectReport(@RequestParam String status, 
                                       @RequestParam String assignedToP, 
                                       @RequestParam Instant startDate, 
@@ -84,6 +86,7 @@ public class ManagementHandlers implements EventHandler {
      * Handle employee report generation with logic similar to ManageApplicationServiceHandler
      */
     @On(entity = Employees_.CDS_NAME)
+    
     public void generateEmployeeReport(@RequestParam Integer employeeCode, 
                                        @RequestParam Instant startDate, 
                                        @RequestParam Instant endDate) {
@@ -138,7 +141,7 @@ public class ManagementHandlers implements EventHandler {
     /**
      * Create a new project, similar to managing applications (if accepted/rejected logic)
      */
-    @On(entity = Projects_.CDS_NAME)
+    @On(event = CqnService.EVENT_CREATE, entity = Projects_.CDS_NAME)
     public void createProject(@RequestParam String projectId,  
                               @RequestParam String projectName, 
                               @RequestParam Integer timeAssigned, 
@@ -171,7 +174,7 @@ public class ManagementHandlers implements EventHandler {
     /**
      * Create a new employee, similar to the create project logic
      */
-    @On(entity = Employees_.CDS_NAME)
+    @On(event =CqnService.EVENT_CREATE, entity = Employees_.CDS_NAME)
     public void createEmployee(@RequestParam String empName, 
                                @RequestParam Integer empCode, 
                                @RequestParam Integer projectId, 

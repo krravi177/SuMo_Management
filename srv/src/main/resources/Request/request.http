@@ -3,8 +3,8 @@ POST http://localhost:4004/odata/v4/Management/Projects
 Content-Type: application/json
 
 {
-  "projectId": 2,
-  "projectName": "Redit Project",
+  "projectId": 6,
+  "projectName": "D Project",
   "timeAssigned": 100,
   "assignedToP": 101,
   "projectChanges": 1,
@@ -122,8 +122,8 @@ POST http://localhost:4004/odata/v4/Management/Employees
 Content-Type: application/json
  
 {
-  "empCode": 101,
-  "empName": "Ravindra Kumar",
+  "empCode": 102,
+  "empName": "Shivam Kumar",
   "projectId": 1,
   "rating": 4,
   "timeTaken": 120,

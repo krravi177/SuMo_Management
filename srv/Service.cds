@@ -2,11 +2,11 @@ using { sap.capire.sumo_management as db } from '../db/schema';
  
 service ManagementService {
  
-    // Action to create a new project
+    // action to create a new project
     action createProject(
         projectName        : String,
         timeAssigned       : Integer,
-        projectManagerId   : Integer,
+        projectManagerId   : String,
         projectChanges     : Integer,
         clientName         : String,
         status             : String,
@@ -16,8 +16,8 @@ service ManagementService {
         modifiedBy         : Integer
     ) returns String;
  
-    // Function to update an existing project
-    function updateProject(
+    // action to update an existing project
+    action updateProject(
         projectId          : Integer,
         projectName        : String,
         timeAssigned       : Integer,
@@ -38,7 +38,7 @@ service ManagementService {
 
  
  
-    // Action to create a new employee
+    // action to create a new employee
     action createEmployee(
         empName            : String,
         empCode            : Integer,
@@ -55,8 +55,8 @@ service ManagementService {
         modifiedBy         : Integer
     ) returns String;
  
-    // Function to update employee details
-    function updateEmployee(
+    // action to update employee details
+    action updateEmployee(
         empCode            : Integer,
         empName            : String,
         projectId          : Integer,
@@ -79,7 +79,7 @@ service ManagementService {
 
  
  
-    // Action to create a new sub-project
+    // action to create a new sub-project
     action createSubProject(
         projectId          : Integer,
         moduleId           : Integer,
@@ -93,8 +93,8 @@ service ManagementService {
         modifiedBy         : Integer
     ) returns String;
  
-    // Function to update an existing sub-project
-    function updateSubProject(
+    // action to update an existing sub-project
+    action updateSubProject(
         moduleId           : Integer,
         projectId          : Integer,
         moduleName         : String,
