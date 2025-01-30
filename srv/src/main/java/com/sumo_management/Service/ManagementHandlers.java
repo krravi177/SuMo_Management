@@ -1,14 +1,12 @@
 package com.sumo_management.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sap.cds.services.ErrorStatuses;
 import com.sap.cds.services.ServiceException;
 import com.sap.cds.services.cds.CqnService;
-import com.sap.cds.services.cds.RemoteService;
 import com.sap.cds.services.handler.EventHandler;
 import com.sap.cds.services.handler.annotations.After;
 import com.sap.cds.services.handler.annotations.Before;
@@ -33,10 +31,6 @@ public class ManagementHandlers implements EventHandler {
 
     @Autowired
     PersistenceService db;
-
-    @Autowired
-    @Qualifier("sap.capire.sumo_management")
-    RemoteService remote;
 
     private CqnAnalyzer analyzer;
 

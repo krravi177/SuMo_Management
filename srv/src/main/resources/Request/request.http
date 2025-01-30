@@ -3,8 +3,8 @@ POST http://localhost:4004/odata/v4/Management/Projects
 Content-Type: application/json
 
 {
-  "projectId": 6,
-  "projectName": "D Project",
+  "projectId": 8,
+  "projectName": "B Project",
   "timeAssigned": 100,
   "assignedToP": 101,
   "projectChanges": 1,
@@ -102,7 +102,7 @@ Content-Type: application/json
 
 
 ### Delete SubProject
-DELETE http://localhost:4004/odata/v4/Management/SubProjects(2) 
+DELETE http://localhost:4004/odata/v4/Management/SubProjects(3) 
 Content-Type: application/json
  
 {}
@@ -191,8 +191,6 @@ Content-Type: application/json
 }
 
  
-
- 
 ###
  
 ### Generate Employee Report
@@ -200,5 +198,3 @@ GET http://localhost:4004/odata/v4/Management/generateEmployeeReport?$filter=emp
  
 ### Generate SubProject Report
 GET http://localhost:4004/odata/v4/Management/generateSubProjectReport?$filter=projectId 
-
-
