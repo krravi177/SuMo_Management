@@ -29,4 +29,26 @@ management:
     db:
       enabled: true
 
-
+---
+cds:
+  datasource:
+    auto-config.enabled: false
+  security:
+    mock:
+      users:
+        ravindra:
+            name: ravindra
+            password: ravindra
+            additional:
+              firstName: ravindra
+              lastName: kumar
+      roles:
+          - Administrators
+      additional:
+        shivam:
+          name: shivam
+          password: shivam
+          additional:
+            firstName: shivam
+            lastName: shrivastav
+---

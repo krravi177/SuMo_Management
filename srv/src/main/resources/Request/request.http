@@ -1,10 +1,11 @@
 ### Create Project
 POST http://localhost:4004/odata/v4/Management/Projects
 Content-Type: application/json
+Authorization: Basic authenticated:ravindra
 
 {
-  "projectId": 8,
-  "projectName": "B Project",
+  "projectId": 22,
+  "projectName": "EQui Project",
   "timeAssigned": 100,
   "assignedToP": 101,
   "projectChanges": 1,
@@ -18,11 +19,13 @@ Content-Type: application/json
  
 ### Get Project by ID
 GET http://localhost:4004/odata/v4/Management/Projects(1)
+Authorization: Basic authenticated: ravindra
  
 
 ### Update Project
 PUT http://localhost:4004/odata/v4/Management/Projects(1)
 Content-Type: application/json
+Authorization: Basic authenticated:ravindra
  
 {
   "projectName": "Updated Project",
@@ -41,11 +44,13 @@ Content-Type: application/json
 ### Delete Project
 DELETE http://localhost:4004/odata/v4/Management/Projects(3) 
 Content-Type: application/json
+Authorization: Basic authenticated:ravindra
  
 {}
  
 ### Get Projects by Manager (Employee ID)
 GET http://localhost:4004/odata/v4/Management/Projects?$filter=assignedToP eq 101 
+Authorization: Basic authenticated:ravindra
  
  
 ###
@@ -53,21 +58,25 @@ GET http://localhost:4004/odata/v4/Management/Projects?$filter=assignedToP eq 10
  
 ### Search for Project by Name
 GET http://localhost:4004/odata/v4/Management/Projects?$filter=projectName eq 'SMDT Project'
+Authorization: Basic authenticated:ravindra
 ###
  
 ### Get All Projects
-GET http://localhost:4004/odata/v4/Management/Projects 
+GET http://localhost:4004/odata/v4/Management/Projects
+Authorization: Basic authenticated:ravindra 
  
 ###
  
 ### Filter Projects
 GET http://localhost:4004/odata/v4/Management/Projects?$filter=status eq 'Active' and clientName eq 'Client A' and urgency eq 'High' HTTP/1.1
+Authorization: Basic authenticated:ravindra
  
 
 
 ### Create SubProject
 POST http://localhost:4004/odata/v4/Management/SubProjects 
 Content-Type: application/json
+Authorization: Basic authenticated:ravindra
  
 {
   "moduleId": 3,
@@ -84,13 +93,15 @@ Content-Type: application/json
 ###
  
 ### Get SubProject by ID
-GET http://localhost:4004/odata/v4/Management/SubProjects(2) 
+GET http://localhost:4004/odata/v4/Management/SubProjects(2)
+Authorization: Basic authenticated:ravindra 
  
 ###
 
 ### Update SubProject
 PUT http://localhost:4004/odata/v4/Management/SubProjects(2) 
 Content-Type: application/json
+Authorization: Basic authenticated:ravindra
  
 {
   "moduleName": "Updated TechSDMT Project",
@@ -104,22 +115,26 @@ Content-Type: application/json
 ### Delete SubProject
 DELETE http://localhost:4004/odata/v4/Management/SubProjects(3) 
 Content-Type: application/json
+Authorization: Basic authenticated:ravindra
  
 {}
 
  
 ### Get SubProjects by Project ID
-GET http://localhost:4004/odata/v4/Management/SubProjects?$filter=projectId eq 1 
+GET http://localhost:4004/odata/v4/Management/SubProjects?$filter=projectId eq 1
+Authorization: Basic authenticated:ravindra 
  
 ###
  
 ### Get SubProjects by Assigned Employee ID
-GET http://localhost:4004/odata/v4/Management/SubProjects?$filter=assignedToE eq 102 
+GET http://localhost:4004/odata/v4/Management/SubProjects?$filter=assignedToE eq 102
+Authorization: Basic authenticated:ravindra 
 
   
 ### Create Employee
 POST http://localhost:4004/odata/v4/Management/Employees 
 Content-Type: application/json
+Authorization: Basic authenticated:ravindra
  
 {
   "empCode": 102,
@@ -139,11 +154,13 @@ Content-Type: application/json
  
 ### Get Employee by ID
 GET http://localhost:4004/odata/v4/Management/Employees(101)
+Authorization: Basic authenticated:
  
  
 ### Update Employee
 PUT http://localhost:4004/odata/v4/Management/Employees(101) 
 Content-Type: application/json
+Authorization: Basic authenticated:
  
 {
   "empName": "Shivam SDMT",
@@ -160,17 +177,20 @@ Content-Type: application/json
 
 
 ### Search for Employee by Name
-GET http://localhost:4004/odata/v4/Management/Employees?$filter=empName eq 'Ravindra Kumar' 
+GET http://localhost:4004/odata/v4/Management/Employees?$filter=empName eq 'Ravindra Kumar'
+Authorization: Basic authenticated: 
  
 ###
  
 ### Get Employees by Manager ID
-GET http://localhost:4004/odata/v4/Management/Employees?$filter=managerId eq 103 
+GET http://localhost:4004/odata/v4/Management/Employees?$filter=managerId eq 103
+Authorization: Basic authenticated: 
  
  
 ### Delete Employee
 DELETE http://localhost:4004/odata/v4/Management/Employees(101) 
 Content-Type: application/json
+Authorization: Basic authenticated:
  
 {}
  

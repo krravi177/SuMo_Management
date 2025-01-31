@@ -1,7 +1,7 @@
 using { sap.capire.sumo_management as db } from '../db/schema';
- 
+
 service ManagementService {
- 
+
     // action to create a new project
     action createProject(
         projectName        : String,
@@ -15,7 +15,7 @@ service ManagementService {
         createdBy          : Integer,
         modifiedBy         : Integer
     ) returns String;
- 
+
     // action to update an existing project
     action updateProject(
         projectId          : Integer,
@@ -30,14 +30,13 @@ service ManagementService {
         createdBy          : Integer,
         modifiedBy         : Integer
     ) returns String;
- 
-    action deleteProject(projectId: Integer) returns Boolean;
- 
-    action assignProjectManager(projectId: Integer, managerId: Integer) returns String;
-    action calculateProjectCost(projectId: Integer) returns Decimal;
 
- 
- 
+    // action to delete a project
+    action deleteProject(projectId: Integer) returns Boolean;
+
+    // action to assign a project manager
+    action assignProjectManager(projectId: Integer, managerId: Integer) returns String;
+
     // action to create a new employee
     action createEmployee(
         empName            : String,
@@ -54,85 +53,41 @@ service ManagementService {
         createdBy          : Integer,
         modifiedBy         : Integer
     ) returns String;
- 
-    // action to update employee details
-    action updateEmployee(
-        empCode            : Integer,
-        empName            : String,
-        projectId          : Integer,
-        rating             : Integer,
-        timeTaken          : Integer,
-        managerId          : Integer,
-        permissionToEdit   : String,
-        permissionToView   : String,
-        permissionToCreateP: String,
-        permissionToCreateSP: String,
-        permissionToCreateE: String,
-        createdAt          : Timestamp,
-        createdBy          : Integer,
-        modifiedAt         : Timestamp,
-        modifiedBy         : Integer
-    ) returns String;
- 
+
+    // action to delete an employee
     action deleteEmployee(empCode: Integer) returns Boolean;
- 
 
- 
- 
-    // action to create a new sub-project
-    action createSubProject(
-        projectId          : Integer,
-        moduleId           : Integer,
-        moduleName         : String,
-        description        : String,
-        status             : String,
-        startDate          : DateTime,
-        endDate            : DateTime,
-        assignedTo         : Integer,  
-        createdBy          : Integer,
-        modifiedBy         : Integer
-    ) returns String;
- 
-    // action to update an existing sub-project
-    action updateSubProject(
-        moduleId           : Integer,
-        projectId          : Integer,
-        moduleName         : String,
-        description        : String,
-        status             : String,
-        startDate          : DateTime,
-        endDate            : DateTime,
-        assignedTo         : Integer,  
-        createdAt          : Timestamp,
-        createdBy          : Integer,
-        modifiedAt         : Timestamp,
-        modifiedBy         : Integer
-    ) returns String;
- 
-    action deleteSubProject(moduleId: Integer) returns Boolean;
-    action updateSubProjectStatus(
-        moduleId           : Integer,
-        newStatus          : String
-    ) returns String;
-
- 
-
+    // action to generate a project report
     action generateProjectReport(
         status        : String,
         assignedToP   : Integer,
         startDate     : DateTime,
         endDate       : DateTime
     ) returns Array of String;
- 
+
+    // action to generate an employee report
     action generateEmployeeReport(
         employeeCode  : Integer,
         startDate     : DateTime,
         endDate       : DateTime
     ) returns Array of String;
+
+    // Entities with restrictions for authorization
+    @(restrict: [
+            { grant: '*', to: 'Administrators' },
+            { grant: '*', where: 'createdBy = $user.id' }
+        ])
     entity Projects as projection on db.Projects;
+
+    @(restrict: [
+            { grant: '*', to: 'Administrators' },
+            { grant: '*', where: 'createdBy = $user.id' }
+        ])
     entity Employees as projection on db.Employees;
+
+    @(restrict: [
+            { grant: '*', to: 'Administrators' },
+            { grant: '*', where: 'createdBy = $user.id' }
+        ])
     entity SubProjects as projection on db.SubProjects;
 }
- 
- 
- 

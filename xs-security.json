@@ -1,5 +1,19 @@
 {
-  "scopes": [],
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Administrators",
+      "description": "Administrators"
+    }
+  ],
   "attributes": [],
-  "role-templates": []
+  "role-templates": [
+    {
+      "name": "Administrators",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.Administrators"
+      ],
+      "attribute-references": []
+    }
+  ]
 }
