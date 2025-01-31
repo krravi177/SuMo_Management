@@ -73,21 +73,8 @@ service ManagementService {
     ) returns Array of String;
 
     // Entities with restrictions for authorization
-    @(restrict: [
-            { grant: '*', to: 'Administrators' },
-            { grant: '*', where: 'createdBy = $user.id' }
-        ])
+    
     entity Projects as projection on db.Projects;
-
-    @(restrict: [
-            { grant: '*', to: 'Administrators' },
-            { grant: '*', where: 'createdBy = $user.id' }
-        ])
     entity Employees as projection on db.Employees;
-
-    @(restrict: [
-            { grant: '*', to: 'Administrators' },
-            { grant: '*', where: 'createdBy = $user.id' }
-        ])
     entity SubProjects as projection on db.SubProjects;
 }

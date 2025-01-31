@@ -1,10 +1,9 @@
 ### Create Project
 POST http://localhost:4004/odata/v4/Management/Projects
 Content-Type: application/json
-Authorization: Basic authenticated:ravindra
 
 {
-  "projectId": 22,
+  "projectId": 30,
   "projectName": "EQui Project",
   "timeAssigned": 100,
   "assignedToP": 101,
@@ -19,13 +18,11 @@ Authorization: Basic authenticated:ravindra
  
 ### Get Project by ID
 GET http://localhost:4004/odata/v4/Management/Projects(1)
-Authorization: Basic authenticated: ravindra
  
 
 ### Update Project
 PUT http://localhost:4004/odata/v4/Management/Projects(1)
 Content-Type: application/json
-Authorization: Basic authenticated:ravindra
  
 {
   "projectName": "Updated Project",
@@ -44,13 +41,11 @@ Authorization: Basic authenticated:ravindra
 ### Delete Project
 DELETE http://localhost:4004/odata/v4/Management/Projects(3) 
 Content-Type: application/json
-Authorization: Basic authenticated:ravindra
  
 {}
  
 ### Get Projects by Manager (Employee ID)
 GET http://localhost:4004/odata/v4/Management/Projects?$filter=assignedToP eq 101 
-Authorization: Basic authenticated:ravindra
  
  
 ###
@@ -58,25 +53,21 @@ Authorization: Basic authenticated:ravindra
  
 ### Search for Project by Name
 GET http://localhost:4004/odata/v4/Management/Projects?$filter=projectName eq 'SMDT Project'
-Authorization: Basic authenticated:ravindra
 ###
  
 ### Get All Projects
 GET http://localhost:4004/odata/v4/Management/Projects
-Authorization: Basic authenticated:ravindra 
  
 ###
  
 ### Filter Projects
 GET http://localhost:4004/odata/v4/Management/Projects?$filter=status eq 'Active' and clientName eq 'Client A' and urgency eq 'High' HTTP/1.1
-Authorization: Basic authenticated:ravindra
  
 
 
 ### Create SubProject
 POST http://localhost:4004/odata/v4/Management/SubProjects 
 Content-Type: application/json
-Authorization: Basic authenticated:ravindra
  
 {
   "moduleId": 3,
@@ -94,14 +85,12 @@ Authorization: Basic authenticated:ravindra
  
 ### Get SubProject by ID
 GET http://localhost:4004/odata/v4/Management/SubProjects(2)
-Authorization: Basic authenticated:ravindra 
  
 ###
 
 ### Update SubProject
 PUT http://localhost:4004/odata/v4/Management/SubProjects(2) 
 Content-Type: application/json
-Authorization: Basic authenticated:ravindra
  
 {
   "moduleName": "Updated TechSDMT Project",
@@ -115,26 +104,22 @@ Authorization: Basic authenticated:ravindra
 ### Delete SubProject
 DELETE http://localhost:4004/odata/v4/Management/SubProjects(3) 
 Content-Type: application/json
-Authorization: Basic authenticated:ravindra
  
 {}
 
  
 ### Get SubProjects by Project ID
 GET http://localhost:4004/odata/v4/Management/SubProjects?$filter=projectId eq 1
-Authorization: Basic authenticated:ravindra 
  
 ###
  
 ### Get SubProjects by Assigned Employee ID
 GET http://localhost:4004/odata/v4/Management/SubProjects?$filter=assignedToE eq 102
-Authorization: Basic authenticated:ravindra 
 
   
 ### Create Employee
 POST http://localhost:4004/odata/v4/Management/Employees 
 Content-Type: application/json
-Authorization: Basic authenticated:ravindra
  
 {
   "empCode": 102,
@@ -154,13 +139,11 @@ Authorization: Basic authenticated:ravindra
  
 ### Get Employee by ID
 GET http://localhost:4004/odata/v4/Management/Employees(101)
-Authorization: Basic authenticated:
  
  
 ### Update Employee
 PUT http://localhost:4004/odata/v4/Management/Employees(101) 
 Content-Type: application/json
-Authorization: Basic authenticated:
  
 {
   "empName": "Shivam SDMT",
@@ -177,20 +160,17 @@ Authorization: Basic authenticated:
 
 
 ### Search for Employee by Name
-GET http://localhost:4004/odata/v4/Management/Employees?$filter=empName eq 'Ravindra Kumar'
-Authorization: Basic authenticated: 
+GET http://localhost:4004/odata/v4/Management/Employees?$filter=empName eq 'admin Kumar'
  
 ###
  
 ### Get Employees by Manager ID
 GET http://localhost:4004/odata/v4/Management/Employees?$filter=managerId eq 103
-Authorization: Basic authenticated: 
  
  
 ### Delete Employee
 DELETE http://localhost:4004/odata/v4/Management/Employees(101) 
 Content-Type: application/json
-Authorization: Basic authenticated:
  
 {}
  

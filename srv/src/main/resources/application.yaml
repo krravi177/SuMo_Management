@@ -36,19 +36,18 @@ cds:
   security:
     mock:
       users:
-        ravindra:
-            name: ravindra
-            password: ravindra
+        sumo:
+            name: admin
+            password: admin
             additional:
-              firstName: ravindra
-              lastName: kumar
+              firstName: admin
+
       roles:
           - Administrators
       additional:
-        shivam:
-          name: shivam
-          password: shivam
+        sumodigi:
+          name: digitech
+          password: digitech
           additional:
-            firstName: shivam
-            lastName: shrivastav
+            firstName: digitech
 ---
