@@ -3,10 +3,8 @@ POST http://localhost:4004/odata/v4/Management/Projects
 Content-Type: application/json
 
 {
-  "projectId": 30,
+  "projectId": 50,
   "projectName": "EQui Project",
-  "projectId": 55,
-  "projectName": "B Project",
   "timeAssigned": 100,
   "assignedToP": 101,
   "projectChanges": 1,
@@ -23,7 +21,7 @@ GET http://localhost:4004/odata/v4/Management/Projects(1)
  
 
 ### Update Project
-PUT http://localhost:4004/odata/v4/Management/Projects(1)
+PUT http://localhost:4004/odata/v4/Management/Projects(16)
 Content-Type: application/json
  
 {
@@ -41,7 +39,7 @@ Content-Type: application/json
  
 
 ### Delete Project
-DELETE http://localhost:4004/odata/v4/Management/Projects(3) 
+DELETE http://localhost:4004/odata/v4/Management/Projects(50) 
 Content-Type: application/json
  
 {}
