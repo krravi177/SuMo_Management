@@ -28,26 +28,3 @@ management:
       enabled: true
     db:
       enabled: true
-
----
-cds:
-  datasource:
-    auto-config.enabled: false
-  security:
-    mock:
-      users:
-        sumo:
-            name: admin
-            password: admin
-            additional:
-              firstName: admin
-
-      roles:
-          - Administrators
-      additional:
-        sumodigi:
-          name: digitech
-          password: digitech
-          additional:
-            firstName: digitech
----

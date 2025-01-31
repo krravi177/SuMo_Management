@@ -5,6 +5,8 @@ Content-Type: application/json
 {
   "projectId": 30,
   "projectName": "EQui Project",
+  "projectId": 55,
+  "projectName": "B Project",
   "timeAssigned": 100,
   "assignedToP": 101,
   "projectChanges": 1,
