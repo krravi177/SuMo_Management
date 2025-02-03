@@ -1,0 +1,186 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "com.dash.employeedashboard",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.16.2",
+      "toolsId": "d469cfc4-53e8-48a5-a8bc-cd49251c5f82"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/management/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      },
+      "ODataV2": {
+        "uri": "/v2/odata/v4/management/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.132.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.dash.employeedashboard.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "ODataV2": {
+        "dataSource": "ODataV2",
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.dash.employeedashboard.view"
+      },
+      "routes": [
+        {
+          "name": "RouteView1",
+          "pattern": ":?query:",
+          "target": [
+            "TargetView1"
+          ]
+        },
+        {
+          "name": "RouteAdmin",
+          "pattern": "Admin",
+          "target": [
+            "TargetAdmin"
+          ]
+        },
+        {
+          "name": "RouteProjectManager",
+          "pattern": "ProjectManager",
+          "target": [
+            "TargetProjectManager"
+          ]
+        },
+        {
+          "name": "RouteEmployees",
+          "pattern": "Employee",
+          "target": [
+            "TargetEmployee"
+          ]
+        },
+        {
+          "name": "RouteEmployeeDetails",
+          "pattern": "EmployeeDetails",
+          "target": [
+              "TargetEmployeeDetails"
+          ]
+      },
+  {
+      "name": "notFound",
+      "pattern": "notFound",
+      "target":"notFound"
+  }
+      ],
+      "targets": {
+        "TargetView1": {
+          "id": "View1",
+          "name": "View1"
+        },
+        "TargetAdmin": {
+          "id": "Admin",
+          "name": "Admin"
+        },
+        "TargetProjectManager": {
+          "id": "ProjectManager",
+          "name": "ProjectManager"
+        },
+        "TargetEmployee": {
+          "id": "Employee",
+          "name": "Employee"
+        },
+        "TargetEmployeeDetails": {
+          "id": "EmployeeDetails",
+          "name": "EmployeeDetails"
+        },
+        "notFound": {
+          "id": "notFound",
+          "name": "NotFound",
+          "transition": "show"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.dash.employeedashboard.view.App",
+      "type": "XML",
+      "id": "App"
+    }
+  }
+}

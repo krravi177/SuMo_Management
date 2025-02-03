@@ -1,0 +1,61 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog id="createProjectDialog" title="Create New Project"  >
+    <VBox id="createProjectVBox" width="40%" class="sapUiSmallMarginBeginEnd" >
+        <Label text="Project ID" />
+        <Input id="npProjectId" />
+
+        <Label text="Project Name" />
+        <Input id="npProjectName" />
+
+        <Label text="Assigned To Project" />
+        <Input id="npAssignedTo" />
+
+        <Label text="Time Assigned" />
+        <Input id="npTimeAssigned" />
+
+        <Label text="Changes" />
+        <Input id="npChanges" />
+
+        <Label text="Client Name" />
+        <Input id="npClientName" />
+
+        <Label text="Description" />
+        <Input id="npDescription" />
+
+        <Label text="Urgency" />
+        <Input id="npUrgency" />
+         
+         <Label text="Created By" />
+        <Input id="npCreateBy" />
+
+         <Label text="Modified By" />
+        <Input id="npModifieBy" />
+
+        <Label text="Start Date" />
+        <Input id="npStartDate" />
+
+        <Label text="End Date" />
+        <Input id="npEndDate" />
+           
+           <Label text="Status" />
+        <Input id="npStatus" />
+
+
+        <Button
+            id="newProjectFormSubmitBtn"
+            text="Submit"
+            type="Accept"
+            press="onSubmitNewProjectForm"
+        />
+         <Button
+            id="newProjectFormCancelBtn"
+            text="Cancel"
+            type="Reject"
+            press="onCancelNewProjectForm"
+        />
+        </VBox>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,39 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog id="createEmployeeDialog" title="Create New Employee"  >
+    <VBox id="createEmployeeVBox" width="30%" class="sapUiSmallMarginBeginEnd" >
+        <Label text="Employee Code" />
+        <Input id="npEmpCode" />
+
+        <Label text="Employee Name" />
+        <Input id="npEmpName" />
+
+        <Label text="Project ID" />
+        <Input id="npProjectID" />
+
+        <Label text="Rating" />
+        <Input id="npRating" />
+
+        <Label text="Manager ID" />
+        <Input id="npmanagerID" />
+
+        <Label text="Time Taken" />
+        <Input id="npTimeTaken" />
+
+        <Button
+            id="newEmployeeFormSubmitBtn"
+            text="Submit"
+            type="Accept"
+            press="onSubmitNewEmployeeForm"
+        />
+         <Button
+            id="newEmployeeFormCancelBtn"
+            text="Cancel"
+            type="Reject"
+            press="onCancelNewEmployeeForm"
+        />
+        </VBox>
+    </Dialog>
+</core:FragmentDefinition>
