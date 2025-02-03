@@ -1,0 +1,323 @@
+<mvc:View
+    controllerName="com.dash.employeedashboard.controller.Admin"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:svm="sap.ui.comp.smartvariants"
+>
+    <Page
+        id="adminWelPage"
+        title="Welcome On Admin Page"
+        showNavButton="true"
+        navButtonPress="onNavBack"
+    >
+        <content>
+        <VBox id="homePageVBox" fitContainer="true">
+				<OverflowToolbar id="homePageFirstVBoxOt" class="sapFDynamicPageAlignContent">
+					<ToolbarSpacer/>
+					<SearchField search=".onSearch" width="17.5rem"/>
+					<OverflowToolbarButton icon="sap-icon://add" text="Add" type="Transparent" press=".onAdd"/>
+					<OverflowToolbarButton icon="sap-icon://sort" text="Sort" type="Transparent" press=".onSort"/>
+				</OverflowToolbar></VBox>
+            <uxap:ObjectPageLayout
+                id="ObjectPageWelAdmin"
+                upperCaseAnchorBar="false"
+            >
+                <uxap:headerContent>
+                
+                    <Toolbar>
+                        <ToolbarSpacer />
+                        <Button
+                            id="adminCreateProject"
+                            text="Add New Project"
+                            icon="sap-icon://add"
+                            press="newProjectFregOpen"
+                        />
+                        <Button
+                            id="adminBtnLogOut"
+                            text="Log Out"
+                            press="onNavBack"
+                        />
+                        <Button
+                            id="adminBtnEdit"
+                            text="Edit"
+                            press="onEditTableItem"
+                        />
+                    </Toolbar>
+                </uxap:headerContent>
+                <uxap:sections>
+                    <uxap:ObjectPageSection
+                        id="adminWelProjectSTatusTile"
+                        titleUppercase="false"
+                        title="Project Details"
+                    >
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection
+                                id="adminWelProjectSTatusSubSection"
+                                titleUppercase="false"
+                            >
+                                <uxap:blocks>
+                                   
+                                       <VBox>
+    <HBox justifyContent="SpaceAround">
+        <GenericTile header="Total Projects" class="sapUiTinyMargin" press=".onTilePress">
+            <TileContent>
+                <NumericContent id="totalProject" value="0"/>
+            </TileContent>
+        </GenericTile>
+
+        <GenericTile header="Total Employees" class="sapUiTinyMargin" press=".onTilePress">
+            <TileContent>
+                <NumericContent id="totalEmployees" value="0"/>
+            </TileContent>
+        </GenericTile>
+
+        <GenericTile header="Running Projects" class="sapUiTinyMargin" press=".onTilePress">
+            <TileContent>
+                <NumericContent id="runningProjects" value="0"/>
+            </TileContent>
+        </GenericTile>
+    </HBox>
+</VBox>
+
+                                
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                    <uxap:ObjectPageSection>
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection title="Projects Status" titleUppercase="false">
+                                <uxap:blocks>
+                                    <VBox>
+                                        <fb:FilterBar
+                                            id="filterbarAdmin"
+                                            persistencyKey="myPersKey"
+                                            useToolbar="false"
+                                            search=".onSearch"
+                                            filterChange=".onFilterChange"
+                                            afterVariantLoad=".onAfterVariantLoad"
+                                            xmlns:fb="sap.ui.comp.filterbar"
+                                            xmlns:core="sap.ui.core"
+                                            xmlns="sap.m"
+                                        >
+                                            <fb:filterGroupItems>
+                                                <fb:FilterGroupItem
+                                                    name="ProjectID"
+                                                    label="Project ID"
+                                                    groupName="Group1"
+                                                    visibleInFilterBar="true"
+                                                >
+                                                    <fb:control>
+                                                        <MultiComboBox
+                                                            selectionChange=".onSelectionChange"
+                                                            items="{/Projects}"
+                                                        >
+                                                            <core:Item
+                                                                key="{projectId}"
+                                                                text="{projectId}"
+                                                            />
+                                                        </MultiComboBox>
+                                                    </fb:control>
+                                                </fb:FilterGroupItem>
+
+                                                <fb:FilterGroupItem
+                                                    name="ProjectName"
+                                                    label="Project Name"
+                                                    groupName="Group1"
+                                                    visibleInFilterBar="true"
+                                                >
+                                                    <fb:control>
+                                                        <MultiComboBox
+                                                            selectionChange=".onSelectionChange"
+                                                            items="{/Projects}"
+                                                        >
+                                                            <core:Item
+                                                                key="{projectName}"
+                                                                text="{projectName}"
+                                                            />
+                                                        </MultiComboBox>
+                                                    </fb:control>
+                                                </fb:FilterGroupItem>
+
+                                                <fb:FilterGroupItem
+                                                    name="ClientName"
+                                                    label="Client Name"
+                                                    groupName="Group1"
+                                                    visibleInFilterBar="true"
+                                                >
+                                                    <fb:control>
+                                                        <MultiComboBox
+                                                            selectionChange=".onSelectionChange"
+                                                            items="{/Projects}"
+                                                        >
+                                                            <core:Item
+                                                                key="{clientName}"
+                                                                text="{clientName}"
+                                                            />
+                                                        </MultiComboBox>
+                                                    </fb:control>
+                                                </fb:FilterGroupItem>
+                                            </fb:filterGroupItems>
+                                        </fb:FilterBar>
+
+                                        <Table
+                                            id="projectTableSeeingAdmin"
+                                            items="{ path: '/Projects' }"
+                                            itemPress="onItemPress"
+                                            mode="SingleSelectMaster"
+                                            growing="true"
+                                            growingThreshold="10"
+                                        >
+                                            <columns>
+                                                <Column
+                                                    id="adminPageTabProjIdCol"
+                                                >
+                                                    <Text
+                                                        id="adminPageTabProjIdTxt"
+                                                        text="Project ID"
+                                                    />
+                                                </Column>
+                                                <Column
+                                                    id="adminPageTabProjNameCol"
+                                                >
+                                                    <Text
+                                                        id="adminPageTabProjNameTxt"
+                                                        text="Project Name"
+                                                    />
+                                                </Column>
+                                                <Column
+                                                    id="adminPageTabAssignToCol"
+                                                >
+                                                    <Text
+                                                        id="adminPageTabAssignToTxt"
+                                                        text="Assigned To"
+                                                    />
+                                                </Column>
+                                                <Column
+                                                    id="adminPageTabTimeAssignCol"
+                                                >
+                                                    <Text
+                                                        id="adminPageTabTimeAssignToTxt"
+                                                        text="Time Assigned"
+                                                    />
+                                                </Column>
+                                                <Column
+                                                    id="adminPageTabChangesCol"
+                                                >
+                                                    <Text
+                                                        id="adminPageTabChangesTxt"
+                                                        text="Changes"
+                                                    />
+                                                </Column>
+                                                <Column
+                                                    id="adminPageTabClientNameCol"
+                                                >
+                                                    <Text
+                                                        id="adminPageTabClientNameTxt"
+                                                        text="Client Name"
+                                                    />
+                                                </Column>
+                                                <Column
+                                                    id="adminPageTabStatusCol"
+                                                >
+                                                    <Text
+                                                        id="adminPageTabStatusTxt"
+                                                        text="Status"
+                                                    />
+                                                </Column>
+                                                <Column
+                                                    id="adminPageTabUrgencyCol"
+                                                >
+                                                    <Text
+                                                        id="adminPageTabUrgencyTxt"
+                                                        text="Urgency"
+                                                    />
+                                                </Column>
+                                                <Column
+                                                    id="adminPageTabStartDateCol"
+                                                >
+                                                    <Text
+                                                        id="adminPageTabStartDateTxt"
+                                                        text="Start Date"
+                                                    />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="End Date" />
+                                                </Column>
+                                            </columns>
+                                            <items>
+                                                <ColumnListItem type="Active">
+                                                    <cells>
+                                                        <Text
+                                                            id="adProjectId"
+                                                            text="{projectId}"
+                                                        />
+                                                        <Text
+                                                            id="adProjectName"
+                                                            text="{projectName}"
+                                                        />
+                                                        <Text
+                                                            id="adAssignedToP"
+                                                            text="{assignedToP}"
+                                                        />
+                                                        <Text
+                                                            id="adTimeAssigned"
+                                                            text="{timeAssigned}"
+                                                        />
+                                                        <Text
+                                                            id="adProjectChanges"
+                                                            text="{projectChanges}"
+                                                        />
+                                                        <Text
+                                                            id="adClientName"
+                                                            text="{clientName}"
+                                                        />
+                                                        <Text
+                                                            id="adDescription"
+                                                            text="{description}"
+                                                        />
+                                                        <Text
+                                                            id="adUrgency"
+                                                            text="{urgency}"
+                                                        />
+                                                        <Text
+                                                            id="adCreatedBy"
+                                                            text="{createdBy}"
+                                                        />
+                                                        <Text
+                                                            id="adModifiedBy"
+                                                            text="{modifiedBy}"
+                                                        />
+
+                                                        <Text
+                                                            id="adStartDate"
+                                                            text="{startDate}"
+                                                        />
+                                                        <Text
+                                                            id="adEnddate"
+                                                            text="{endDate}"
+                                                        />
+                                                        <ObjectStatus
+                                                            text="{status}"
+                                                            state="{= ${status} === 'Completed' ? 'Success' : ${status} === 'InProgress' ? 'Warning' : 'Error'}"
+                                                            class="myStatus{= ${status} === 'Completed' ? 'Success' : ${status} === 'InProgress' ? 'Warning' : 'Error'}"
+                                                        />
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
+                                        </Table>
+                                    </VBox>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+                </uxap:sections>
+            </uxap:ObjectPageLayout>
+        </content>
+    </Page>
+</mvc:View>
