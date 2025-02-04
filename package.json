@@ -6,12 +6,12 @@
   "repository": "<Add your repository here>",
   "devDependencies": {
     "@sap/cds-dk": "^8",
-    "rimraf": "^5.0.5",
-    "mbt": "^1.2.29"
+    "mbt": "^1.2.29",
+    "rimraf": "^5.0.5"
   },
   "dependencies": {
     "@sap/cds": "^8.7.0",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.7",
     "@sap/hdbext": "^8.1.2",
     "@sap/xssec": "^4.2.8",
     "express": "^4.21.2"

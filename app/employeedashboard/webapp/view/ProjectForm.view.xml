@@ -1,77 +1,119 @@
 <mvc:View
-	controllerName=""
-	xmlns:l="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:core="sap.ui.core"
-	xmlns="sap.m">
-	<VBox class="sapUiSmallMargin">
-		<f:SimpleForm id="SimpleFormToolbar"
-			editable="true"
-			layout="ResponsiveGridLayout"
-			labelSpanXL="4"
-			labelSpanL="3"
-			labelSpanM="4"
-			labelSpanS="12"
-			adjustLabelSpan="false"
-			emptySpanXL="0"
-			emptySpanL="4"
-			emptySpanM="0"
-			emptySpanS="0"
-			columnsXL="2"
-			columnsL="1"
-			columnsM="1"
-			singleContainerFullSize="false"
-			ariaLabelledBy="Title1" >
-			<f:toolbar>
-				<Toolbar id="TB1">
-					<Title id="Title1" text="Address"/>
-					<ToolbarSpacer />
-					<Button icon="sap-icon://settings"/>
-					<Button icon="sap-icon://drop-down-list" />
-				</Toolbar>
-			</f:toolbar>
-			<f:content>
-				<Toolbar ariaLabelledBy="Title2">
-					<Title id="Title2" text="Office"/>
-					<ToolbarSpacer />
-					<Button icon="sap-icon://settings"/>
-				</Toolbar>
-				<Label text="Name" />
-				<Input value="{SupplierName}" />
-				<Label text="Street/No." />
-				<Input value="{Street}">
-				</Input>
-				<Input value="{HouseNumber}">
-					<layoutData>
-						<l:GridData span="XL2 L1 M3 S4" />
-					</layoutData>
-				</Input>
-				<Label text="ZIP Code/City" />
-				<Input value="{ZIPCode}">
-					<layoutData>
-						<l:GridData span="XL2 L1 M3 S4" />
-					</layoutData>
-				</Input>
-				<Input value="{City}" />
-				<Label text="Country" />
-				<Select id="country" selectedKey="{Country}">
-					<items>
-						<core:Item text="England" key="England"/>
-						<core:Item text="Germany" key="Germany"/>
-						<core:Item text="USA" key="USA"/>
-					</items>
-				</Select>
-				<Toolbar ariaLabelledBy="Title3">
-					<Title id="Title3" text="Online"/>
-					<ToolbarSpacer />
-					<Button icon="sap-icon://settings"/>
-				</Toolbar>
-				<Label text="Web" />
-				<Input value="{Url}" type="Url" />
-				<Label text="Twitter" />
-				<Input value="{Twitter}" />
-			</f:content>
-		</f:SimpleForm>
-	</VBox>
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.uxap"
+    controllerName="">
+
+    <layout:ObjectPageLayout id="ObjectPageLayoutA" showHeaderContent="false">
+        
+        <!-- Header Title -->
+        <layout:headerTitle>
+            <layout:ObjectPageHeader
+                objectTitle="Project Registration"
+                objectSubtitle="Fill the details below to create a project"
+                showTitleSelector="false"
+            />
+        </layout:headerTitle>
+
+        <!-- Main Content Section -->
+        <layout:sections>
+            <layout:ObjectPageSection title="Project Details">
+                <layout:subSections>
+                    <layout:ObjectPageSubSection>
+                        <layout:blocks>
+                            
+                            <f:SimpleForm
+                                id="SimpleFormToolbar"
+                                editable="true"
+                                layout="ResponsiveGridLayout"
+                                labelSpanXL="4"
+                                labelSpanL="3"
+                                labelSpanM="4"
+                                labelSpanS="12"
+                                adjustLabelSpan="false"
+                                emptySpanXL="0"
+                                emptySpanL="4"
+                                emptySpanM="0"
+                                emptySpanS="0"
+                                columnsXL="2"
+                                columnsL="2"
+                                columnsM="2"
+                            >
+                                <f:content>
+
+                                    <Label text="Project ID" />
+                                    <Input id="pProjectId" />
+
+                                    <Label text="Project Name" />
+                                    <Input id="pProjectName" />
+
+                                    <Label text="Assigned To Project" />
+                                    <Input id="pAssignedTo" />
+
+                                    <Label text="Time Assigned" />
+                                    <Input id="pTimeAssigned" />
+
+                                    <Label text="Changes" />
+                                    <Input id="pChanges" />
+
+                                    <Label text="Client Name" />
+                                    <Input id="pClientName" />
+
+                                    <Label text="Description" />
+                                    <Input id="pDescription" />
+
+                                    <Label text="Urgency" />
+                                    <Input id="pUrgency" />
+
+                                    <Label text="Created By" />
+                                    <Input id="pCreateBy" />
+
+                                    <Label text="Modified By" />
+                                    <Input id="pModifieBy" />
+
+                                    <Label text="Start Date" />
+                                    <DatePicker id="pStartDate" />
+
+                                    <Label text="End Date" />
+                                    <DatePicker id="pEndDate" />
+
+                                    <Label text="Status" />
+                                    <Select id="Status" selectedKey="{pStatus}">
+                                        <items>
+                                            <core:Item text="OnTime" key="OnTime"/>
+                                            <core:Item text="Delayed" key="Delayed"/>
+                                            <core:Item text="Completed" key="Completed"/>
+                                        </items>
+                                    </Select>
+
+                                    <!-- Action Buttons -->
+                                    <Toolbar>
+                                        <Button
+                                            id="newProjectFormSubmitBton"
+                                            text="Submit"
+                                            type="Accept"
+                                            press="onSubmitNewProjectForm"
+                                        />
+                                        <Button
+                                            id="newProjectFormCancelBton"
+                                            text="Cancel"
+                                            type="Reject"
+                                            press="onCancelNewProjectForm"
+                                        />
+                                    </Toolbar>
+
+                                </f:content>
+                            </f:SimpleForm>
+
+                        </layout:blocks>
+                    </layout:ObjectPageSubSection>
+                </layout:subSections>
+            </layout:ObjectPageSection>
+        </layout:sections>
+        
+    </layout:ObjectPageLayout>
+
 </mvc:View>

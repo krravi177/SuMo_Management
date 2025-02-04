@@ -51,7 +51,7 @@
                     <Button
                         text="Log Out"
                         
-                        press="onNavBack"
+                        press="onLogOutAdmin"
                     />
                     
                 </OverflowToolbar>
@@ -275,7 +275,7 @@
                                                         text="Urgency"
                                                     />
                                                 </Column>
-                                                <Column
+                                                <!-- <Column
                                                     id="adminPageTabStartDateCol"
                                                 >
                                                     <Text
@@ -285,7 +285,7 @@
                                                 </Column>
                                                 <Column>
                                                     <Text text="End Date" />
-                                                </Column>
+                                                </Column> -->
                                             </columns>
                                             <items>
                                                 <ColumnListItem type="Active">
@@ -321,6 +321,7 @@
                                                         <Text
                                                             id="adUrgency"
                                                             text="{urgency}"
+                                                            
                                                         />
                                                         <Text
                                                             id="adCreatedBy"
@@ -331,14 +332,15 @@
                                                             text="{modifiedBy}"
                                                         />
 
-                                                        <Text
+                                                        <!-- <Text
                                                             id="adStartDate"
                                                             text="{startDate}"
                                                         />
                                                         <Text
                                                             id="adEnddate"
                                                             text="{endDate}"
-                                                        />
+                                                        /> -->
+                                                        
                                                         <ObjectStatus
                                                             text="{status}"
                                                             state="{= ${status} === 'Completed' ? 'Success' : ${status} === 'InProgress' ? 'Warning' : 'Error'}"

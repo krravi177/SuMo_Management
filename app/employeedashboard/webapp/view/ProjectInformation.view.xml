@@ -28,9 +28,9 @@
                 <navigationActions>
                     <m:OverflowToolbarButton
                         type="Transparent"
-                        icon="sap-icon://decline"
-                        press=".handleClose"
-                        tooltip="Close column"
+                        icon="sap-icon://add"
+                        press=".addForm"
+                        tooltip="Add Form"
                     />
                 </navigationActions>
 

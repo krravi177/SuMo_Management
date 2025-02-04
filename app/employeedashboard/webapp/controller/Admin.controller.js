@@ -28,21 +28,21 @@ sap.ui.define([
         },
         
         
+        
         onSearch: function (oEvent) {
             var oTable = this.getView().byId("projectTableSeeingAdmin");
-            var oBinding = oTable.getBinding("items"); // Get the table's binding
-            var aFilters = []; // Array to hold active filters
+            var oBinding = oTable.getBinding("items");
+            var aFilters = []; 
         
-            // Get the SmartFilterBar instance
+           
             var oFilterBar = this.getView().byId("filterbarAdmin");
-            var aFilterItems = oFilterBar.getAllFilterItems(); // Retrieve all filter fields
+            var aFilterItems = oFilterBar.getAllFilterItems(); 
         
             aFilterItems.forEach(function (oFilterItem) {
-                var sFilterName = oFilterItem.getName(); // Name defined in XML
-                var oControl = oFilterItem.getControl(); // Control bound to the filter
-        
+                var sFilterName = oFilterItem.getName(); 
+                var oControl = oFilterItem.getControl(); 
                 if (oControl instanceof sap.m.MultiComboBox) {
-                    var aSelectedKeys = oControl.getSelectedKeys(); // Get selected values
+                    var aSelectedKeys = oControl.getSelectedKeys();
         
                     if (aSelectedKeys.length > 0) {
                         var aValueFilters = aSelectedKeys.map(key => 
@@ -50,15 +50,15 @@ sap.ui.define([
                         );
                         aFilters.push(new sap.ui.model.Filter({
                             filters: aValueFilters,
-                            and: false // OR condition between selected values
+                            and: false 
                         }));
                     }
                 }
             });
         
-            // Apply the filters
+            
             oBinding.filter(aFilters);
-        },
+         },
         
         onSort: function () {
             this._bDescendingSort = !this._bDescendingSort;
@@ -100,8 +100,9 @@ sap.ui.define([
             var nFprojectUrgency = oView.byId("npUrgency").getValue();
             var nFCreatedBy = oView.byId("npCreateBy").getValue();
             var nFModifiedBy = oView.byId("npModifieBy").getValue();
-            var nFprojectStartDate = oView.byId("npStartDate").getValue();
-            var nFprojectEndDate = oView.byId("npEndDate").getValue();
+
+        //   var nFprojectStartDate = oView.byId("npStartDate").getDateValue();
+        //    var nFprojectEndDate = oView.byId("npEndDate").getValue();
 
             var formData = {
                 projectId: nFprojectID,
@@ -114,9 +115,9 @@ sap.ui.define([
                 status: nFprojectStatus,
                 urgency: nFprojectUrgency,
                 createdBy: nFCreatedBy,
-                startDate: nFprojectStartDate,
-                modifiedBy: nFModifiedBy,
-                endDate: nFprojectEndDate
+                // startDate: nFprojectStartDate,
+                modifiedBy: nFModifiedBy
+                // endDate: nFprojectEndDate
             };
             oModel.create("/Projects", formData, {
 
@@ -141,7 +142,7 @@ sap.ui.define([
             oContext.getModel().setProperty(oContext.getPath() + "/Editable", true);
         },
 
-        // Save Updated Data (UPDATE)
+       
         onSave: function (oEvent) {
             var oContext = oEvent.getSource().getBindingContext();
             var oModel = oContext.getModel();
@@ -163,59 +164,30 @@ sap.ui.define([
                 }
             });
 
-            // Disable Edit Mode
+            
             oModel.setProperty(sPath + "/Editable", false);
         },
 
-        // Cancel Editing
+       
         onCancel: function (oEvent) {
             var oContext = oEvent.getSource().getBindingContext();
             var oModel = oContext.getModel();
             oModel.setProperty(oContext.getPath() + "/Editable", false);
         },
 
-        // Filter Search (Smart FilterBar)
-        onFilterSearch: function () {
-            var oModel = this.getOwnerComponent().getModel("ODataV2");
-            var oTable = this.getView().byId("projectTableSeeingAdmin");
-            var oFilterBar = this.getView().byId("filterBar");
-
-            var aFilters = [];
-            var mConditions = oFilterBar.getFilterData();
-
-            if (mConditions.projectName) {
-                aFilters.push(new Filter("projectName", FilterOperator.Contains, mConditions.projectName));
-            }
-            if (mConditions.status) {
-                aFilters.push(new Filter("status", FilterOperator.EQ, mConditions.status));
-            }
-
-            var oBinding = oTable.getBinding("items");
-            oBinding.filter(aFilters);
-
-            MessageToast.show("Filters applied successfully!");
-        },
-
-        
-        onFilterReset: function () {
-            var oFilterBar = this.getView().byId("filterBar");
-            oFilterBar.setFilterData({});
-            var oTable = this.getView().byId("projectTableSeeingAdmin");
-            oTable.getBinding("items").filter([]);
-            MessageToast.show("Filters reset.");
-        },
         
         updateCounters: function () {
             var oModel = this.getOwnerComponent().getModel("ODataV2");
         
-            // Fetch Project Data
+           
             oModel.read("/Projects", {
+                
                 success: function (oData) {
                     var aProjects = oData.results || [];
                     var iTotalProjects = aProjects.length;
                     var iRunningProjects = aProjects.filter(p => p.status === "Running").length;
         
-                    // Update Tile Values
+                    
                     this.getView().byId("totalProject").setValue(iTotalProjects);
                     this.getView().byId("runningProjects").setValue(iRunningProjects);
                 }.bind(this),
@@ -224,12 +196,12 @@ sap.ui.define([
                 }
             });
         
-            // Fetch Employee Data
+           
             oModel.read("/Employees", {
                 success: function (oData) {
                     var iTotalEmployees = oData.results.length;
         
-                    // Update Tile Value
+                  
                     this.getView().byId("totalEmployees").setValue(iTotalEmployees);
                 }.bind(this),
                 error: function () {
@@ -241,8 +213,11 @@ sap.ui.define([
      onItemPress:function(oEvent){
            var nProjectId=oEvent.getParameter("listItem").getBindingContext().getProperty("projectId");
            this.getOwnerComponent().getRouter().navTo("ProjectInformation",{projectid:nProjectId});
-        }
-      
+        },
+
+     onLogOutAdmin:function(){
+        this.getOwnerComponent().getRouter().navTo("RouteView1");
+      }
     });
 });
 

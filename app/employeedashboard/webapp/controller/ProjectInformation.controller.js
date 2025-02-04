@@ -49,5 +49,8 @@ sap.ui.define([
 
             oObjectPage.setShowFooter(!bCurrentShowFooterState);
         },
+        addForm:function(){
+            this.getOwnerComponent().getRouter().navTo("ProjectForm");
+        }
     });
 });

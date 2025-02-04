@@ -117,6 +117,7 @@
         },
         {
           "name": "RouteAdmin",
+          
           "pattern": "Admin",
           "target": [
             "TargetAdmin"
@@ -152,6 +153,11 @@
           "name": "ProjectInformation",
           "pattern": "Projects/{projectid}",
           "target": "ProjectInformation"
+        },
+        {
+          "name": "ProjectForm",
+          "pattern": "ProjectForm",
+          "target": "ProjectForm"
         }
       ],
       "targets": {
@@ -183,6 +189,11 @@
         "ProjectInformation": {
           "id": "ProjectInformation",
           "name": "ProjectInformation"
+        },
+        "ProjectForm":{
+          "viewId": "ProjectForm",
+          "viewName": "ProjectForm",
+          "transition":"show"
         }
       }
     },
