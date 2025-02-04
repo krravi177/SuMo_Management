@@ -16,7 +16,7 @@
     >
         <content>
             <uxap:ObjectPageLayout
-                id="ObjectPageLayout"
+                id="ObjectPageLayoutEmployee"
                 upperCaseAnchorBar="false"
             >
                 <uxap:headerContent>
@@ -259,11 +259,7 @@
                                                         text="Permission to Create Employee"
                                                     />
                                                 </Column>
-                                                <Column>
-                                                    <Text
-                                                        text="Last Projects Worked On"
-                                                    />
-                                                </Column>
+                                                
                                             </columns>
 
                                             <items>
@@ -277,17 +273,17 @@
                                                         />
                                                         <Text text="{rating}" />
                                                         <Text
-                                                            text="{empManager/empName}"
+                                                            text="{managerId}"
                                                         />
                                                         <!-- Manager's Name from the Association -->
                                                         <Text
                                                             text="{timeTaken}"
                                                         />
                                                         <Text
-                                                            text="{>permissionToEdit}"
+                                                            text="{permissionToEdit}"
                                                         />
                                                         <Text
-                                                            text="{>permissionToView}"
+                                                            text="{permissionToView}"
                                                         />
                                                         <Text
                                                             text="{permissionToCreateP}"
@@ -299,9 +295,7 @@
                                                             text="{permissionToCreateE}"
                                                         />
 
-                                                        <Text
-                                                            text="{lastProjects/0/projectName}"
-                                                        />
+                                                       
                                                     </cells>
                                                 </ColumnListItem>
                                             </items>

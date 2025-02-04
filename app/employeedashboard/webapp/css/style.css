@@ -1,1 +1,14 @@
-/* Enter your custom styles here */
+.myStatusSuccess {
+    color: green !important;
+    font-weight: bold;
+}
+
+.myStatusWarning {
+    color: orange !important;
+    font-weight: bold;
+}
+
+.myStatusError {
+    color: red !important;
+    font-weight: bold;
+}

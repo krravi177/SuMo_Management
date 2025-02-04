@@ -8,7 +8,8 @@ sap.ui.define([
 
     return Controller.extend("com.dash.employeedashboard.controller.Admin", {
         onInit() {
-
+            
+            var oModel = this.getOwnerComponent().getModel("ODataV2");
 
             // oModel.bindContext("/Projects", {}).requestObject()
             //     .then(function (oData) {
@@ -22,23 +23,71 @@ sap.ui.define([
 
             this.oFragment = new sap.ui.xmlfragment("com.dash.employeedashboard.view.NewProject", this);
             this.getView().addDependent(this.oFragment);
-
-            // this.updateCounters();
+            this._bDescendingSort = false;
+            this.updateCounters();
         },
+        
+        
+        onSearch: function (oEvent) {
+            var oTable = this.getView().byId("projectTableSeeingAdmin");
+            var oBinding = oTable.getBinding("items"); // Get the table's binding
+            var aFilters = []; // Array to hold active filters
+        
+            // Get the SmartFilterBar instance
+            var oFilterBar = this.getView().byId("filterbarAdmin");
+            var aFilterItems = oFilterBar.getAllFilterItems(); // Retrieve all filter fields
+        
+            aFilterItems.forEach(function (oFilterItem) {
+                var sFilterName = oFilterItem.getName(); // Name defined in XML
+                var oControl = oFilterItem.getControl(); // Control bound to the filter
+        
+                if (oControl instanceof sap.m.MultiComboBox) {
+                    var aSelectedKeys = oControl.getSelectedKeys(); // Get selected values
+        
+                    if (aSelectedKeys.length > 0) {
+                        var aValueFilters = aSelectedKeys.map(key => 
+                            new sap.ui.model.Filter(sFilterName, sap.ui.model.FilterOperator.EQ, key)
+                        );
+                        aFilters.push(new sap.ui.model.Filter({
+                            filters: aValueFilters,
+                            and: false // OR condition between selected values
+                        }));
+                    }
+                }
+            });
+        
+            // Apply the filters
+            oBinding.filter(aFilters);
+        },
+        
+        onSort: function () {
+            this._bDescendingSort = !this._bDescendingSort;
+        
+            var oTable = this.getView().byId("projectTableSeeingAdmin"),
+                oBinding = oTable.getBinding("items"),
+                oSorter = new sap.ui.model.Sorter("projectId", this._bDescendingSort);
+        
+            oBinding.sort(oSorter);
+        
+            
+            sap.m.MessageToast.show(`Sorted: ${this._bDescendingSort ? "Descending" : "Ascending"}`);
+        },
+        
         onRead: function () {
-            var oModel = this.getOwnerComponent().getModel();
+            var oModel = this.getOwnerComponent().getModel("ODataV2");
             if (oData.length > 0) {
                 MessageToast.show("Data: " + JSON.stringify(oData));
             } else {
                 MessageToast.show("No data available");
             }
         },
-        newProjectFregOpen: function () {
+        onAdd: function (oEvent) {
             this.oFragment.open();
         },
         onSubmitNewProjectForm: function () {
             var oView = sap.ui.getCore();
-            var oModel = this.getOwnerComponent().getModel("ODataV2");
+            var oModel = this.getView().getModel("ODataV2");
+
 
             var nFprojectID = oView.byId("npProjectId").getValue();
             var nFprojectName = oView.byId("npProjectName").getValue();
@@ -69,15 +118,15 @@ sap.ui.define([
                 modifiedBy: nFModifiedBy,
                 endDate: nFprojectEndDate
             };
-            var oModel = this.getOwnerComponent().getModel("ODataV2");
             oModel.create("/Projects", formData, {
 
                 success: function () {
-                    MessageToast.show("Registration successful!");
+                    sap.m.MessageToast.show("Project created successfully!");
+                    oModel.refresh();
 
-                },
+                     },
                 error: function () {
-                    MessageToast.show("Registration failed.");
+                    sap.m.MessageToast.show("Registration failed.");
                 }
 
             });
@@ -87,84 +136,22 @@ sap.ui.define([
         onCancelNewProjectForm: function () {
             this.oFragment.close();
         },
-        onEditTableItem: function () {
-            //     var oModel=this.getOwnerComponent().getModel();
-            //     var oTable=this.getView().byId("projectTableSeeingAdmin");
-            //     var oSelectedItem=oTable.getSelectedItem();
-            //     var id=oSelectedItem.projectId;
-
-            //     var sPath="/Projects("+id+")";
-            //     var nFprojectID=oView.byId("adProjectId").getValue();
-            //     var nFprojectName=oView.byId("adProjectName").getValue();
-            //     var nFprojectAssigned=oView.byId("adAssignedToP").getValue();
-            //     var nFprojectTimeAssigned=oView.byId("adTimeAssigned").getValue();
-            //     var nFprojectChanges=oView.byId("adProjectChanges").getValue();
-            //     var nFprojectClient=oView.byId("adClientName").getValue();
-            //     var nFDescription=oView.byId("adDescription").getValue();
-            //     var nFprojectStatus=oView.byId("adStatus").getValue();
-            //     var nFprojectUrgency=oView.byId("adUrgency").getValue();
-            //     var nFCreatedBy=oView.byId("adCreatedBy").getValue();
-            //     var nFModifiedBy=oView.byId("adModifiedBy").getValue();
-            //     var nFprojectStartDate=oView.byId("adStartDate").getValue();
-            //      var nFprojectEndDate=oView.byId("adEndDate").getValue();
-
-            //      var formData={
-            //         projectId:nFprojectID,
-            //     projectName:nFprojectName,
-            //     assignedToP:nFprojectAssigned,
-            //     timeAssigned:nFprojectTimeAssigned,
-            //     projectChanges:nFprojectChanges,
-            //     clientName:nFprojectClient,
-            //    description :nFDescription,
-            //     status:nFprojectStatus,
-            //     urgency:nFprojectUrgency,
-            //     createdBy:nFCreatedBy,
-            //     startDate:nFprojectStartDate,
-            //     modifiedBy:nFModifiedBy,
-            //     endDate:nFprojectEndDate
-            //     };
-            //     var oModel = this.getOwnerComponent().getModel("ODataV2"); 
-            //     oModel.update(sPath,formData,{
-
-            //         success: function() {
-            //             MessageToast.show("Registration successful!");
-
-            //         },
-            //         error: function() {
-            //             MessageToast.show("Registration failed.");
-            //         }
-
-            //     });
-
-
-
+        onEditTableItem: function (oEvent) {
             var oContext = oEvent.getSource().getBindingContext();
-            var oModel = oContext.getModel();
-            oModel.setProperty(oContext.getPath() + "/Editable", true);
+            oContext.getModel().setProperty(oContext.getPath() + "/Editable", true);
         },
 
-        // Save Updated Data
+        // Save Updated Data (UPDATE)
         onSave: function (oEvent) {
-            var oModel = this.getView().getModel();
             var oContext = oEvent.getSource().getBindingContext();
+            var oModel = oContext.getModel();
             var sPath = oContext.getPath();
 
             var oUpdatedData = {
-                projectId: nFprojectID,
-                //     projectName:nFprojectName,
-                //     assignedToP:nFprojectAssigned,
-                //     timeAssigned:nFprojectTimeAssigned,
-                //     projectChanges:nFprojectChanges,
-                //     clientName:nFprojectClient,
-                //    description :nFDescription,
-                //     status:nFprojectStatus,
-                //     urgency:nFprojectUrgency,
-                //     createdBy:nFCreatedBy,
-                //     startDate:nFprojectStartDate,
-                //     modifiedBy:nFModifiedBy,
-                //     endDate:nFprojectEndDate
-                ProductName: oContext.getProperty("projectName"),
-                Price: oContext.getProperty("assignedToP")
+                projectId: oContext.getProperty("projectId"),
+                projectName: oContext.getProperty("projectName"),
+                assignedToP: oContext.getProperty("assignedToP"),
+                status: oContext.getProperty("status")
             };
 
             oModel.update(sPath, oUpdatedData, {
@@ -182,67 +169,80 @@ sap.ui.define([
 
         // Cancel Editing
         onCancel: function (oEvent) {
-            var oContext = oEvent.getSource().getParent().getParent().getBindingContext();
+            var oContext = oEvent.getSource().getBindingContext();
             var oModel = oContext.getModel();
             oModel.setProperty(oContext.getPath() + "/Editable", false);
         },
-        
-        // updateCounters: function () {
-        //     var oModel = this.getOwnerComponent().getModel("ODataV2");
-        //     var aProjects = oModel.getProperty("/Projects");
-        //     var iTotalProjects = aProjects.length;
-        //     var iTotalEmployees = oModel.getProperty("/Employees").length;
-        //     var iRunningProjects = aProjects.filter(p => p.status === "Running").length;
 
-        //     this.byId("totalProject").setValue(iTotalProjects);
-        //     this.byId("totalEmployees").setValue(iTotalEmployees);
-        //     this.byId("runningProjects").setValue(iRunningProjects);
-        // },
+        // Filter Search (Smart FilterBar)
+        onFilterSearch: function () {
+            var oModel = this.getOwnerComponent().getModel("ODataV2");
+            var oTable = this.getView().byId("projectTableSeeingAdmin");
+            var oFilterBar = this.getView().byId("filterBar");
 
-        onTilePress: function (oEvent) {
-            sap.m.MessageToast.show(oEvent.getSource().getHeader() + " clicked!");
-        },
-
-
-        onSelectionChange: function () {
-            this.applyFilters();
-        },
-
-        onSearch: function () {
-            this.applyFilters();
-        },
-
-        applyFilters: function () {
-            var oTable = this.byId("projectTableSeeingAdmin");
-            var oBinding = oTable.getBinding("items");
             var aFilters = [];
+            var mConditions = oFilterBar.getFilterData();
 
-            var oProjectIdFilter = this.byId("filterbarAdmin").getControlByKey("ProjectID");
-            var oProjectNameFilter = this.byId("filterbarAdmin").getControlByKey("ProjectName");
-            var oClientNameFilter = this.byId("filterbarAdmin").getControlByKey("ClientName");
-
-            var aSelectedProjectIds = oProjectIdFilter ? oProjectIdFilter.getSelectedKeys() : [];
-            var aSelectedProjectNames = oProjectNameFilter ? oProjectNameFilter.getSelectedKeys() : [];
-            var aSelectedClientNames = oClientNameFilter ? oClientNameFilter.getSelectedKeys() : [];
-
-            if (aSelectedProjectIds.length > 0) {
-                aFilters.push(new Filter("projectId", FilterOperator.Contains, aSelectedProjectIds));
+            if (mConditions.projectName) {
+                aFilters.push(new Filter("projectName", FilterOperator.Contains, mConditions.projectName));
+            }
+            if (mConditions.status) {
+                aFilters.push(new Filter("status", FilterOperator.EQ, mConditions.status));
             }
 
-            if (aSelectedProjectNames.length > 0) {
-                aFilters.push(new Filter("projectName", FilterOperator.Contains, aSelectedProjectNames));
-            }
-
-            if (aSelectedClientNames.length > 0) {
-                aFilters.push(new Filter("clientName", FilterOperator.Contains, aSelectedClientNames));
-            }
-
+            var oBinding = oTable.getBinding("items");
             oBinding.filter(aFilters);
+
+            MessageToast.show("Filters applied successfully!");
         },
 
-        onAfterVariantLoad: function () {
-            this.applyFilters();
+        
+        onFilterReset: function () {
+            var oFilterBar = this.getView().byId("filterBar");
+            oFilterBar.setFilterData({});
+            var oTable = this.getView().byId("projectTableSeeingAdmin");
+            oTable.getBinding("items").filter([]);
+            MessageToast.show("Filters reset.");
+        },
+        
+        updateCounters: function () {
+            var oModel = this.getOwnerComponent().getModel("ODataV2");
+        
+            // Fetch Project Data
+            oModel.read("/Projects", {
+                success: function (oData) {
+                    var aProjects = oData.results || [];
+                    var iTotalProjects = aProjects.length;
+                    var iRunningProjects = aProjects.filter(p => p.status === "Running").length;
+        
+                    // Update Tile Values
+                    this.getView().byId("totalProject").setValue(iTotalProjects);
+                    this.getView().byId("runningProjects").setValue(iRunningProjects);
+                }.bind(this),
+                error: function () {
+                    sap.m.MessageToast.show("Failed to fetch project data.");
+                }
+            });
+        
+            // Fetch Employee Data
+            oModel.read("/Employees", {
+                success: function (oData) {
+                    var iTotalEmployees = oData.results.length;
+        
+                    // Update Tile Value
+                    this.getView().byId("totalEmployees").setValue(iTotalEmployees);
+                }.bind(this),
+                error: function () {
+                    sap.m.MessageToast.show("Failed to fetch employee data.");
+                }
+            });
+        },
+        
+     onItemPress:function(oEvent){
+           var nProjectId=oEvent.getParameter("listItem").getBindingContext().getProperty("projectId");
+           this.getOwnerComponent().getRouter().navTo("ProjectInformation",{projectid:nProjectId});
         }
+      
     });
 });
 

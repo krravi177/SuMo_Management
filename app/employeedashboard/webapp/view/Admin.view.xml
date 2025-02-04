@@ -14,60 +14,110 @@
         showNavButton="true"
         navButtonPress="onNavBack"
     >
-        <content>
-        <VBox id="homePageVBox" fitContainer="true">
-				<OverflowToolbar id="homePageFirstVBoxOt" class="sapFDynamicPageAlignContent">
-                <OverflowToolbarButton icon="sap-icon://add" text="Add New Project" type="Transparent" press="newProjectFregOpen"/>
-					<ToolbarSpacer/>
-					<SearchField search=".onSearch" width="17.5rem"/>
-					<OverflowToolbarButton icon="sap-icon://add" text="Add" type="Transparent" press=".onAdd"/>
-					<OverflowToolbarButton icon="sap-icon://sort" text="Sort" type="Transparent" press=".onSort"/>
-                    <OverflowToolbarButton  text="Log Out" type="Transparent" press="onNavBack"/>
-				</OverflowToolbar></VBox>
+        
+        
+          
+            <content>
             <uxap:ObjectPageLayout
                 id="ObjectPageWelAdmin"
                 upperCaseAnchorBar="false"
             >
-                <uxap:headerContent>
-                
-                   
-                </uxap:headerContent>
+               <uxap:headerTitle>
+					<uxap:ObjectPageDynamicHeaderTitle>
+                    <uxap:actions>
+                      <VBox
+                id="homePageVBox"
+                fitContainer="true"
+            >
+                <OverflowToolbar
+                    id="homePageFirstVBoxOt"
+                    class="sapFDynamicPageAlignContent"
+                >
+                    <ToolbarSpacer />
+                    
+                    <Button
+                        icon="sap-icon://add"
+                        text="Add New Project"
+                        tooltip="Add New Project"
+                        press=".onAdd"
+                        
+                    />
+                    <Button
+                        icon="sap-icon://sort"
+                        text="Sort"
+                        
+                        press=".onSort"
+                    />
+                    <Button
+                        text="Log Out"
+                        
+                        press="onNavBack"
+                    />
+                    
+                </OverflowToolbar>
+            </VBox>
+                    	</uxap:actions>
+					</uxap:ObjectPageDynamicHeaderTitle>
+                    	</uxap:headerTitle>
                 <uxap:sections>
                     <uxap:ObjectPageSection
                         id="adminWelProjectSTatusTile"
                         titleUppercase="false"
-                        title="Project Details"
+                        title="Project Status"
                     >
+                    
                         <uxap:subSections>
                             <uxap:ObjectPageSubSection
                                 id="adminWelProjectSTatusSubSection"
                                 titleUppercase="false"
                             >
+                            	
                                 <uxap:blocks>
-                                   
-                                       <VBox>
-    <HBox justifyContent="SpaceAround">
-        <GenericTile header="Total Projects" class="sapUiTinyMargin" press=".onTilePress">
-            <TileContent>
-                <NumericContent id="totalProject" value="0"/>
-            </TileContent>
-        </GenericTile>
+                                    <VBox>
+                                        <HBox justifyContent="SpaceAround">
+                                            <GenericTile
+                                                header="Total Projects"
+                                                class="sapUiTinyMargin"
+                                                press=".onTilePress"
+                                                frameType="OneByHalf"
+                                            >
+                                                <TileContent>
+                                                    <NumericContent
+                                                        id="totalProject"
+                                                        value="0"
+                                                    />
+                                                </TileContent>
+                                            </GenericTile>
 
-        <GenericTile header="Total Employees" class="sapUiTinyMargin" press=".onTilePress">
-            <TileContent>
-                <NumericContent id="totalEmployees" value="0"/>
-            </TileContent>
-        </GenericTile>
+                                            <GenericTile
+                                                header="Total Employees"
+                                                class="sapUiTinyMargin"
+                                                press=".onTilePress"
+                                                frameType="OneByHalf"
+                                            >
+                                                <TileContent>
+                                                    <NumericContent
+                                                        id="totalEmployees"
+                                                        value="0"
+                                                    />
+                                                </TileContent>
+                                            </GenericTile>
 
-        <GenericTile header="Running Projects" class="sapUiTinyMargin" press=".onTilePress">
-            <TileContent>
-                <NumericContent id="runningProjects" value="0"/>
-            </TileContent>
-        </GenericTile>
-    </HBox>
-</VBox>
-
-                                
+                                            <GenericTile
+                                                header="Running Projects"
+                                                class="sapUiTinyMargin"
+                                                press=".onTilePress"
+                                                frameType="OneByHalf"
+                                            >
+                                                <TileContent>
+                                                    <NumericContent
+                                                        id="runningProjects"
+                                                        value="0"
+                                                    />
+                                                </TileContent>
+                                            </GenericTile>
+                                        </HBox>
+                                    </VBox>
                                 </uxap:blocks>
                             </uxap:ObjectPageSubSection>
                         </uxap:subSections>
@@ -75,7 +125,10 @@
 
                     <uxap:ObjectPageSection>
                         <uxap:subSections>
-                            <uxap:ObjectPageSubSection title="Projects Status" titleUppercase="false">
+                            <uxap:ObjectPageSubSection
+                                title="Projects Table"
+                                titleUppercase="false"
+                            >
                                 <uxap:blocks>
                                     <VBox>
                                         <fb:FilterBar

@@ -44,7 +44,7 @@ sap.ui.define([
                 var nFnpProjectID=oView.byId("npProjectID").getValue();
                 var nFnpRating=oView.byId("npRating").getValue();
                 var nFnpTimeTaken=oView.byId("npTimeTaken").getValue();
-;
+                 
                 
                 var formData={
                     empCode:nFEmpCode,
@@ -59,18 +59,18 @@ sap.ui.define([
                 oModel.create("/Employees",formData,{
                   
                     success: function() {
-                        MessageToast.show("Registration successful!");
+                        sap.m.MessageToast.show("Registration successful!");
                         
                     },
                     error: function() {
-                        MessageToast.show("Registration failed.");
+                        sap.m.MessageToast.show("Registration failed.");
                     }
                     
                 });
                 
                 this.oFragment.close();
             },
-            onCancelNewSubProjectForm:function(){
+            onCancelNewEmployeeForm:function(){
                 this.oFragment.close();
             },
 				

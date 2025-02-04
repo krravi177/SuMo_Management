@@ -1,0 +1,186 @@
+<mvc:View
+    controllerName="com.dash.employeedashboard.controller.ProjectInformation"
+    xmlns="sap.uxap"
+    xmlns:m="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <ObjectPageLayout
+        id="ObjectPageLayout"
+        showTitleInHeaderContent="true"
+        alwaysShowContentHeader="false"
+        preserveHeaderStateOnScroll="false"
+        headerContentPinnable="true"
+        isChildPage="true"
+        upperCaseAnchorBar="false"
+    >
+        <headerTitle>
+            <ObjectPageDynamicHeaderTitle>
+                <expandedHeading>
+                    <m:Title
+                        text="{projectName}"
+                        wrapping="true"
+                        class="sapUiSmallMarginEnd"
+                    />
+                </expandedHeading>
+
+                <navigationActions>
+                    <m:OverflowToolbarButton
+                        type="Transparent"
+                        icon="sap-icon://decline"
+                        press=".handleClose"
+                        tooltip="Close column"
+                    />
+                </navigationActions>
+
+                <actions>
+                    <m:ToggleButton
+                        text="Edit"
+                        type="Emphasized"
+                        press=".onEditToggleButtonPress"
+                    />
+                    <m:Button
+                        text="Delete"
+                        type="Transparent"
+                    />
+                    <m:Button
+                        text="Copy"
+                        type="Transparent"
+                    />
+                    <m:Button
+                        icon="sap-icon://action"
+                        type="Transparent"
+                    />
+                </actions>
+            </ObjectPageDynamicHeaderTitle>
+        </headerTitle>
+
+        <headerContent>
+            <m:FlexBox
+                wrap="Wrap"
+                fitContainer="true"
+                alignItems="Stretch"
+            >
+                
+                <m:VBox
+                    justifyContent="Center"
+                    class="sapUiSmallMarginEnd"
+                >
+                    <m:Label text="Project Name" />
+                    <m:Text text="{projectName}" />
+                </m:VBox>
+                <m:VBox
+                    justifyContent="Center"
+                    class="sapUiSmallMarginEnd"
+                >
+                    <m:Label text="Status" />
+                    <m:ObjectStatus
+                        text="{status}"
+                        state="{= ${status} === 'Completed' ? 'Success' : ${status} === 'InProgress' ? 'Warning' : 'Error'}"
+                        class="myStatus{= ${status} === 'Completed' ? 'Success' : ${status} === 'InProgress' ? 'Warning' : 'Error'}"
+                    />
+                </m:VBox>
+                <m:VBox
+                    justifyContent="Center"
+                    class="sapUiSmallMarginEnd"
+                >
+                    <m:Label text="End Date" />
+                    <m:Text text="{endDate}"
+                        
+                    />
+                </m:VBox>
+            </m:FlexBox>
+        </headerContent>
+
+        <sections>
+            <ObjectPageSection title="General Information">
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <form:SimpleForm
+                                maxContainerCols="2"
+                                editable="false"
+                                layout="ResponsiveGridLayout"
+                                labelSpanL="12"
+                                labelSpanM="12"
+                                emptySpanL="0"
+                                emptySpanM="0"
+                                columnsL="1"
+                                columnsM="1"
+                            >
+                                <form:content>
+                                    <m:Label text="Project ID" />
+                                    <m:Text text="{projectId}" />
+                                    <m:Label text="Description" />
+                                    <m:Text text="{description}" />
+                                    <m:Label text="Client Name" />
+                                    <m:Text text="{clientName}" />
+                                </form:content>
+                            </form:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <ObjectPageSection title="Employeees">
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <m:Table
+                                id="employeeInfoTable"
+                                items="{path : '/Employees'}"
+                                growing="true"
+                                growingThreshold="10"
+                            >
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Title text="Employee Code" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Title text="Employee Name" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Title text="Employee Rating" />
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem
+                                        type="Navigation"
+                                        press=".onEmployeePress"
+                                    >
+                                        <m:cells>
+                                            <m:Text text="{empCode}" />
+                                            <m:Text text="{empName}" />
+
+                                            <m:RatingIndicator
+                                                id="RI_default"
+                                                maxValue="5"
+                                                class="sapUiSmallMarginBottom"
+                                                value="{rating}"
+                                            />
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+        </sections>
+
+        <footer>
+            <m:OverflowToolbar>
+                <m:ToolbarSpacer />
+                <m:Button
+                    type="Accept"
+                    text="Save"
+                />
+                <m:Button
+                    type="Reject"
+                    text="Cancel"
+                />
+            </m:OverflowToolbar>
+        </footer>
+    </ObjectPageLayout>
+</mvc:View>
