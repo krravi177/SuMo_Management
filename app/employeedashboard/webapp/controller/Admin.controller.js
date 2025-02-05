@@ -3,6 +3,8 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/m/MessageToast",
     "sap/ui/model/FilterOperator"
+
+
 ], function (Controller, Filter, FilterOperator, MessageToast) {
     "use strict";
 
@@ -37,49 +39,50 @@ sap.ui.define([
             this.oFragment.open();
         },
         onSubmitNewProjectForm: function () {
-            var oView = sap.ui.getCore();
+            // var oView = sap.ui.getCore();
             var oModel = this.getOwnerComponent().getModel("ODataV2");
 
-            var nFprojectID = oView.byId("npProjectId").getValue();
-            var nFprojectName = oView.byId("npProjectName").getValue();
-            var nFprojectAssigned = oView.byId("npAssignedTo").getValue();
-            var nFprojectTimeAssigned = oView.byId("npTimeAssigned").getValue();
-            var nFprojectChanges = oView.byId("npChanges").getValue();
-            var nFprojectClient = oView.byId("npClientName").getValue();
-            var nFDescription = oView.byId("npDescription").getValue();
-            var nFprojectStatus = oView.byId("npStatus").getValue();
-            var nFprojectUrgency = oView.byId("npUrgency").getValue();
-            var nFCreatedBy = oView.byId("npCreateBy").getValue();
-            var nFModifiedBy = oView.byId("npModifieBy").getValue();
-            var nFprojectStartDate = oView.byId("npStartDate").getValue();
-            var nFprojectEndDate = oView.byId("npEndDate").getValue();
+                var oView = this.getView();
+                var formData = {
+                    projectId: oView.byId("npProjectId").getValue(),
+                    projectName: oView.byId("npProjectName").getValue(),
+                    assignedToP: oView.byId("npAssignedTo").getValue(),
+                    timeAssigned: oView.byId("npTimeAssigned").getValue(),
+                    projectChanges: oView.byId("npChanges").getValue(),
+                    clientName: oView.byId("npClientName").getValue(),
+                    description: oView.byId("npDescription").getValue(),
+                    status: oView.byId("npStatus").getValue(),
+                    urgency: oView.byId("npUrgency").getValue(),
+                    createdBy: oView.byId("npCreateBy").getValue(),
+                    modifiedBy: oView.byId("npModifieBy").getValue(),
+                    startDate: oView.byId("npStartDate").getValue(),
+                    endDate: oView.byId("npEndDate").getValue()
+                };                
+            // var oModel = this.getOwnerComponent().getModel("ODataV2");
+            // oModel.create("/Projects", formData, {
 
-            var formData = {
-                projectId: nFprojectID,
-                projectName: nFprojectName,
-                assignedToP: nFprojectAssigned,
-                timeAssigned: nFprojectTimeAssigned,
-                projectChanges: nFprojectChanges,
-                clientName: nFprojectClient,
-                description: nFDescription,
-                status: nFprojectStatus,
-                urgency: nFprojectUrgency,
-                createdBy: nFCreatedBy,
-                startDate: nFprojectStartDate,
-                modifiedBy: nFModifiedBy,
-                endDate: nFprojectEndDate
-            };
-            var oModel = this.getOwnerComponent().getModel("ODataV2");
-            oModel.create("/Projects", formData, {
+            //     success: function () {
+            //         MessageToast.show("Registration successful!");
 
-                success: function () {
-                    MessageToast.show("Registration successful!");
+            //     },
+            //     error: function () {
+            //         MessageToast.show("Registration failed.");
+            //     }
 
+            // });
+
+            
+
+            this.oModel.callFunction("/createProject", {
+                method: "POST",
+                urlParameters: formData,
+                success: function(oData) {
+                    sap.m.MessageToast.show("Employee created successfully!");
                 },
-                error: function () {
-                    MessageToast.show("Registration failed.");
+                error: function(oError) {
+                    sap.m.MessageToast.show("Error creating employee.");
+                    console.error(oError);
                 }
-
             });
 
             this.oFragment.close();

@@ -1,9 +1,31 @@
 ### Create Project
+
+
+
+POST http://localhost:8080/odata/v4/ManagementService/Projects
+Authorization: Basic privileged:
+Content-Type: application/json
+
+{
+  "projectId": 777777,
+  "projectName": "EQui Project",
+  "timeAssigned": 100,
+  "assignedToP": 101,
+  "projectChanges": 1,
+  "clientName": "Client A",
+  "status": "Active",
+  "description": "Project description",
+  "urgency": "High",
+  "createdBy": 556,
+  "modifiedBy": 556
+}
+
+
 POST http://localhost:4004/odata/v4/Management/Projects
 Content-Type: application/json
 
 {
-  "projectId": 50,
+  "projectId": 51,
   "projectName": "EQui Project",
   "timeAssigned": 100,
   "assignedToP": 101,

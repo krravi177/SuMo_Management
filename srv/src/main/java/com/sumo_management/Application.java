@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.sumo_management.config")
+@ComponentScan(basePackages = "com.sumo_management")
 public class Application {
 
 	public static void main(String[] args) {

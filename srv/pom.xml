@@ -26,6 +26,13 @@
 			<artifactId>cds-services-api</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+
 
 		<dependency>
 			<groupId>com.sap.cds</groupId>
@@ -72,6 +79,96 @@
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<!-- SPRING BOOT PLUGIN -->
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>11</source>
+					<target>11</target>
+				</configuration>
+			</plugin>
+
+
+			<plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.sumo_management.Application</mainClass>  <!-- Ensure your main class is correct -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+		<plugin>
+			<groupId>com.sap.cds</groupId>
+			<artifactId>cds-maven-plugin</artifactId>
+			<version>${cds.services.version}</version>
+			<executions>
+				<execution>
+					<id>cds.clean</id>
+					<goals>
+						<goal>clean</goal>
+					</goals>
+				</execution>
+
+				<execution>
+					<id>cds.install-node</id>
+					<goals>
+						<goal>install-node</goal>
+					</goals>
+				</execution>
+
+				<execution>
+					<id>cds.install-cdsdk</id>
+					<goals>
+						<goal>install-cdsdk</goal>
+					</goals>
+				</execution>
+
+				<execution>
+					<id>cds.resolve</id>
+					<goals>
+						<goal>resolve</goal>
+					</goals>
+				</execution>
+
+				<execution>
+					<id>cds.build</id>
+					<goals>
+						<goal>cds</goal>
+					</goals>
+					<configuration>
+						<commands>
+							<command>build --for java</command>
+							<command>deploy --to h2 --dry --out "${project.basedir}/src/main/resources/schema-h2.sql"</command>
+						</commands>
+					</configuration>
+				</execution>
+
+				<execution>
+					<id>cds.generate</id>
+					<goals>
+						<goal>generate</goal>
+					</goals>
+					<configuration>
+						<basePackage>cds.gen</basePackage>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+
+
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -125,7 +222,6 @@
 							<goal>resolve</goal>
 						</goals>
 					</execution>
-
 					<execution>
 						<id>cds.build</id>
 						<goals>
@@ -153,8 +249,11 @@
 		</plugins>
 	</build>
 
+
+
 	<profiles>
 		<!-- A profile that uses global installation of @sap/cds-dk -->
+
 		<profile>
 			<id>cdsdk-global</id>
 			<activation>
