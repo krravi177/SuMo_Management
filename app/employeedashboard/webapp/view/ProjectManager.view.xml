@@ -56,7 +56,7 @@
                 <uxap:sections>
                     <uxap:ObjectPageSection
                         titleUppercase="false"
-                        title="Project Employee Details"
+                        title="SubProject Details"
                     >
                         <uxap:subSections>
                             <uxap:ObjectPageSubSection titleUppercase="false">
@@ -139,14 +139,14 @@
                                         >
                                             <fb:filterGroupItems>
                                                 <fb:FilterGroupItem
-                                                    name="Project ID"
+                                                    name="projectId"
                                                     label="Project ID"
                                                     groupName="Group1"
                                                     visibleInFilterBar="true"
                                                 >
                                                     <fb:control>
                                                         <MultiComboBox
-                                                            name="Project ID"
+                                                            name="projectId"
                                                             selectionChange=".onSelectionChange"
                                                             items="{
 												                                    path: '/SubProjects',
@@ -161,14 +161,14 @@
                                                     </fb:control>
                                                 </fb:FilterGroupItem>
                                                 <fb:FilterGroupItem
-                                                    name="Module Name"
+                                                    name="moduleName"
                                                     label="Module Name"
                                                     groupName="Group1"
                                                     visibleInFilterBar="true"
                                                 >
                                                     <fb:control>
                                                         <MultiComboBox
-                                                            name="Module Name"
+                                                            name="moduleName"
                                                             selectionChange=".onSelectionChange"
                                                             items="{
 												path: '/SubProjects',
@@ -183,14 +183,14 @@
                                                     </fb:control>
                                                 </fb:FilterGroupItem>
                                                 <fb:FilterGroupItem
-                                                    name="Manager ID"
+                                                    name="projectManagerId"
                                                     label="Manager ID"
                                                     groupName="Group1"
                                                     visibleInFilterBar="true"
                                                 >
                                                     <fb:control>
                                                         <MultiComboBox
-                                                            name="Manager ID"
+                                                            name="projectManagerId"
                                                             selectionChange=".onSelectionChange"
                                                             items="{
 												path: '/SubProjects',
@@ -215,6 +215,12 @@
                                             growingThreshold="10"
                                         >
                                             <columns>
+                                             <Column>
+                                                    <Text
+                                                        text="Module ID"
+                                                    />
+                                                </Column>
+                                            
                                                 <Column>
                                                     <Text
                                                         text="Project ID"
@@ -236,6 +242,7 @@
                                                         text="Time Assigned"
                                                     />
                                                 </Column>
+                                               
                                                 <Column>
                                                     <Text
                                                         text="Module Status"
@@ -251,6 +258,7 @@
                                                         text="Modified By"
                                                     />
                                                 </Column>
+                                              
                                                 <Column>
                                                     <Text
                                                         text="Start Date"
@@ -261,9 +269,9 @@
                                                         text="End Date"
                                                     />
                                                 </Column>
-                                                <Column>
+                                                 <Column>
                                                     <Text
-                                                        text="Start Date"
+                                                        text="Status"
                                                     />
                                                 </Column>
                                             </columns>
@@ -271,6 +279,9 @@
                                             <items>
                                                 <ColumnListItem  type="Navigation" press="onNav" >
                                                     <cells>
+                                                     <Text
+                                                            text="{moduleId}"
+                                                        />
                                                         <Text
                                                             text="{projectId}"
                                                         />
@@ -284,29 +295,35 @@
                                                         <Text
                                                             text="{timeAssigned}"
                                                         />
-                                                      
-                                                        <Text
-                                                            text="{timeTaken}"
-                                                        />
-                                                        <Text
-                                                            text="{moduleStatus}"
-                                                        />
+                                                    
+                                                        <ObjectStatus
+                    text="{moduleStatus}"
+                    state="{= ${moduleStatus} === 'Completed' ? 'Success' : 
+                             ${moduleStatus} === 'Active' ? 'Warning' : 
+                             'Error'}"
+                    class="{= ${moduleStatus} === 'Completed' ? 'myStatusSuccess' : 
+                             ${moduleStatus} === 'Active' ? 'myStatusWarning' : 
+                             'myStatusError'}"
+                />
                                                         <Text
                                                             text="{createdBy}"
                                                         />
                                                         <Text
                                                             text="{modifiedBy}"
                                                         />
-                                                        <Text
-                                                            text="{permissionToCreateSP}"
-                                                        />
+
                                                         <Text
                                                             text="{startDate}"
                                                         />
+                                                         <Text
+                                                            text="{endDate}"
+                                                        />
 
                                                        
-                                                        <Text
+                                                       <ObjectStatus
                                                             text="{status}"
+                                                            state="{= ${status} === 'Completed' ? 'Success' : ${status} === 'InProgress' ? 'Warning' : 'Error'}"
+                                                            class="myStatus{= ${status} === 'Completed' ? 'Success' : ${status} === 'InProgress' ? 'Warning' : 'Error'}"
                                                         />
                                                     </cells>
                                                 </ColumnListItem>

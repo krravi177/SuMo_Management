@@ -216,11 +216,16 @@
                                                         text="Employee Name"
                                                     />
                                                 </Column>
+                                                 <Column>
+                                                    <Text
+                                                        text="Project ID"
+                                                    />
+                                                </Column>
                                                 <Column>
                                                     <Text text="Rating" />
                                                 </Column>
                                                 <Column>
-                                                    <Text text="Manager" />
+                                                    <Text text="Project Manager" />
                                                 </Column>
                                                 <Column>
                                                     <Text
@@ -263,6 +268,9 @@
                                                         />
                                                         <Text
                                                             text="{empName}"
+                                                        />
+                                                         <Text
+                                                            text="{projectId}"
                                                         />
                                                         <Text text="{rating}" />
                                                         <Text

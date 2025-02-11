@@ -2,10 +2,6 @@
     displayBlock="true"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
-    	<!-- <FlexibleColumnLayout id="fcl"
-		  stateChange="onStateChanged"
-		  layout="{/layout}"
-		  backgroundDesign="Solid">
-	</FlexibleColumnLayout> -->
-<App id="app"></App>
+    <App id="app">
+    </App>
 </mvc:View>

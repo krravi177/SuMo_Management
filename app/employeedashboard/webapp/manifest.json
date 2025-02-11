@@ -51,13 +51,17 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+  
+    "flexEnabled": false,
     "dependencies": {
       "minUI5Version": "1.132.1",
       "libs": {
-        "sap.m": {},
-        "sap.ui.core": {}
-      }
+				"sap.f": {},
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {},
+				"sap.uxap": {}
+			}
     },
     "contentDensities": {
       "compact": true,
@@ -100,14 +104,16 @@
     "routing": {
       "config": {
         "routerClass": "sap.m.routing.Router",
-        "controlAggregation": "pages",
-        "controlId": "app",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                 "async": true,
         "transition": "slide",
         "type": "View",
         "viewType": "XML",
-        "path": "com.dash.employeedashboard.view"
+        "path": "com.dash.employeedashboard.view",
+        "viewPath": "com.dash.employeedashboard.view"
       },
-      "routes": [
+    "routes": [
         {
           "name": "RouteView1",
           "pattern": "",
@@ -151,8 +157,8 @@
         },
         {
           "name": "ProjectInformation",
-          "pattern": "Projects/{projectid}",
-          "target": "ProjectInformation"
+          "pattern": "ProjectInformation",
+          "target": ["ProjectInformation"]
         },
         
       {
@@ -170,6 +176,7 @@
         "TargetView1": {
           "viewId": "View1",
           "viewName": "View1"
+         
         },
         "TargetAdmin": {
           "viewId": "Admin",
@@ -211,7 +218,7 @@
     "rootView": {
       "viewName": "com.dash.employeedashboard.view.App",
       "type": "XML",
-      "id": "App"
+      "id": "fcl"
     }
   }
 }

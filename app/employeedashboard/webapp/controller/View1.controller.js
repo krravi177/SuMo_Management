@@ -1,10 +1,9 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast",
-    "sap/f/library"
-], (Controller,MessageToast,fioriLibrary) => {
+    "sap/m/MessageToast"
+], (Controller,MessageToast) => {
     "use strict";
-    var LayoutType = fioriLibrary.LayoutType;
+   
     return Controller.extend("com.dash.employeedashboard.controller.View1", {
         onInit() {
         },

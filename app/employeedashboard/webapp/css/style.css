@@ -4,7 +4,7 @@
 }
 
 .myStatusWarning {
-    color: orange !important;
+    color: yellow !important;
     font-weight: bold;
 }
 
@@ -44,4 +44,28 @@ div#container-com\.dash\.employeedashboard---Admin--adminWelPage-intHeader-BarPH
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
     background-color: rgb(0, 162, 255);
+}
+
+.projectStatusSuccess {
+    background-color: #4CAF50 !important; /* Green for Completed */
+    color: white !important;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.projectStatusWarning {
+    background-color: #FFC107 !important; /* Yellow for Active */
+    color: black !important;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.projectStatusError {
+    background-color: #F44336 !important; /* Red for Inactive */
+    color: white !important;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-weight: bold;
 }

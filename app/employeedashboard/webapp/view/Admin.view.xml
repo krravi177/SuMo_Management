@@ -71,7 +71,7 @@
                                 <uxap:blocks>
                                     <VBox>
                                         <HBox justifyContent="SpaceAround">
-                                            <GenericTile
+                                             <GenericTile
                                                 header="Total Projects"
                                                 class="customTileBackground" 
                                                 press=".onProjectTilePress"
@@ -124,7 +124,7 @@
                                                         value="0"
                                                     />
                                                 </TileContent>
-                                            </GenericTile>
+                                            </GenericTile> 
                                         </HBox>
                                     </VBox>
                                 </uxap:blocks>
@@ -196,24 +196,7 @@
                                             growingThreshold="10"
                                             visible="true"
                                         >
-                                         <!-- <headerToolbar>
-                                                <Toolbar>
-                                                    <Title
-                                                        text="{i18n>Employees}"
-                                                        level="H2"
-                                                    />
-                                                    <ToolbarSpacer />
-                                                    <SearchField
-                                                        id="searchFieldh"
-                                                        search=".onSearchEmployeesTable"
-                                                        width="50%"
-                                                    />
-                                                    <Button
-                                                        icon="sap-icon://sort"
-                                                        press=".onSortButtonPressed"
-                                                    />
-                                                </Toolbar>
-                                            </headerToolbar> -->
+                                        
                                             <columns>
                                                 <Column
                                                     id="adminPageTabProjIdCol"
@@ -279,7 +262,7 @@
                                                         text="Urgency"
                                                     />
                                                 </Column>
-                                                <!-- <Column
+                                                 <Column
                                                     id="adminPageTabStartDateCol"
                                                 >
                                                     <Text
@@ -289,12 +272,15 @@
                                                 </Column>
                                                 <Column>
                                                     <Text text="End Date" />
-                                                </Column> -->
+                                                </Column> 
+                                               <Column>
+                                                    <Text text="Project Status" />
+                                                </Column> 
                                             </columns>
                                             <items>
                                                 <ColumnListItem type="Active">
                                                     <cells>
-                                                        <Text
+                                                        <Title
                                                             id="adProjectId"
                                                             text="{projectId}"
                                                         />
@@ -345,11 +331,15 @@
                                                             text="{endDate}"
                                                         /> -->
                                                         
-                                                        <ObjectStatus
-                                                            text="{status}"
-                                                            state="{= ${status} === 'Completed' ? 'Success' : ${status} === 'InProgress' ? 'Warning' : 'Error'}"
-                                                            class="myStatus{= ${status} === 'Completed' ? 'Success' : ${status} === 'InProgress' ? 'Warning' : 'Error'}"
-                                                        />
+                                                       <ObjectStatus
+                    text="{status}"
+                    state="{= ${moduleStatus} === 'Completed' ? 'Success' : 
+                             ${moduleStatus} === 'Running' ? 'Warning' : 
+                             'Error'}"
+                    class="{= ${moduleStatus} === 'Completed' ? 'projectStatusSuccess' : 
+                             ${moduleStatus} === 'Running' ? 'projectStatusWarning' : 
+                             'projectStatusError'}"
+                />
                                                     </cells>
                                                 </ColumnListItem>
                                             </items>
@@ -448,6 +438,7 @@
                                                         <Text
                                                             text="{permissionToCreateE}"
                                                         />
+                                                        
 
                                                        
                                                     </cells>
