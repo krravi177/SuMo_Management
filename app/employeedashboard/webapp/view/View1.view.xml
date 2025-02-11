@@ -4,23 +4,23 @@
     <Page id="homePage" title="{i18n>homePageTitle}" class="sapUiResponsiveContentPadding">
 		<content>
 		
-	<HBox id="homePageLogHbox" class="sapUiMarginTop">
+	 <HBox id="homePageLogHbox" class="sapUiMarginTop">
 			<Button id="displayNotFoundhomeBtn" text="{i18n>DisplayNotFound}" press=".onDisplayNotFound" class="sapUiTinyMarginEnd"/>
 			<Button id="adminPageBtn" text="{i18n>showAdminPage}" press=".onNavToAdmin" class="sapUiTinyMarginEnd"/>
 			<Button id="employeePageBtn" text="{i18n>ShowEmployeeList}" press=".onNavToEmployees" class="sapUiTinyMarginEnd"/>
 			<Button id="projectManagerBtn" text="{i18n>ShowProjectManager}" press=".onNavToProjectManager"/>
 			</HBox>
 		<FlexBox id="logInPageFlex" justifyContent="Center" class="sapUiTopMargin">		
-	<VBox id="logInPageVBox" class="sapUiTopMargin" justifyContent="Center" width="30%" >
+	<VBox id="logInPageVBox" class="loginContainer" justifyContent="Center"  >
 	
 	<Label id="userIdhome" text="{i18n>loginHomeID}" />
-	<Input id="enterIdhome" />
+	<Input id="usernameInput" />
 
 	<Label id="userPasswordhome" text="{i18n>logInHomePassword}" />
-	<Input id="enterPasswordhome" type="Password" maxLength="8" />
+	<Input id="passwordInput" type="Password" maxLength="8" />
 	
-	<HBox id="homeSuBmitBtnHbox"><Button id="loginButton" text="{i18n>homePageLogIn}" press=".onLogIn" type="Accept" class="sapUiTinyMargin"/>
-	<Button id="cancelButton" text="{i18n>homePageCancel}" press=".onCancel" type="Reject" class="sapUiTinyMargin"/></HBox>
+	<Button id="loginButton" text="{i18n>homePageLogIn}" press=".onSubmitLogInForm" type="Accept" class="sapUiTinyMargin"/>
+	<Button id="cancelButton" text="{i18n>homePageCancel}" press=".onCancelLogInForm" type="Reject" class="sapUiTinyMargin"/>
      </VBox >
 	 
 	 </FlexBox>

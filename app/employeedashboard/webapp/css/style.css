@@ -12,3 +12,36 @@
     color: red !important;
     font-weight: bold;
 }
+
+.customTileBackground {
+    background-color: #a88b18 !important; 
+    color: #000 !important; 
+}
+
+.customPageTitle .sapMBarMiddle {
+    font-size: 20px !important;  
+    font-weight: bold !important; 
+    color: blue !important;  
+    text-align: center !important;
+}
+
+#closeProjectInfoPage {
+    color: red !important; 
+}
+
+.sapMBarTitleAlignAuto .sapMBarPH {
+    justify-content: center;
+    
+}
+
+div#container-com\.dash\.employeedashboard---Admin--adminWelPage-intHeader-BarPH {
+    background-color: rgb(0, 162, 255);
+
+}
+
+.sapUiSizeCompact .sapMPageHeader .sapMIBar .sapMBarLeft, .sapUiSizeCompact .sapMPageFooter .sapMIBar .sapMBarLeft, .sapUiSizeCompact .sapMPageHeader .sapMIBar .sapMBarRight, .sapUiSizeCompact .sapMPageFooter .sapMIBar .sapMBarRight, .sapUiSizeCompact .sapMPageHeader .sapMIBar .sapMBarPH, .sapUiSizeCompact .sapMPageFooter .sapMIBar .sapMBarPH {
+    height: 2.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    background-color: rgb(0, 162, 255);
+}

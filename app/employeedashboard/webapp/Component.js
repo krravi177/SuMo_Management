@@ -1,26 +1,48 @@
 sap.ui.define([
-    "sap/ui/core/UIComponent",
-    "com/dash/employeedashboard/model/models"
-], (UIComponent, models) => {
-    "use strict";
+	"sap/ui/core/UIComponent",
+	"sap/ui/model/json/JSONModel",
+	"sap/f/library",
+	"sap/f/FlexibleColumnLayoutSemanticHelper"
+], function (UIComponent, JSONModel, library, FlexibleColumnLayoutSemanticHelper) {
+	"use strict";
 
-    return UIComponent.extend("com.dash.employeedashboard.Component", {
-        metadata: {
-            manifest: "json",
-            interfaces: [
-                "sap.ui.core.IAsyncContentCreation"
-            ]
-        },
+	var LayoutType = library.LayoutType;
+	return UIComponent.extend('com.dash.employeedashboard.Component', {
 
-        init() {
-            // call the base component's init function
-            UIComponent.prototype.init.apply(this, arguments);
+		metadata: {
+			manifest: 'json'
+		},
 
-            // set the device model
-            this.setModel(models.createDeviceModel(), "device");
-
-            // enable routing
-            this.getRouter().initialize();
-        }
-    });
-});
+		init: function () {
+				UIComponent.prototype.init.apply(this, arguments);
+	
+				// var oModel = new JSONModel();
+				// this.setModel(oModel);
+	
+				// // set products demo model on this sample
+				// var oProductsModel = new JSONModel(sap.ui.require.toUrl("com/dash/employeedashboard/model/projects.json"));
+				// oProductsModel.setSizeLimit(1000);
+				// this.setModel(oProductsModel, "projects");
+	
+	
+				this.getRouter().initialize();
+			},
+	
+			/**
+			 * Returns an instance of the semantic helper
+			 * @returns {sap.f.FlexibleColumnLayoutSemanticHelper} An instance of the semantic helper
+			 */
+			// getHelper: function () {
+			// 	var oFCL = this.getRootControl().byId("fcl"),
+			// 		oParams = new URLSearchParams(window.location.search),
+			// 		oSettings = {
+			// 			defaultTwoColumnLayoutType: LayoutType.TwoColumnsMidExpanded,
+			// 			initialColumnsCount: oParams.get("initial"),
+			// 			maxColumnsCount: oParams.get("max")
+			// 		};
+	
+			// 	return FlexibleColumnLayoutSemanticHelper.getInstanceFor(oFCL, oSettings);
+			// }
+		});
+	});
+	

@@ -19,10 +19,9 @@ sap.ui.define([
             
                   
             //     },
-            this.oFragment=new sap.ui.xmlfragment("com.dash.employeedashboard.view.NewSubProject",this);
-            this.getView().addDependent(this.oFragment);
+        
            
-       
+       this.updateCounters();
             },
             onRead: function () {
                 var oModel = this.getOwnerComponent().getModel(); 
@@ -32,63 +31,57 @@ sap.ui.define([
                   MessageToast.show("No data available");
                 }
               },
-            newSubProjectFregOpen:function(){
-                this.oFragment.open();
+              addSubProjectForm:function(){
+                this.getOwnerComponent().getRouter().navTo("NewSubProject");
             },
-            onSubmitNewSubProjectForm:function(){
-                var oView =sap.ui.getCore();
-                var oModel = this.getOwnerComponent().getModel("ODataV2");
-                
-                var nFModuleId=oView.byId("npModuleId").getValue();
-                var nFSPProjectID=oView.byId("npSPProjectID").getValue();
-                var nFAssignedToE=oView.byId("npAssignedToE").getValue();
-                var nFprojectTimeAssigned=oView.byId("npTimeSPAssigned").getValue();
-                var nFProjectManagerID=oView.byId("npProjectManagerID").getValue();
-                var nFModuleStatus=oView.byId("npModuleStatus").getValue();
-                var nFCreatedBy=oView.byId("npCreatedBy").getValue();
-                var npModifiedBy=oView.byId("npModifiedBy").getValue();
-                var nFprojectStartDate=oView.byId("npSPStatus").getValue();
-                // var nFprojectStartDate=oView.byId("npSPStartDate").getValue();
-                // var nFprojectEndDate=oView.byId("npSPEndDate").getValue();
-                
-                var formData={
-                    moduleId:nFModuleId,
-                projectId:nFSPProjectID,
-                assignedToE:nFAssignedToE,
-                timeAssigned:nFprojectTimeAssigned,
-                projectManagerId:nFProjectManagerID,
-                moduleStatus:nFModuleStatus,
-                createdBy:nFCreatedBy
-                
-                // createdBy:nFprojectStartDate,
-                // modifiedBy:nFprojectEndDate,
-                };
-                var oModel = this.getOwnerComponent().getModel("ODataV2"); 
-                oModel.create("/SubProjects",formData,{
-                  
-                    success: function() {
-                        MessageToast.show("Registration successful!");
-                        
-                    },
-                    error: function() {
-                        MessageToast.show("Registration failed.");
-                    }
-                    
-                });
-                
-                this.oFragment.close();
-            },
-            onCancelNewSubProjectForm:function(){
-                this.oFragment.close();
-            },
-
-                onNav:function(){
+            
+                onLogOutManager:function(){
                     var oRouter = this.getOwnerComponent().getRouter();
-                    oRouter.navTo("");
+                    oRouter.navTo("RouteView1");
                 },
-                onNavBack:function(){
-                    var oRouter = this.getOwnerComponent().getRouter();
-                    oRouter.navTo("appHome");
+                updateCounters: function () {
+                    var oModel = this.getOwnerComponent().getModel("ODataV2");
+                
+                   
+                    oModel.read("/Projects", {
+                        
+                        success: function (oData) {
+                            var aProjects = oData.results || [];
+                            var iTotalProjects = aProjects.length;
+                            var iRunningProjects = aProjects.filter(p => p.status === "Running").length;
+                
+                            
+                            this.getView().byId("totalProjectPm").setValue(iTotalProjects);
+                            this.getView().byId("runningProjectsPm").setValue(iRunningProjects);
+                        }.bind(this),
+                        error: function () {
+                            sap.m.MessageToast.show("Failed to fetch project data.");
+                        }
+                    });
+                 
+                    oModel.read("/SubProjects", {
+                        success: function (oData) {
+                            var iTotalSubProject = oData.results.length;
+                
+                          
+                            this.getView().byId("subprojectTablePM").setValue(iTotalSubProject);
+                        }.bind(this),
+                        error: function () {
+                            sap.m.MessageToast.show("Failed to fetch SubProject data.");
+                        }
+                    });
+                   
+                    oModel.read("/Employees", {
+                        success: function (oData) {
+                            var iTotalEmployees = oData.results.length;
+                
+                          
+                            this.getView().byId("totalEmployeesPm").setValue(iTotalEmployees);
+                        }.bind(this),
+                        error: function () {
+                            sap.m.MessageToast.show("Failed to fetch employee data.");
+                        }
+                    });
                 }
           
         

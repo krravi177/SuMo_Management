@@ -51,7 +51,7 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": false,
+    "flexEnabled": true,
     "dependencies": {
       "minUI5Version": "1.132.1",
       "libs": {
@@ -110,7 +110,7 @@
       "routes": [
         {
           "name": "RouteView1",
-          "pattern": ":?query:",
+          "pattern": "",
           "target": [
             "TargetView1"
           ]
@@ -120,7 +120,7 @@
           
           "pattern": "Admin",
           "target": [
-            "TargetAdmin"
+           "TargetAdmin"
           ]
         },
         {
@@ -154,45 +154,56 @@
           "pattern": "Projects/{projectid}",
           "target": "ProjectInformation"
         },
-        {
+        
+      {
           "name": "ProjectForm",
           "pattern": "ProjectForm",
           "target": "ProjectForm"
+        },
+        {
+          "name": "NewSubProject",
+          "pattern": "NewSubProject",
+          "target": "NewSubProject"
         }
       ],
       "targets": {
         "TargetView1": {
-          "id": "View1",
-          "name": "View1"
+          "viewId": "View1",
+          "viewName": "View1"
         },
         "TargetAdmin": {
-          "id": "Admin",
-          "name": "Admin"
+          "viewId": "Admin",
+          "viewName": "Admin"
         },
         "TargetProjectManager": {
-          "id": "ProjectManager",
-          "name": "ProjectManager"
+          "viewId": "ProjectManager",
+          "viewName": "ProjectManager"
         },
         "TargetEmployee": {
-          "id": "Employee",
-          "name": "Employee"
+          "viewId": "Employee",
+          "viewName": "Employee"
         },
         "TargetEmployeeDetails": {
-          "id": "EmployeeDetails",
-          "name": "EmployeeDetails"
+          "viewId": "EmployeeDetails",
+         "viewName": "EmployeeDetails"
         },
         "notFound": {
-          "id": "notFound",
-          "name": "NotFound",
+          "viewId": "notFound",
+          "viewName": "NotFound",
           "transition": "show"
         },
         "ProjectInformation": {
-          "id": "ProjectInformation",
-          "name": "ProjectInformation"
+          "viewId": "ProjectInformation",
+          "viewName": "ProjectInformation"
         },
         "ProjectForm":{
           "viewId": "ProjectForm",
           "viewName": "ProjectForm",
+          "transition":"show"
+        },
+        "NewSubProject":{
+          "viewId": "NewSubProject",
+          "viewName": "NewSubProject",
           "transition":"show"
         }
       }

@@ -4,26 +4,26 @@
     xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form"
     xmlns:uxap="sap.uxap"
-   controllerName="com.dash.employeedashboard.controller.ProjectForm">
-<Page id="adminProjectForm" title="Add Project Form" showNavButton="true" navButtonPress="onNavAdminProjectInfoPage">
+   controllerName="com.dash.employeedashboard.controller.NewSubProject">
+<Page id="pmSubProjectFormPage" title="Add SubProject Form" showNavButton="true" navButtonPress="onNavAdminProjectInfoPage">
         <content>
-         <uxap:ObjectPageLayout>
+         <uxap:ObjectPageLayout id="pmSubProjectFormOP">
                 <uxap:sections>
                     <uxap:ObjectPageSection
-                        id="adminWelProjectSTatusTilee"
+                        id="pmSubProjectFormOPSec"
                         titleUppercase="false"
                         title="General Details"
                     >
                     
                         <uxap:subSections>
                             <uxap:ObjectPageSubSection
-                                id="adminWelProjectSTatusSubSectionn"
+                                id="pmSubProjectFormOPSubSec"
                                 titleUppercase="false"
                             >
                             	
                                 <uxap:blocks>
                                         <f:SimpleForm
-            id="SimpleFormToolbarAdminPF"
+            id="pmSubProjectForm"
             editable="true"
             layout="ColumnLayout"
            
@@ -33,23 +33,19 @@
         >
             <f:content>
 
-                <Label text="Project ID" />
-                <Input id="pProjectId" width="100%" />
+               <Label id="pmSubProjectFormLabModId" text="Module ID" />
+        <Input id="npModuleId" />
 
-                <Label text="Project Name" />
-                <Input id="pProjectName" width="100%" />
+        <Label id="pmSubProjectFormLabProjId" text="Project ID" />
+        <Input id="npSPProjectID" />
 
-                <Label text="Assigned To Project" />
-                <Input id="pAssignedTo" width="100%" />
+        <Label id="pmSubProjectFormLabAssignTo" text="Assigned To" />
+        <Input id="npAssignedToE" />
 
-                <Label text="Time Assigned" />
-                <Input id="pTimeAssigned" width="100%" />
+       
+        <Label id="pmSubProjectFormLabPMId" text="ProjectManager ID" />
+        <Input id="npProjectManagerID" />
 
-                <Label text="Changes" />
-                <Input id="pChanges" width="100%" />
-
-                <Label text="Client Name" />
-                <Input id="pClientName" width="100%" />
                 </f:content>
                 </f:SimpleForm>
 
@@ -58,20 +54,20 @@
                         </uxap:subSections>
                     </uxap:ObjectPageSection>
                     <uxap:ObjectPageSection
-                        id="adminPageFormPageSectionDrop"
+                        id="pmSubProjectFormSec2"
                         titleUppercase="false"
                         title="Status"
                     >
                     
                         <uxap:subSections>
                             <uxap:ObjectPageSubSection
-                                id="adminPageFormSubSectionDrop"
+                                id="pmSubProjectFormSubSec2"
                                 titleUppercase="false"
                             >
                             	
                                 <uxap:blocks>
                                  <f:SimpleForm
-            id="SimpleFormToolbarAdminPFDrop"
+            id="pmSubProjectFormSec2Form"
             editable="true"
             layout="ColumnLayout"
             columnsL="2"
@@ -79,25 +75,25 @@
            
         >
             <f:content>
-           <Label text="Urgency" />
-                <Select id="pUrgency" width="100%">
+           <Label id="pmSubProjectFormLabModStatus" text="Module Status" />
+                <Select id="npModuleStatus" width="100%">
                     <items>
-                        <core:Item text="Low" key="Low"/>
-                        <core:Item text="Medium" key="Medium"/>
-                        <core:Item text="High" key="High"/>
+                        <core:Item id="pmSubProjectFormLabModStatus1" text="Low" key="Low"/>
+                        <core:Item id="pmSubProjectFormLabModStatus2" text="Medium" key="Medium"/>
+                        <core:Item id="pmSubProjectFormLabModStatus3" text="High" key="High"/>
                     </items>
                 </Select>
-                    <Label text="Status" />
-                <Select id="pStatus" width="100%" selectedKey="{pStatus}">
+
+                    <Label id="pmSubProjectFormLabStatus" text="Status" />
+                <Select id="npStatus" width="100%" selectedKey="{npStatus}">
                     <items>
-                        <core:Item text="Running" key="OnTime"/>
-                        <core:Item text="Delayed" key="Delayed"/>
-                        <core:Item text="Completed" key="Completed"/>
+                        <core:Item id="pmSubProjectFormLabStatus1" text="Running" key="OnTime"/>
+                        <core:Item id="pmSubProjectFormLabStatus2" text="Delayed" key="Delayed"/>
+                        <core:Item id="pmSubProjectFormLabStatus3" text="Completed" key="Completed"/>
                     </items>
                 </Select>
-                <Label text="Description" />
-                <TextArea id="pnDescription" width="100%" rows="4" />
-                </f:content>
+               
+                   </f:content>
                 </f:SimpleForm>
                 
                  
@@ -107,38 +103,41 @@
                     </uxap:ObjectPageSection>
  
                   <uxap:ObjectPageSection
-                        id="adminPageFormPageSectionDateT"
+                        id="pmSubProjectFormSec3"
                         titleUppercase="false"
                         title="Duration"
                     >
                     
                         <uxap:subSections>
                             <uxap:ObjectPageSubSection
-                                id="adminPageFormSubSectionDateT"
+                                id="pmSubProjectFormSubSec3"
                                 titleUppercase="false"
                             >
                             	
                                 <uxap:blocks>
                                  <f:SimpleForm
-            id="SimpleFormToolbarAdminPFDateT"
+            id="pmSubProjectFormForm3"
             editable="true"
             layout="ColumnLayout"
             columnsL="2"
             columnsM="2"
         >
             <f:content>
+                     <Label id="pmSubProjectFormLabTimeAssign" text="Time Assigned" />
+                      <Input id="npTimeSPAssigned" />
 
-                  <Label text="Created By" />
-                <Input id="pCreateBy" width="100%" />
+                     <Label id="pmSubProjectFormLabModStartDate" text="Start Date" />
+                      <Input id="npSPStartDate" />
 
-                <Label text="Modified By" />
-                <Input id="pModifieBy" width="100%" />
+                        <Label id="pmSubProjectFormLabModEndDate" text="End Date" />
+                       <Input id="npSPEndDate" />
 
-                <Label text="Start Date" />
-                <DatePicker id="pStartDate" width="100%" />
+                       <Label id="pmSubProjectFormCreatBy" text="Created By" />
+        <Input id="npCreatedBy" />
 
-                <Label text="End Date" />
-                <DatePicker id="pEndDate" width="100%" />
+        <Label id="pmSubProjectFormModifyBy" text="Modified By" />
+        <Input id="npModifiedBy" />
+                 
                 </f:content>
                 </f:SimpleForm>
                
@@ -148,14 +147,14 @@
                     </uxap:ObjectPageSection>
                 
          <uxap:ObjectPageSection
-                        id="adminPageFormPageSectionBtn"
+                        id="pmSubProjectFormSec4"
                         titleUppercase="false"
                         title="Finish"
                     >
                     
                         <uxap:subSections>
                             <uxap:ObjectPageSubSection
-                                id="adminPageFormSubSectionBtn"
+                                id="pmSubProjectFormSubSec4"
                                 titleUppercase="false"
                             >
                             	
@@ -171,11 +170,22 @@
             </uxap:ObjectPageLayout>
 </content>
 <footer>
-<Toolbar>
-            <ToolbarSpacer/>
-            <Button id="newProjectFormSubmitBton" text="Submit" type="Accept" press="onSubmitNewProjectFormAdmin"/>
-            <Button id="newProjectFormCancelBton" text="Cancel" type="Reject" press="onCancelNewProjectFormAdmin"/>
+<Toolbar id="pmSubProjectFormfooterToolbar">
+            <ToolbarSpacer id="pmSubProjectFormfooterToolbarSp"/>
+             <Button
+            id="newSubProjectFormSubmitBtn"
+            text="Submit"
+            type="Accept"
+            press="onSubmitNewSubProjectForm"
+        />
+         <Button
+            id="newSubProjectFormCancelBtn"
+            text="Cancel"
+            type="Reject"
+            press="onCancelNewSubProjectForm"
+        />
         </Toolbar>
 </footer>
        </Page> 
 </mvc:View>
+

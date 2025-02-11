@@ -14,6 +14,7 @@
         headerContentPinnable="true"
         isChildPage="true"
         upperCaseAnchorBar="false"
+        
     >
         <headerTitle>
             <ObjectPageDynamicHeaderTitle>
@@ -26,16 +27,24 @@
                 </expandedHeading>
 
                 <navigationActions>
-                    <m:OverflowToolbarButton
+                    <m:OverflowToolbarButton id="closeProjectInfoPage"
                         type="Transparent"
-                        icon="sap-icon://add"
-                        press=".addForm"
-                        tooltip="Add Form"
+                        icon="sap-icon://decline"
+                        press=".handleClosePage"
+                        tooltip="Close Page"
+                        
                     />
                 </navigationActions>
 
                 <actions>
-                    <m:ToggleButton
+                <m:Button
+                        type="Transparent"
+                        icon="sap-icon://add"
+                        text="Add New Sub Project"
+                        press=".addSubProject"
+                        tooltip="Add"
+                    />
+                    <!-- <m:ToggleButton
                         text="Edit"
                         type="Emphasized"
                         press=".onEditToggleButtonPress"
@@ -47,11 +56,8 @@
                     <m:Button
                         text="Copy"
                         type="Transparent"
-                    />
-                    <m:Button
-                        icon="sap-icon://action"
-                        type="Transparent"
-                    />
+                    /> -->
+                    
                 </actions>
             </ObjectPageDynamicHeaderTitle>
         </headerTitle>
@@ -85,10 +91,15 @@
                     justifyContent="Center"
                     class="sapUiSmallMarginEnd"
                 >
+                 <m:Label text="Start Date" />
+                    <m:Text text="{startDate}"/>
+                   </m:VBox>
+                    <m:VBox>
                     <m:Label text="End Date" />
                     <m:Text text="{endDate}"
                         
                     />
+                    
                 </m:VBox>
             </m:FlexBox>
         </headerContent>
@@ -123,42 +134,40 @@
                 </subSections>
             </ObjectPageSection>
 
-            <ObjectPageSection title="Employeees">
+            <ObjectPageSection title="SubProjects">
                 <subSections>
                     <ObjectPageSubSection>
                         <blocks>
                             <m:Table
                                 id="employeeInfoTable"
-                                items="{path : '/Employees'}"
+                                items="{path : '/SubProjects'}"
                                 growing="true"
                                 growingThreshold="10"
                             >
                                 <m:columns>
                                     <m:Column>
-                                        <m:Title text="Employee Code" />
+                                        <m:Title text="Project Manager Id" />
                                     </m:Column>
                                     <m:Column>
-                                        <m:Title text="Employee Name" />
+                                        <m:Title text="Module Name" />
                                     </m:Column>
                                     <m:Column>
-                                        <m:Title text="Employee Rating" />
+                                        <m:Title text="Assigned Employee" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Title text="Module Status" />
                                     </m:Column>
                                 </m:columns>
                                 <m:items>
                                     <m:ColumnListItem
                                         type="Navigation"
-                                        press=".onEmployeePress"
+                                        press=".onSubProjectPress"
                                     >
                                         <m:cells>
-                                            <m:Text text="{empCode}" />
-                                            <m:Text text="{empName}" />
-
-                                            <m:RatingIndicator
-                                                id="RI_default"
-                                                maxValue="5"
-                                                class="sapUiSmallMarginBottom"
-                                                value="{rating}"
-                                            />
+                                            <m:Text text="{projectManagerId}" />
+                                            <m:Text text="{moduleName}" />
+                                           <m:Text text="{assignedToE}" />
+                                            <m:Text text="{moduleStatus}" />
                                         </m:cells>
                                     </m:ColumnListItem>
                                 </m:items>

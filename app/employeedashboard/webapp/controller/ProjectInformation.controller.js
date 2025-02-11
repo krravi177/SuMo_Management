@@ -14,7 +14,7 @@ sap.ui.define([
         _onObjectMatched: function (oEvent) {
             var oModel = this.getOwnerComponent().getModel("ODataV2");
             var oArgs = oEvent.getParameter("arguments");
-            this._sProjectId = oArgs.projectid;
+            this._sProjectId = oArgs.projectId;
             var oView = this.getView();
 
             oView.bindElement({
@@ -27,7 +27,15 @@ sap.ui.define([
                     dataReceived: function () {
                         oView.setBusy(false);
                     }
-                }
+                },
+                // handleItemPress: function (oEvent) {
+                //     var oNextUIState = this.getOwnerComponent().getHelper().getNextUIState(2),
+                //         supplierPath = oEvent.getSource().getSelectedItem().getBindingContext("products").getPath(),
+                //         supplier = supplierPath.split("/").slice(-1).pop();
+        
+                //     this.oRouter.navTo("detailDetail", {layout: oNextUIState.layout,
+                //         product: this._product, supplier: supplier});
+                // },
             });
         },
 
@@ -51,6 +59,9 @@ sap.ui.define([
         },
         addForm:function(){
             this.getOwnerComponent().getRouter().navTo("ProjectForm");
+        },
+        handleClosePage:function(){
+            this.getOwnerComponent().getRouter().navTo("RouteAdmin");
         }
     });
 });

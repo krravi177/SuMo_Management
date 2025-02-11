@@ -21,15 +21,12 @@ sap.ui.define([
             //         BusyIndicator.hide();
             //     }.bind(this));
 
-            this.oFragment = new sap.ui.xmlfragment("com.dash.employeedashboard.view.NewProject", this);
-            this.getView().addDependent(this.oFragment);
+            
             this._bDescendingSort = false;
             this.updateCounters();
-        },
-        
-        
-        
-        onSearch: function (oEvent) {
+        	this.oRouter = this.getOwnerComponent().getRouter();
+		},
+		 onSearch: function (oEvent) {
             var oTable = this.getView().byId("projectTableSeeingAdmin");
             var oBinding = oTable.getBinding("items");
             var aFilters = []; 
@@ -55,8 +52,7 @@ sap.ui.define([
                     }
                 }
             });
-        
-            
+           
             oBinding.filter(aFilters);
          },
         
@@ -81,62 +77,62 @@ sap.ui.define([
                 MessageToast.show("No data available");
             }
         },
-        onAdd: function (oEvent) {
-            this.oFragment.open();
-        },
-        onSubmitNewProjectForm: function () {
-            var oView = sap.ui.getCore();
-            var oModel = this.getView().getModel("ODataV2");
+        // onAdd: function (oEvent) {
+        //     this.oFragment.open();
+        // },
+        // onSubmitNewProjectForm: function () {
+        //     var oView = sap.ui.getCore();
+        //     var oModel = this.getView().getModel("ODataV2");
 
 
-            var nFprojectID = oView.byId("npProjectId").getValue();
-            var nFprojectName = oView.byId("npProjectName").getValue();
-            var nFprojectAssigned = oView.byId("npAssignedTo").getValue();
-            var nFprojectTimeAssigned = oView.byId("npTimeAssigned").getValue();
-            var nFprojectChanges = oView.byId("npChanges").getValue();
-            var nFprojectClient = oView.byId("npClientName").getValue();
-            var nFDescription = oView.byId("npDescription").getValue();
-            var nFprojectStatus = oView.byId("npStatus").getValue();
-            var nFprojectUrgency = oView.byId("npUrgency").getValue();
-            var nFCreatedBy = oView.byId("npCreateBy").getValue();
-            var nFModifiedBy = oView.byId("npModifieBy").getValue();
+        //     var nFprojectID = oView.byId("npProjectId").getValue();
+        //     var nFprojectName = oView.byId("npProjectName").getValue();
+        //     var nFprojectAssigned = oView.byId("npAssignedTo").getValue();
+        //     var nFprojectTimeAssigned = oView.byId("npTimeAssigned").getValue();
+        //     var nFprojectChanges = oView.byId("npChanges").getValue();
+        //     var nFprojectClient = oView.byId("npClientName").getValue();
+        //     var nFDescription = oView.byId("npDescription").getValue();
+        //     var nFprojectStatus = oView.byId("npStatus").getValue();
+        //     var nFprojectUrgency = oView.byId("npUrgency").getValue();
+        //     var nFCreatedBy = oView.byId("npCreateBy").getValue();
+        //     var nFModifiedBy = oView.byId("npModifieBy").getValue();
 
-        //   var nFprojectStartDate = oView.byId("npStartDate").getDateValue();
-        //    var nFprojectEndDate = oView.byId("npEndDate").getValue();
+        // //   var nFprojectStartDate = oView.byId("npStartDate").getDateValue();
+        // //    var nFprojectEndDate = oView.byId("npEndDate").getValue();
 
-            var formData = {
-                projectId: nFprojectID,
-                projectName: nFprojectName,
-                assignedToP: nFprojectAssigned,
-                timeAssigned: nFprojectTimeAssigned,
-                projectChanges: nFprojectChanges,
-                clientName: nFprojectClient,
-                description: nFDescription,
-                status: nFprojectStatus,
-                urgency: nFprojectUrgency,
-                createdBy: nFCreatedBy,
-                // startDate: nFprojectStartDate,
-                modifiedBy: nFModifiedBy
-                // endDate: nFprojectEndDate
-            };
-            oModel.create("/Projects", formData, {
+        //     var formData = {
+        //         projectId: nFprojectID,
+        //         projectName: nFprojectName,
+        //         assignedToP: nFprojectAssigned,
+        //         timeAssigned: nFprojectTimeAssigned,
+        //         projectChanges: nFprojectChanges,
+        //         clientName: nFprojectClient,
+        //         description: nFDescription,
+        //         status: nFprojectStatus,
+        //         urgency: nFprojectUrgency,
+        //         createdBy: nFCreatedBy,
+        //         // startDate: nFprojectStartDate,
+        //         modifiedBy: nFModifiedBy
+        //         // endDate: nFprojectEndDate
+        //     };
+        //     oModel.create("/Projects", formData, {
 
-                success: function () {
-                    sap.m.MessageToast.show("Project created successfully!");
-                    oModel.refresh();
+        //         success: function () {
+        //             sap.m.MessageToast.show("Project created successfully!");
+        //             oModel.refresh();
 
-                     },
-                error: function () {
-                    sap.m.MessageToast.show("Registration failed.");
-                }
+        //              },
+        //         error: function () {
+        //             sap.m.MessageToast.show("Registration failed.");
+        //         }
 
-            });
+        //     });
 
-            this.oFragment.close();
-        },
-        onCancelNewProjectForm: function () {
-            this.oFragment.close();
-        },
+        //     this.oFragment.close();
+        // },
+        // onCancelNewProjectForm: function () {
+        //     this.oFragment.close();
+        // },
         onEditTableItem: function (oEvent) {
             var oContext = oEvent.getSource().getBindingContext();
             oContext.getModel().setProperty(oContext.getPath() + "/Editable", true);
@@ -209,10 +205,36 @@ sap.ui.define([
                 }
             });
         },
+        addForm:function(){
+            this.getOwnerComponent().getRouter().navTo("ProjectForm");
+        },
+        onProjectTilePress: function () {
+            var oProjectTable = this.byId("projectTableSeeingAdmin");
+            var oEmployeeTable = this.byId("employeeTable");
+
+            oProjectTable.setVisible(true);
+            oEmployeeTable.setVisible(false);
+
+            console.log("Project table displayed.");
+        },
+
+        onEmployeeTilePress: function () {
+            var oEmployeeTable = this.byId("employeeTable");
+            var oProjectTable = this.byId("projectTableSeeingAdmin");
+
+            oEmployeeTable.setVisible(true);
+            oProjectTable.setVisible(false);
+
+            console.log("Employee table displayed.");
+        },
+
         
      onItemPress:function(oEvent){
-           var nProjectId=oEvent.getParameter("listItem").getBindingContext().getProperty("projectId");
-           this.getOwnerComponent().getRouter().navTo("ProjectInformation",{projectid:nProjectId});
+
+          // var nProjectId=oEvent.getParameter("listItem").getBindingContext().getProperty("projectId");
+           this.getOwnerComponent().getRouter().navTo("ProjectInformation"
+         //  ,{projectid:nProjectId}
+           );
         },
 
      onLogOutAdmin:function(){

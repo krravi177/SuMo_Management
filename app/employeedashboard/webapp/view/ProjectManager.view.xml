@@ -8,29 +8,50 @@
     xmlns:fb="sap.ui.comp.filterbar"
     xmlns:svm="sap.ui.comp.smartvariants"
 >
-    <Page title="Welcome To ProjectManager Page" showNavButton="true" navButtonPress="onNavBack">
+    <Page title="Welcome To ProjectManager Page">
         <content>
             <uxap:ObjectPageLayout
                 id="ObjectPageLayoutPM"
                 upperCaseAnchorBar="false"
             >
-                <uxap:headerContent>
-                    <SearchField
-                        width="50%"
-                        placeholder="Search for employee directory..."
-                    />
-
+                <uxap:headerTitle>
+					<uxap:ObjectPageDynamicHeaderTitle>
+                    <uxap:actions>
+                      <VBox
+                id="pmPageHeadVBox"
+                fitContainer="true"
+            >
+                <OverflowToolbar
+                    id="pmPageHeadVBoxOt"
+                    class="sapFDynamicPageAlignContent"
+                >
+                    <ToolbarSpacer />
+                    
                     <Button
-                        text="Add New Project"
                         icon="sap-icon://add"
-                        press="newSubProjectFregOpen"
+                        text="Add New SubProject"
+                        tooltip="Add New SubProject"
+                        press=".addSubProjectForm"
                         
                     />
                     <Button
-                        text="Add Home Page"
+                        icon="sap-icon://sort"
+                        text="Sort"
                         
+                        press=".onSort"
                     />
-                </uxap:headerContent>
+                    <Button
+                        text="Log Out"
+                        
+                        press="onLogOutManager"
+                    />
+                    
+                </OverflowToolbar>
+            </VBox>
+                    	</uxap:actions>
+					</uxap:ObjectPageDynamicHeaderTitle>
+                    	</uxap:headerTitle>
+
 
                 <uxap:sections>
                     <uxap:ObjectPageSection
@@ -40,60 +61,64 @@
                         <uxap:subSections>
                             <uxap:ObjectPageSubSection titleUppercase="false">
                                 <uxap:blocks>
-                                <HBox>
-                                    <GenericTile
-                                        class="sapUiSmallMarginBegin sapUiTinyMarginTop tileLayout "
-                                        header="Total Project"
-                                        subheader=""
-                                        press="press"
-                                         frameType="OneByHalf"
-                                    >
-                                        <TileContent
-                                            unit=""
-                                            footer=""
-                                        >
-                                            <NumericContent
-                                                value=""
-                                                withMargin="false"
-                                            />
-                                        </TileContent>
-                                    </GenericTile>
-                                    <GenericTile
-                                        class="sapUiSmallMarginBegin sapUiTinyMarginTop tileLayout"
-                                        header="Total Employees"
-                                        subheader=""
-                                        press="press"
-                                         frameType="OneByHalf"
-                                    >
-                                        <TileContent
-                                            unit=""
-                                            footer=""
-                                        >
-                                            <NumericContent
-                                                value="y"
-                                                withMargin="false"
-                                            />
-                                        </TileContent>
-                                    </GenericTile>
+                                    <VBox>
+                                        <HBox justifyContent="SpaceAround">
+                                            <GenericTile
+                                                header="Total Projects"
+                                                class="customTileBackground" 
+                                                press=".onTilePress"
+                                                frameType="OneByHalf"
+                                            >
+                                                <TileContent>
+                                                    <NumericContent
+                                                        id="totalProjectPm"
+                                                        value="0"
+                                                    />
+                                                </TileContent>
+                                            </GenericTile>
+                                             <GenericTile
+                                                header="Total SubProjects"
+                                                class="customTileBackground" 
+                                                press=".onTilePress"
+                                                frameType="OneByHalf"
+                                            >
+                                                <TileContent>
+                                                    <NumericContent
+                                                        id="totalSubprojects"
+                                                        value="0"
+                                                    />
+                                                </TileContent>
+                                            </GenericTile>
 
-                                    <GenericTile
-                                        class="sapUiSmallMarginBegin sapUiTinyMarginTop tileLayout"
-                                        header="Running Projects"
-                                        subheader=""
-                                        press="press"
-                                         frameType="OneByHalf"
-                                    >
-                                        <TileContent
-                                            unit=""
-                                            footer=""
-                                        >
-                                            <NumericContent
-                                                value="x"
-                                                withMargin="false"
-                                            />
-                                        </TileContent>
-                                    </GenericTile>
-                                    </HBox>
+                                            <GenericTile
+                                                header="Total Employees"
+                                                class="customTileBackground" 
+                                                press=".onTilePress"
+                                                frameType="OneByHalf"
+                                            >
+                                                <TileContent>
+                                                    <NumericContent
+                                                        id="totalEmployeesPm"
+                                                        value="0"
+                                                    />
+                                                </TileContent>
+                                            </GenericTile>
+
+                                            <GenericTile
+                                                header="Running Projects"
+                                                 class="customTileBackground" 
+                                                press=".onTilePress"
+                                                frameType="OneByHalf"
+                                            >
+                                                <TileContent>
+                                                    <NumericContent
+                                                        id="runningProjectsPm"
+                                                        value="0"
+                                                    />
+                                                </TileContent>
+                                            </GenericTile>
+                                        </HBox>
+                                    </VBox>
                                 </uxap:blocks>
                             </uxap:ObjectPageSubSection>
                         </uxap:subSections>
@@ -124,57 +149,57 @@
                                                             name="Project ID"
                                                             selectionChange=".onSelectionChange"
                                                             items="{
-												                                    path: '',
+												                                    path: '/SubProjects',
 												                                     templateShareable: true
 										                                              	}"
                                                         >
                                                             <core:Item
-                                                                key=""
-                                                                text=""
+                                                                key="{projectId}"
+                                                                text="{projectId}"
                                                             />
                                                         </MultiComboBox>
                                                     </fb:control>
                                                 </fb:FilterGroupItem>
                                                 <fb:FilterGroupItem
-                                                    name="Project Name"
-                                                    label="Project Name"
+                                                    name="Module Name"
+                                                    label="Module Name"
                                                     groupName="Group1"
                                                     visibleInFilterBar="true"
                                                 >
                                                     <fb:control>
                                                         <MultiComboBox
-                                                            name="Project Name"
+                                                            name="Module Name"
                                                             selectionChange=".onSelectionChange"
                                                             items="{
-												path: '',
+												path: '/SubProjects',
 												templateShareable: true
 											}"
                                                         >
                                                             <core:Item
-                                                                key=""
-                                                                text=""
+                                                                key="{moduleName}"
+                                                                text="{moduleName}"
                                                             />
                                                         </MultiComboBox>
                                                     </fb:control>
                                                 </fb:FilterGroupItem>
                                                 <fb:FilterGroupItem
-                                                    name="Client Name"
-                                                    label="Client Name"
+                                                    name="Manager ID"
+                                                    label="Manager ID"
                                                     groupName="Group1"
                                                     visibleInFilterBar="true"
                                                 >
                                                     <fb:control>
                                                         <MultiComboBox
-                                                            name="Client Name"
+                                                            name="Manager ID"
                                                             selectionChange=".onSelectionChange"
                                                             items="{
-												path: '',
+												path: '/SubProjects',
 												templateShareable: true
 											}"
                                                         >
                                                             <core:Item
-                                                                key=""
-                                                                text=""
+                                                                key="{projectManagerId}"
+                                                                text="{projectManagerId}"
                                                             />
                                                         </MultiComboBox>
                                                     </fb:control>
@@ -183,7 +208,7 @@
                                         </fb:FilterBar>
 
                                         <Table
-                                            id="employeeTablePM"
+                                            id="subprojectTablePM"
                                             items="{/SubProjects}"
                                             mode="SingleSelectMaster"
                                             growing="true" 
