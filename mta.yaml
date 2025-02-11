@@ -28,7 +28,10 @@ modules:
     requires:
       - name: SuMo_Management-db
       - name: SuMo_Management-auth
- 
+      - name: app-api
+        properties:
+          CDS_MULTITENANCY_APPUI_URL: ~{url}
+
   - name: SuMo_Management-db-deployer
     type: hdb
     path: db
@@ -40,7 +43,29 @@ modules:
         - npm run build
     requires:
       - name: SuMo_Management-db
- 
+
+  - name: SuMo_Management
+    type: approuter.nodejs
+    path: app/router
+    parameters:
+      keep-existing-routes: true
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true
+      - name: SuMo_Management-auth
+    provides:
+      - name: app-api
+        properties:
+          app-protocol: ${protocol}
+          app-uri: ${default-uri}
+          url: ${default-url}
+
 resources:
   - name: SuMo_Management-db
     type: com.sap.xs.hdi-container
@@ -56,4 +81,3 @@ resources:
       config:
         xsappname: SuMo_Management-${org}-${space}
         tenant-mode: dedicated
- 

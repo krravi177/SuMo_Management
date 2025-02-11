@@ -25,7 +25,7 @@ entity Projects {
 }
 
 // For Employees entity
-@cds.persistence.name: 'SAP_CAPIRE_SUMO_MANAGEMENT_SUBPROJECTS'      // Explicitly setting the table name to 'EMPLOYEES'
+@cds.persistence.name: 'SAP_CAPIRE_SUMO_MANAGEMENT_EMPLOYEES'      // Explicitly setting the table name to 'EMPLOYEES'
 entity Employees {
     key empCode      : Integer;
     empName          : String;
@@ -44,7 +44,7 @@ entity Employees {
 }
 
 // For SubProjects entity
-@cds.persistence.name: 'SUBPROJECTS' // Explicitly setting the table name to 'SUBPROJECTS'
+@cds.persistence.name: 'SAP_CAPIRE_SUMO_MANAGEMENT_SUBPROJECTS' // Explicitly setting the table name to 'SUBPROJECTS'
 entity SubProjects {
     key moduleId     : Integer;
     projectId        : Integer;

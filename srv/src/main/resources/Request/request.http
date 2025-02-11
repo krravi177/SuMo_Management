@@ -1,49 +1,31 @@
 ### Create Project
-
-
-
 POST http://localhost:8080/odata/v4/ManagementService/Projects
 Authorization: Basic privileged:
 Content-Type: application/json
 
 {
-  "projectId": 777777,
-  "projectName": "EQui Project",
+  "projectId": 11,
+  "projectName": "Diamond Project",
   "timeAssigned": 100,
   "assignedToP": 101,
   "projectChanges": 1,
   "clientName": "Client A",
-  "status": "Active",
+  "status": "Runnig",
   "description": "Project description",
   "urgency": "High",
   "createdBy": 556,
   "modifiedBy": 556
 }
 
-
-POST http://localhost:4004/odata/v4/Management/Projects
-Content-Type: application/json
-
-{
-  "projectId": 51,
-  "projectName": "EQui Project",
-  "timeAssigned": 100,
-  "assignedToP": 101,
-  "projectChanges": 1,
-  "clientName": "Client A",
-  "status": "Active",
-  "description": "Project description",
-  "urgency": "High",
-  "createdBy": 556,
-  "modifiedBy": 556
-}
- 
 ### Get Project by ID
-GET http://localhost:4004/odata/v4/Management/Projects(1)
+GET http://localhost:8080/odata/v4/ManagementService/Projects(1)
+Authorization: Basic privileged:
+
  
 
 ### Update Project
-PUT http://localhost:4004/odata/v4/Management/Projects(16)
+PUT http://localhost:8080/odata/v4/ManagementService/Projects(4)
+Authorization: Basic privileged:
 Content-Type: application/json
  
 {
@@ -61,38 +43,48 @@ Content-Type: application/json
  
 
 ### Delete Project
-DELETE http://localhost:4004/odata/v4/Management/Projects(50) 
+DELETE http://localhost:8080/odata/v4/ManagementService/Projects(4)
+Authorization: Basic privileged:
 Content-Type: application/json
  
 {}
  
 ### Get Projects by Manager (Employee ID)
-GET http://localhost:4004/odata/v4/Management/Projects?$filter=assignedToP eq 101 
+GET http://localhost:8080/odata/v4/ManagementService/Projects?$filter=assignedToP eq 101
+Authorization: Basic privileged:
+
  
  
 ###
  
  
 ### Search for Project by Name
-GET http://localhost:4004/odata/v4/Management/Projects?$filter=projectName eq 'SMDT Project'
+GET http://localhost:8080/odata/v4/ManagementService/Projects?$filter=projectName eq 'DQ Project'
+Authorization: Basic privileged:
+
 ###
  
 ### Get All Projects
-GET http://localhost:4004/odata/v4/Management/Projects
+GET http://localhost:8080/odata/v4/ManagementService/Projects
+Authorization: Basic privileged:
+
  
 ###
  
 ### Filter Projects
-GET http://localhost:4004/odata/v4/Management/Projects?$filter=status eq 'Active' and clientName eq 'Client A' and urgency eq 'High' HTTP/1.1
+GET http://localhost:8080/odata/v4/ManagementService/Projects?$filter=status eq 'Active' and clientName eq 'Client A' and urgency eq 'High' HTTP/1.1
+Authorization: Basic privileged:
+
  
 
 
 ### Create SubProject
-POST http://localhost:4004/odata/v4/Management/SubProjects 
+POST http://localhost:8080/odata/v4/ManagementService/SubProjects
+Authorization: Basic privileged:
 Content-Type: application/json
  
 {
-  "moduleId": 3,
+  "moduleId": 2,
   "projectId": 1,
   "moduleName": "SubProject SDMTTech",
   "assignedToE": 102,
@@ -100,18 +92,22 @@ Content-Type: application/json
   "timeAssigned": 80,
   "moduleStatus": "Active",
   "createdBy": 556,
-  "modifiedBy": 556
+  "modifiedBy": 556,
+  "status":"Active",
+  "startDate":"",
+  "endDate":""
+
 }
  
 ###
  
 ### Get SubProject by ID
-GET http://localhost:4004/odata/v4/Management/SubProjects(2)
+GET http://localhost:8080/odata/v4/ManagementService/SubProjects(2)
  
 ###
 
 ### Update SubProject
-PUT http://localhost:4004/odata/v4/Management/SubProjects(2) 
+PUT http://localhost:8080/odata/v4/ManagementService/SubProjects(2) 
 Content-Type: application/json
  
 {
@@ -124,28 +120,31 @@ Content-Type: application/json
 
 
 ### Delete SubProject
-DELETE http://localhost:4004/odata/v4/Management/SubProjects(3) 
+DELETE http://localhost:8080/odata/v4/ManagementService/SubProjects(3) 
 Content-Type: application/json
  
 {}
 
  
 ### Get SubProjects by Project ID
-GET http://localhost:4004/odata/v4/Management/SubProjects?$filter=projectId eq 1
+GET http://localhost:8080/odata/v4/ManagementService/SubProjects?$filter=projectId eq 1
  
 ###
  
 ### Get SubProjects by Assigned Employee ID
-GET http://localhost:4004/odata/v4/Management/SubProjects?$filter=assignedToE eq 102
+GET http://localhost:8080/odata/v4/ManagementService/SubProjects?$filter=assignedToE eq 102
+Authorization: Basic privileged:
+
 
   
 ### Create Employee
-POST http://localhost:4004/odata/v4/Management/Employees 
+POST http://localhost:8080/odata/v4/ManagementService/Employees
+Authorization: Basic privileged:
 Content-Type: application/json
  
 {
-  "empCode": 102,
-  "empName": "Shivam Kumar",
+  "empCode": 111,
+  "empName": "SEQ",
   "projectId": 1,
   "rating": 4,
   "timeTaken": 120,
@@ -160,15 +159,18 @@ Content-Type: application/json
 ###
  
 ### Get Employee by ID
-GET http://localhost:4004/odata/v4/Management/Employees(101)
+GET http://localhost:8080/odata/v4/ManagementService/Employees(101)
+Authorization: Basic privileged:
+
  
  
 ### Update Employee
-PUT http://localhost:4004/odata/v4/Management/Employees(101) 
+PUT http://localhost:8080/odata/v4/ManagementService/Employees(101)
+Authorization: Basic privileged:
 Content-Type: application/json
  
 {
-  "empName": "Shivam SDMT",
+  "empName": "SDMT",
   "projectId": 1,
   "rating": 5,
   "timeTaken": 85,
@@ -182,41 +184,22 @@ Content-Type: application/json
 
 
 ### Search for Employee by Name
-GET http://localhost:4004/odata/v4/Management/Employees?$filter=empName eq 'admin Kumar'
+GET http://localhost:8080/odata/v4/ManagementService/Employees?$filter=empName eq ''
+Authorization: Basic privileged:
+
  
 ###
  
 ### Get Employees by Manager ID
-GET http://localhost:4004/odata/v4/Management/Employees?$filter=managerId eq 103
+GET http://localhost:8080/odata/v4/ManagementService/Employees?$filter=managerId eq 103
+Authorization: Basic privileged:
+
  
  
 ### Delete Employee
-DELETE http://localhost:4004/odata/v4/Management/Employees(101) 
-Content-Type: application/json
- 
-{}
- 
- 
-
-
-
-### Generate Project Report
-
-POST  http://localhost:4004/odata/v4/Management/generateProjectReport
-Content-Type: application/json
-
-{
-  "status": "Not Running",
-  "assignedToP": 777,
-  "startDate": "2025-01-01T00:00:00Z",
-  "endDate": "2025-01-31T23:59:59Z"
-}
+DELETE http://localhost:8080/odata/v4/ManagementService/Employees(101)
+Authorization: Basic privileged:
 
  
-###
  
-### Generate Employee Report
-GET http://localhost:4004/odata/v4/Management/generateEmployeeReport?$filter=empCode 
  
-### Generate SubProject Report
-GET http://localhost:4004/odata/v4/Management/generateSubProjectReport?$filter=projectId 
