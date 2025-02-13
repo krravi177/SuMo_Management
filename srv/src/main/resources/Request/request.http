@@ -43,7 +43,7 @@ Content-Type: application/json
  
 
 ### Delete Project
-DELETE http://localhost:8080/odata/v4/ManagementService/Projects(4)
+DELETE http://localhost:8080/odata/v4/ManagementService/Projects(13)
 Authorization: Basic privileged:
 Content-Type: application/json
  
