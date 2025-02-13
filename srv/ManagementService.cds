@@ -32,7 +32,6 @@ service ManagementService {
     ) returns String;
  
     action deleteProject(projectId: Integer) returns Boolean;
- 
     action assignProjectManager(projectId: Integer, managerId: Integer) returns String;
     action calculateProjectCost(projectId: Integer) returns Decimal;
 
@@ -75,9 +74,6 @@ service ManagementService {
     ) returns String;
  
     action deleteEmployee(empCode: Integer) returns Boolean;
- 
-
- 
  
     // action to create a new sub-project
     action createSubProject(
