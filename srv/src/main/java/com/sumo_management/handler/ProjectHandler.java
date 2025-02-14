@@ -3,8 +3,10 @@ package com.sumo_management.handler;
 import org.springframework.stereotype.Component;
 import com.sap.cds.ql.Insert;
 import com.sap.cds.ql.Select;
+import com.sap.cds.ql.Update;
+import com.sap.cds.ql.cqn.CqnAnalyzer;
 import com.sap.cds.ql.cqn.CqnDelete;
-import com.sap.cds.ql.cqn.CqnPredicate;
+import com.sap.cds.ql.cqn.CqnUpdate;
 import com.sap.cds.services.cds.CdsCreateEventContext;
 import com.sap.cds.services.cds.CdsDeleteEventContext;
 import com.sap.cds.services.cds.CdsUpdateEventContext;
@@ -15,19 +17,18 @@ import com.sap.cds.services.handler.annotations.Before;
 import com.sap.cds.services.handler.annotations.On;
 import com.sap.cds.services.persistence.PersistenceService;
 import com.sap.cds.CdsData;
-import com.sap.cds.impl.builder.model.ComparisonPredicate;
 import com.sap.cds.ql.CQL;
 import com.sap.cds.ql.Delete;
+import com.sap.cds.Result;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 @Component
 @ServiceName("ManagementService")
 public class ProjectHandler implements EventHandler {
-
+    
     private final PersistenceService db;
 
     public ProjectHandler(PersistenceService db) {
@@ -71,70 +72,85 @@ public class ProjectHandler implements EventHandler {
         }
     }
 
-    // // Update Method
+    // Update Method of Project
 
-    //     @On(event = CqnService.EVENT_UPDATE, entity = "ManagementService.Projects")
-    //     public void updateProject(CdsUpdateEventContext context, CdsData projectData) {
-    //     System.out.println("Update handler executed successfully!");
-
-    //     try {
-    //         System.out.println("Handler start");
-
-    //         // Extract projectId from the request
-    //         Integer projectId = (Integer) projectData.get("projectId");
-    //         if (projectId == null) {
-    //             throw new IllegalArgumentException("Project ID is required for update.");
-    //         }
-
-    //         // Execute the update query
-    //         long updatedRows = db.run(Update.entity("ManagementService.Projects")
-    //                 .data(projectData)
-    //                 .where(c -> c.eq("projectId", projectId)));
-
-    //         if (updatedRows > 0) {
-    //             System.out.println("Project updated successfully with ID: " + projectId);
-    //             context.setResult(Collections.singletonList(projectData));
-    //         } else {
-    //             throw new RuntimeException("Update failed. Project with ID " + projectId + " not found.");
-    //         }
-
-    //     } catch (Exception e) {
-    //         System.err.println("Error updating project: " + e.getMessage());
-    //         throw new RuntimeException("Error updating project: " + e.getMessage(), e);
-    //     }
-    // }
-
-    // // Delete Method
-
-    //     @On(event = CqnService.EVENT_DELETE, entity = "ManagementService.Projects")
-    //     public void deleteProject(CdsDeleteEventContext context, CdsData projectData) {
-    //     System.out.println("Delete handler executed successfully!");
-        
-    //     try {
-    //         System.out.println("Delete handler start");
-    //         Integer projectId = (Integer) projectData.get("projectId");
-            
-    //         if (projectId == null) {
-    //             throw new IllegalArgumentException("Project ID is required for deletion");
-    //         }
-            
-    //         long deletedRows = db.run(Delete.from("ManagementService.Projects")
-    //                             .matching(Conditions.eq("projectId", projectId)))
-    //                         .rowCount();
-            
-    //         if (deletedRows > 0) {
-    //             System.out.println("Project deleted successfully with ID: " + projectId);
-    //         } else {
-    //             System.out.println("No project found with ID: " + projectId);
-    //             throw new RuntimeException("No project found with ID: " + projectId);
-    //         }
-            
-    //     } catch (Exception e) {
-    //         System.err.println("Error deleting project: " + e.getMessage());
-    //         throw new RuntimeException("Error deleting project: " + e.getMessage(), e);
-    //     }
-    // }
+    @On(event = CqnService.EVENT_UPDATE, entity = "ManagementService.Projects")
+    public void updateProject(CdsUpdateEventContext context, CdsData projectData) {
+        try {
+            if (projectData == null || projectData.isEmpty()) {
+                throw new RuntimeException("Project data is missing in the request.");
+            }
     
+            // Extract projectId dynamically
+            Object projectIdObj = projectData.get("projectId");
+            if (projectIdObj == null) {
+                throw new RuntimeException("Project ID is missing in the request.");
+            }
+    
+            String projectId = String.valueOf(projectIdObj); // Converts Integer/String safely
+    
+            // Creating an Update statement
+            CqnUpdate updateQuery = Update.entity("ManagementService.Projects")
+                                        .data(projectData)
+                                        .where(p -> p.get("projectId").eq(projectId));
+    
+            // Running the update
+            long updatedRows = db.run(updateQuery).rowCount();
+    
+            if (updatedRows == 0) {
+                throw new RuntimeException("No records updated for projectId: " + projectId);
+            }
+    
+            System.out.println("Project updated successfully: " + projectId);
+    
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to update project. Reason: " + e.getMessage(), e);
+        }
+    }
+    
+    
+    // Delete method of Project
+
+        @On(event = CqnService.EVENT_DELETE, entity = "ManagementService.Projects")
+        public void deleteProject(CdsDeleteEventContext context) {
+        try {
+            // Extract keys from the request
+            CqnAnalyzer analyzer = CqnAnalyzer.create(context.getModel());
+            Map<String, Object> keys = analyzer.analyze(context.getCqn()).targetKeys();
+
+            if (!keys.containsKey("projectId")) {
+                throw new RuntimeException("Project ID is missing in the request.");
+            }
+
+            String projectId = String.valueOf(keys.get("projectId"));
+            System.out.println("Delete Project Suscessfully: " + projectId);
+
+            // Check if the project exists before deletion
+            Result existingProject = db.run(Select.from("ManagementService.Projects").where(p -> p.get("projectId").eq(projectId)));
+            if (existingProject == null || existingProject.list().isEmpty()) {
+                throw new RuntimeException("Project with ID " + projectId + " does not exist.");
+            }
+
+            // Perform the delete operation
+            CqnDelete cqnDelete = Delete.from("ManagementService.Projects").where(p -> p.get("projectId").eq(projectId));
+            System.out.println("Executing delete: " + cqnDelete);
+
+            Result result = db.run(cqnDelete);
+
+            if (result == null) {
+                throw new RuntimeException("Delete failed: No response received from the database.");
+            }
+
+            System.out.println("Project deleted successfully: " + projectId);
+
+            // Instead of `setCompleted()`, return the result so CAP knows the delete was handled
+            context.setResult(result);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to delete project. Reason: " + e.getMessage(), e);
+        }
+    }
+
     private int generateNewId(String tableName, String idColumn) {
         Optional<Integer> maxId = db.run(Select.from(tableName)
                 .columns(idColumn)

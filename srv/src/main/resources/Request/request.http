@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "projectId": 15,
-  "projectName": "Dkl Project",
+  "projectName": "MOrning Project",
   "timeAssigned": 100,
   "assignedToP": 101,
   "projectChanges": 1,
@@ -24,7 +24,7 @@ Authorization: Basic privileged:
  
 
 ### Update Project
-PUT http://localhost:8080/odata/v4/ManagementService/Projects(4)
+PUT http://localhost:8080/odata/v4/ManagementService/Projects(13)
 Authorization: Basic privileged:
 Content-Type: application/json
  
@@ -43,7 +43,7 @@ Content-Type: application/json
  
 
 ### Delete Project
-DELETE http://localhost:8080/odata/v4/ManagementService/Projects(13)
+DELETE http://localhost:8080/odata/v4/ManagementService/Projects(11)
 Authorization: Basic privileged:
 Content-Type: application/json
  
@@ -84,9 +84,9 @@ Authorization: Basic privileged:
 Content-Type: application/json
  
 {
-  "moduleId": 205,
+  "moduleId": 210,
   "projectId": 1,
-  "moduleName": "Tech Project",
+  "moduleName": "XPMY Project",
   "assignedToE": 102,
   "projectManagerId": 101,
   "timeAssigned": 80,
@@ -104,11 +104,11 @@ GET http://localhost:8080/odata/v4/ManagementService/SubProjects(205)
 ###
 
 ### Update SubProject
-PUT http://localhost:8080/odata/v4/ManagementService/SubProjects(205) 
+PUT http://localhost:8080/odata/v4/ManagementService/SubProjects(210) 
 Content-Type: application/json
  
 {
-  "moduleName": "Updated TechSDMT Project",
+  "moduleName": "This is a Project of Update",
   "moduleStatus": "In Progress",
   "createdBy": 556,
   "modifiedBy": 556
@@ -117,16 +117,16 @@ Content-Type: application/json
 
 
 ### Delete SubProject
-DELETE http://localhost:8080/odata/v4/ManagementService/SubProjects(205) 
-Content-Type: application/json
- 
-{}
+DELETE http://localhost:8080/odata/v4/ManagementService/SubProjects(207)
+Authorization: Basic privileged:
+
+
+
 
  
 ### Get SubProjects by Project ID
 GET http://localhost:8080/odata/v4/ManagementService/SubProjects?$filter=projectId eq 1
- 
-###
+
  
 ### Get SubProjects by Assigned Employee ID
 GET http://localhost:8080/odata/v4/ManagementService/SubProjects?$filter=assignedToE eq 102
@@ -140,7 +140,7 @@ Authorization: Basic privileged:
 Content-Type: application/json
  
 {
-  "empCode": 111,
+  "empCode": 120,
   "empName": "SEQ",
   "projectId": 1,
   "rating": 4,
@@ -167,7 +167,7 @@ Authorization: Basic privileged:
 Content-Type: application/json
  
 {
-  "empName": "SDMT",
+  "empName": "ASDMT",
   "projectId": 1,
   "rating": 5,
   "timeTaken": 85,
@@ -194,7 +194,7 @@ Authorization: Basic privileged:
  
  
 ### Delete Employee
-DELETE http://localhost:8080/odata/v4/ManagementService/Employees(101)
+DELETE http://localhost:8080/odata/v4/ManagementService/Employees(120)
 Authorization: Basic privileged:
 
  
