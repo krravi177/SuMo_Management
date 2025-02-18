@@ -153,7 +153,6 @@ public class EmployeesHandler implements EventHandler {
         }
     }
 
-
     private int generateNewId(String tableName, String idColumn) {
         Optional<Integer> maxId = db.run(Select.from(tableName)
                 .columns(idColumn)

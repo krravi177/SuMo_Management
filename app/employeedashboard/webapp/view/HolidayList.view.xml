@@ -1,0 +1,27 @@
+<mvc:View
+	controllerName="com.dash.employeedashboard.controller.HolidayList"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	height="100%"
+	displayBlock="true">
+	
+	<ScrollContainer
+		height="100%"
+		width="100%"
+		horizontal="true"
+		vertical="true">
+		<FlexBox direction="Column" renderType="Div" class="sapUiSmallMargin">
+		<Toolbar>
+		<ToolbarSpacer />
+                    <Button tooltip="Close PDF"  icon= "sap-icon://decline"  type="Reject" press="onClosePDF" />
+                </Toolbar>
+
+			<PDFViewer source="{/Source}" isTrustedSource="true" title="{/Title}" height="{/Height}">
+				<layoutData>
+					<FlexItemData growFactor="1" />
+				</layoutData>
+			</PDFViewer>
+		</FlexBox>
+	</ScrollContainer>
+
+</mvc:View>

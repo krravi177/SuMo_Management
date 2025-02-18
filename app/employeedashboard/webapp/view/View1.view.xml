@@ -1,29 +1,65 @@
 <mvc:View controllerName="com.dash.employeedashboard.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
-    <Page id="homePage" title="{i18n>homePageTitle}" class="sapUiResponsiveContentPadding">
+    <Page id="homePage"  class="sapUiResponsiveContentPadding">
+	<headerContent>
+	<Image src="images/logonew.png" decorative="false" width="80px" height="35px">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Image>
+			<ToolbarSpacer />
+			</headerContent>
 		<content>
-		
-	<HBox id="homePageLogHbox" class="sapUiMarginTop">
-			<Button id="displayNotFoundhomeBtn" text="{i18n>DisplayNotFound}" press=".onDisplayNotFound" class="sapUiTinyMarginEnd"/>
-			<Button id="adminPageBtn" text="{i18n>showAdminPage}" press=".onNavToAdmin" class="sapUiTinyMarginEnd"/>
-			<Button id="employeePageBtn" text="{i18n>ShowEmployeeList}" press=".onNavToEmployees" class="sapUiTinyMarginEnd"/>
-			<Button id="projectManagerBtn" text="{i18n>ShowProjectManager}" press=".onNavToProjectManager"/>
-			</HBox>
-		<FlexBox id="logInPageFlex" justifyContent="Center" class="sapUiTopMargin">		
-	<VBox id="logInPageVBox" class="sapUiTopMargin" justifyContent="Center" width="30%" >
 	
-	<Label id="userIdhome" text="{i18n>loginHomeID}" />
-	<Input id="enterIdhome" />
-
-	<Label id="userPasswordhome" text="{i18n>logInHomePassword}" />
-	<Input id="enterPasswordhome" type="Password" maxLength="8" />
-	
-	<HBox id="homeSuBmitBtnHbox"><Button id="loginButton" text="{i18n>homePageLogIn}" press=".onLogIn" type="Accept" class="sapUiTinyMargin"/>
-	<Button id="cancelButton" text="{i18n>homePageCancel}" press=".onCancel" type="Reject" class="sapUiTinyMargin"/></HBox>
-     </VBox >
-	 
-	 </FlexBox>
+	<GenericTile class="sapUiMediumMarginBegin sapUiMediumMarginTop tileLayout" header="Admin"
+		 press=".onNavToAdmin">
+		<TileContent  footer="Admin Information">
+			<ImageContent src="sap-icon://account" />
+		</TileContent>
+	</GenericTile>
+	<GenericTile class="sapUiMediumMarginBegin sapUiMediumMarginTop tileLayout" header="Employees"
+		 press=".onNavToEmployees">
+		<TileContent  footer="Employee Information">
+			<ImageContent src="sap-icon://account" />
+		</TileContent>
+	</GenericTile>
+	<GenericTile class="sapUiMediumMarginBegin sapUiMediumMarginTop tileLayout" header="ProjectManager"
+		 press=".onNavToProjectManager">
+		<TileContent  footer="ProjectManager Information">
+			<ImageContent src="sap-icon://account" />
+		</TileContent>
+	</GenericTile>
+	<GenericTile class="sapUiMediumMarginBegin sapUiMediumMarginTop tileLayout" header="List of Holidays"
+		 press=" onPressHolidayListTile">
+		<TileContent  footer="Everyone">
+			<ImageContent src="sap-icon://calendar" />
+		</TileContent>
+	</GenericTile>
+	<GenericTile class="sapUiMediumMarginBegin sapUiMediumMarginTop tileLayout" header="Not found page"
+		 press="openAkibBhaiProject">
+		<TileContent  footer="FilterBar">
+			<ImageContent src="sap-icon://home-share" />
+		</TileContent>
+	</GenericTile>
+	<GenericTile class="sapUiMediumMarginBegin sapUiMediumMarginTop tileLayout" header="Bank Account Information"
+		 press=".onNavToAdmin">
+		<TileContent  footer="Admin Information">
+			<ImageContent src="sap-icon://account" />
+		</TileContent>
+	</GenericTile>
+	<GenericTile class="sapUiMediumMarginBegin sapUiMediumMarginTop tileLayout" header="Apply Leave"
+		 press=".onNavToAdmin">
+		<TileContent  footer="Admin Information">
+			<ImageContent src="sap-icon://account" />
+		</TileContent>
+	</GenericTile>
+	<GenericTile class="sapUiMediumMarginBegin sapUiMediumMarginTop tileLayout" header="My Inbox"
+		 press=".onNavToAdmin">
+		<TileContent  footer="Admin Information">
+			<ImageContent src="sap-icon://account" />
+		</TileContent>
+	</GenericTile>
 		</content>
     </Page>
 </mvc:View>

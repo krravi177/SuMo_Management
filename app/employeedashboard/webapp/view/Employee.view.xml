@@ -2,6 +2,7 @@
     controllerName="com.dash.employeedashboard.controller.Employee"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:tnt="sap.tnt"
     xmlns:uxap="sap.uxap"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.f"
@@ -9,33 +10,135 @@
     xmlns:svm="sap.ui.comp.smartvariants"
 >
     <Page
-        title="Welcome To Employee Page"
-        showNavButton="true"
-        navButtonPress="onNavBack"
-        class="sapUiResponsiveContentPadding"
+        class="sapUiResponsiveContentPadding" title="Welcome In Employee Page"
+
     >
+    <headerContent>	<ScrollContainer vertical="true" height="100%">
+		<!-- <tnt:ToolHeader id="shellLikeToolHeader" class="sapUiTinyMargin">
+			<Button icon="sap-icon://menu2" type="Transparent" tooltip="Menu">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Button>
+			<Image src="test-resources/sap/tnt/images/SAP_Logo.png" decorative="false" press="onLogoPressed" tooltip="SAP Logo" width="60px" height="30px">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Image>
+			<Title text="Prоduct Name" wrapping="false" id="productName">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="Disappear"/>
+				</layoutData>
+			</Title>
+			<Text text="Second title" wrapping="false" id="secondTitle">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="Disappear"/>
+				</layoutData>
+			</Text>
+			<ToolbarSpacer />
+			<SearchField width="25rem" id="searchField">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="Low" group="1"/>
+				</layoutData>
+			</SearchField>
+			<Button visible="false" icon="sap-icon://search" type="Transparent" id="searchButton" tooltip="Search"/>
+			<OverflowToolbarButton icon="sap-icon://da" type="Transparent" tooltip="Joule" text="Joule">
+				<layoutData>
+					<OverflowToolbarLayoutData group="2"/>
+				</layoutData>
+			</OverflowToolbarButton>
+			<OverflowToolbarButton icon="sap-icon://source-code" type="Transparent" tooltip="Action 1" text="Action 1">
+				<layoutData>
+					<OverflowToolbarLayoutData group="2"/>
+				</layoutData>
+			</OverflowToolbarButton>
+			<OverflowToolbarButton icon="sap-icon://card" type="Transparent" tooltip="Action 2" text="Action 2">
+				<layoutData>
+					<OverflowToolbarLayoutData group="2"/>
+				</layoutData>
+			</OverflowToolbarButton>
+			<OverflowToolbarButton icon="sap-icon://action-settings" type="Transparent" text="Settings"/>
+			<Button icon="sap-icon://bell" type="Transparent" tooltip="Notification">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Button>
+			<tnt:ToolHeaderUtilitySeparator/>
+			<OverflowToolbarButton icon="sap-icon://grid" type="Transparent" text="My Products" tooltip="My Products"/>
+			<Avatar src="test-resources/sap/tnt/images/Woman_avatar_01.png" displaySize="XS" press=".onAvatarPressed" tooltip="Profile">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Avatar>
+		</tnt:ToolHeader> -->
+
+		<!-- <tnt:ToolHeader id="shellLikeToolHeaderOnlyMandatoryControls" class="sapUiTinyMargin sapUiLargeMarginTop">
+			<Image src="test-resources/sap/tnt/images/SAP_Logo.png" decorative="false" press="onLogoPressed" tooltip="SAP Logo" width="60px" height="30px">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Image>
+			<Title text="Prоduct Name" wrapping="false">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="Disappear"/>
+				</layoutData>
+			</Title>
+			<ToolbarSpacer />
+			<Avatar src="test-resources/sap/tnt/images/Woman_avatar_01.png" displaySize="XS" press=".onAvatarPressed" tooltip="Profile">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Avatar>
+		</tnt:ToolHeader> -->
+	</ScrollContainer></headerContent>
         <content>
             <uxap:ObjectPageLayout
-                id="ObjectPageLayout"
+                id="ObjectPageLayoutEmployee"
                 upperCaseAnchorBar="false"
             >
-                <uxap:headerContent>
-                    <SearchField
-                        width="50%"
-                        placeholder="Search for employee directory..."
-                    />
-
+<uxap:headerTitle>
+					<uxap:ObjectPageDynamicHeaderTitle>
+                    <uxap:actions>
+                      <VBox
+                id="empPageHeadVBox"
+                fitContainer="true"
+            >
+                <OverflowToolbar
+                    id="empPageHeadVBoxOt"
+                    class="sapFDynamicPageAlignContent"
+                >
+                    <ToolbarSpacer />
+                    
                     <Button
-                        text="Add New Employee"
                         icon="sap-icon://add"
-                        press="newEmployeeFregOpen"
+                        text="Add Team Calendar"
+                        tooltip="Add Team Calendar"
+                        press=".addTeamCalendor"
+                        
                     />
                     <Button
-                        text="Go To New Page"
-                        press="onNav"
+                        icon="sap-icon://sort"
+                        text="Sort"
+                        
+                        press=".onSort"
                     />
-                </uxap:headerContent>
-
+                    <Button id="copyBtn" text="Copy" press="onCopyPress" />
+                   <Button id="addBtn" text="Add" press="onPressInsert" />
+        <Button id="updateBtn" text="Update" press="onUpdatePress" />
+        <Button id="refreshBtn" text="Refresh" press="onPressRefresh" />
+        <Button id="deleteBtn" text="Delete" press="onDeletePress" type="Reject" />
+                    <Button
+                        text="Log Out"
+                        
+                        press="onLogOutEmployee"
+                    />
+                    
+                </OverflowToolbar>
+            </VBox>
+                    	</uxap:actions>
+					</uxap:ObjectPageDynamicHeaderTitle>
+                    	</uxap:headerTitle>
+                
                 <uxap:sections>
                     <uxap:ObjectPageSection
                         titleUppercase="false"
@@ -44,72 +147,63 @@
                         <uxap:subSections>
                             <uxap:ObjectPageSubSection titleUppercase="false">
                                 <uxap:blocks>
-                                    <HBox>
-                                        <GenericTile
-                                            class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-                                            header="Total Project"
-                                            subheader=""
-                                            press="press"
-                                            frameType="OneByHalf"
-                                        >
-                                            <TileContent
-                                                unit=""
-                                                footer=""
+                                    <VBox>
+                                        <HBox justifyContent="SpaceAround">
+                                            <GenericTile
+                                                header="Total Projects"
+                                                class="customTileBackground" 
+                                                press=".onTilePress"
+                                                frameType="OneByHalf"
                                             >
-                                                <NumericContent
-                                                    value=""
-                                                    withMargin="false"
-                                                />
-                                            </TileContent>
-                                        </GenericTile>
-                                        <GenericTile
-                                            class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-                                            header="Total Employees"
-                                            subheader=""
-                                            press="press"
-                                            frameType="OneByHalf"
-                                        >
-                                            <TileContent
-                                                unit=""
-                                                footer=""
-                                            >
-                                                <NumericContent
-                                                    value="y"
-                                                    withMargin="false"
-                                                />
-                                            </TileContent>
-                                        </GenericTile>
+                                                <TileContent>
+                                                    <NumericContent
+                                                        id="totalProjectEmp"
+                                                        value="0"
+                                                    />
+                                                </TileContent>
+                                            </GenericTile>
 
-                                        <GenericTile
-                                            class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-                                            header="Running Projects"
-                                            subheader=""
-                                            press="press"
-                                            frameType="OneByHalf"
-                                        >
-                                            <TileContent
-                                                unit=""
-                                                footer=""
+                                            <GenericTile
+                                                header="Total Employees"
+                                                class="customTileBackground" 
+                                                press=".onTilePress"
+                                                frameType="OneByHalf"
                                             >
-                                                <NumericContent
-                                                    value="x"
-                                                    withMargin="false"
-                                                />
-                                            </TileContent>
-                                        </GenericTile>
-                                    </HBox>
+                                                <TileContent>
+                                                    <NumericContent
+                                                        id="totalEmployeesEmp"
+                                                        value="0"
+                                                    />
+                                                </TileContent>
+                                            </GenericTile>
+
+                                            <GenericTile
+                                                header="Running Projects"
+                                                 class="customTileBackground" 
+                                                press=".onTilePress"
+                                                frameType="OneByHalf"
+                                            >
+                                                <TileContent>
+                                                    <NumericContent
+                                                        id="runningProjectsEmp"
+                                                        value="0"
+                                                    />
+                                                </TileContent>
+                                            </GenericTile>
+                                        </HBox>
+                                    </VBox>
                                 </uxap:blocks>
                             </uxap:ObjectPageSubSection>
                         </uxap:subSections>
                     </uxap:ObjectPageSection>
 
-                    <uxap:ObjectPageSection>
+                    <uxap:ObjectPageSection title="Employee Table" titleUppercase="false">
                         <uxap:subSections>
                             <uxap:ObjectPageSubSection titleUppercase="false">
                                 <uxap:blocks>
                                     <VBox>
                                         <fb:FilterBar
-                                            id="filterbar"
+                                            id="filterbarEmployee"
                                             persistencyKey="myPersKey"
                                             useToolbar="false"
                                             search=".onSearch"
@@ -118,67 +212,67 @@
                                         >
                                             <fb:filterGroupItems>
                                                 <fb:FilterGroupItem
-                                                    name="Project ID"
-                                                    label="Project ID"
+                                                    name="empCode"
+                                                    label="Employee ID"
                                                     groupName="Group1"
                                                     visibleInFilterBar="true"
                                                 >
                                                     <fb:control>
                                                         <MultiComboBox
-                                                            name="Project ID"
+                                                            name="empCode"
                                                             selectionChange=".onSelectionChange"
                                                             items="{
-												path: 'projectId',
+												path: '/Employees',
 												templateShareable: true
 											}"
                                                         >
                                                             <core:Item
-                                                                key=""
-                                                                text=""
+                                                                key="{empCode}"
+                                                                text="{empCode}"
                                                             />
                                                         </MultiComboBox>
                                                     </fb:control>
                                                 </fb:FilterGroupItem>
                                                 <fb:FilterGroupItem
-                                                    name="Project Name"
-                                                    label="Project Name"
+                                                    name="empName"
+                                                    label="Employee Name"
                                                     groupName="Group1"
                                                     visibleInFilterBar="true"
                                                 >
                                                     <fb:control>
                                                         <MultiComboBox
-                                                            name="Project Name"
+                                                            name="empName"
                                                             selectionChange=".onSelectionChange"
                                                             items="{
-												path: '',
+												path: '/Employees',
 												templateShareable: true
 											}"
                                                         >
                                                             <core:Item
-                                                                key=""
-                                                                text=""
+                                                                key="{empName}"
+                                                                text="{empName}"
                                                             />
                                                         </MultiComboBox>
                                                     </fb:control>
                                                 </fb:FilterGroupItem>
                                                 <fb:FilterGroupItem
-                                                    name="Client Name"
-                                                    label="Client Name"
+                                                    name="managerId"
+                                                    label="Manager ID"
                                                     groupName="Group1"
                                                     visibleInFilterBar="true"
                                                 >
                                                     <fb:control>
                                                         <MultiComboBox
-                                                            name="Client Name"
+                                                            name="managerId"
                                                             selectionChange=".onSelectionChange"
                                                             items="{
-												                                       path: '',
+												                                       path: '/Employees',
 											                                        	templateShareable: true
 										                                            	}"
                                                         >
                                                             <core:Item
-                                                                key=""
-                                                                text=""
+                                                                key="{managerId}"
+                                                                text="{managerId}"
                                                             />
                                                         </MultiComboBox>
                                                     </fb:control>
@@ -186,33 +280,17 @@
                                             </fb:filterGroupItems>
                                         </fb:FilterBar>
                                         <Table
-                                            id="employeeTable"
+                                            id="employeesTable"
                                             items="{/Employees}"
                                             itemPress=".onItemPressed"
-                                            mode="SingleSelectMaster"
-                                            headerText="{i18n>ListOfAllEmployees}"
+                                          mode="MultiSelect"
+                                            inset="false"
                                              growing="true" 
                                             growingThreshold="10"
                                         >
-                                            <headerToolbar>
-                                                <Toolbar>
-                                                    <Title
-                                                        text="{i18n>Employees}"
-                                                        level="H2"
-                                                    />
-                                                    <ToolbarSpacer />
-                                                    <SearchField
-                                                        id="searchFieldh"
-                                                        search=".onSearchEmployeesTable"
-                                                        width="50%"
-                                                    />
-                                                    <Button
-                                                        icon="sap-icon://sort"
-                                                        press=".onSortButtonPressed"
-                                                    />
-                                                </Toolbar>
-                                            </headerToolbar>
+                                          
                                             <columns>
+                 
                                                 <Column>
                                                     <Text
                                                         text="Employee Code"
@@ -259,16 +337,14 @@
                                                         text="Permission to Create Employee"
                                                     />
                                                 </Column>
-                                                <Column>
-                                                    <Text
-                                                        text="Last Projects Worked On"
-                                                    />
-                                                </Column>
+                                                
                                             </columns>
 
                                             <items>
                                                 <ColumnListItem type="Active">
                                                     <cells>
+                                                                            
+
                                                         <Text
                                                             text="{empCode}"
                                                         />
@@ -277,17 +353,17 @@
                                                         />
                                                         <Text text="{rating}" />
                                                         <Text
-                                                            text="{empManager/empName}"
+                                                            text="{managerId}"
                                                         />
                                                         <!-- Manager's Name from the Association -->
                                                         <Text
                                                             text="{timeTaken}"
                                                         />
-                                                        <Text
-                                                            text="{>permissionToEdit}"
+                                                        <!-- <Text
+                                                            text="{permissionToEdit}"
                                                         />
                                                         <Text
-                                                            text="{>permissionToView}"
+                                                            text="{permissionToView}"
                                                         />
                                                         <Text
                                                             text="{permissionToCreateP}"
@@ -297,11 +373,9 @@
                                                         />
                                                         <Text
                                                             text="{permissionToCreateE}"
-                                                        />
+                                                        /> -->
 
-                                                        <Text
-                                                            text="{lastProjects/0/projectName}"
-                                                        />
+                                                       
                                                     </cells>
                                                 </ColumnListItem>
                                             </items>

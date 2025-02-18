@@ -33,11 +33,11 @@ entity Employees {
     rating           : Integer;
     managerId        : Integer;
     timeTaken        : Integer;
-    permissionToEdit : String;
-    permissionToView : String;
-    permissionToCreateP : String;
-    permissionToCreateSP : String;
-    permissionToCreateE : String;
+    // permissionToEdit : String;
+    // permissionToView : String;
+    // permissionToCreateP : String;
+    // permissionToCreateSP : String;
+    // permissionToCreateE : String;
     projects         : Association to many Projects on projects.assignedToP = empCode;  
     empManager : Association to Employees on empManager.empCode = managerId;
     subProjects      : Association to many SubProjects on subProjects.assignedToE = empCode;  

@@ -99,9 +99,10 @@
     },
     "routing": {
       "config": {
-        "routerClass": "sap.m.routing.Router",
-        "controlAggregation": "pages",
-        "controlId": "app",
+        "routerClass": "sap.f.routing.Router",
+        "controlAggregation": "beginColumnPages",
+        "controlId": "flexID",
+        "async": true,
         "transition": "slide",
         "type": "View",
         "viewType": "XML",
@@ -117,8 +118,9 @@
         },
         {
           "name": "RouteAdmin",
+          
           "pattern": "Admin",
-          "target": [
+          "target": [  
             "TargetAdmin"
           ]
         },
@@ -137,12 +139,40 @@
           ]
         },
         {
-          "name": "RouteEmployeeDetails",
-          "pattern": "EmployeeDetails",
-          "target": [
-              "TargetEmployeeDetails"
+          "name": "ProjectInformation",
+          "pattern": "ProjectInformation/{projectid}",
+          "target": [ 
+            "ProjectInformation"
           ]
-      },
+        },
+        {
+          "name": "ProjectForm",
+          "pattern": "ProjectForm",
+          "target": [
+            "ProjectForm"
+          ]
+        },
+        {
+
+          "name": "SubProjectForm",
+          "pattern": "SubProjectForm",
+          "target": [
+            "SubProjectForm"
+          ]
+        },
+        
+      {
+        "name": "TeamCalendor",
+        "pattern": "TeamCalendor",
+        "target": [
+            "TeamCalendor"
+        ]
+    },
+    {
+      "name": "HolidayList",
+      "pattern": "HolidayList",
+      "target":"HolidayList"
+  },
   {
       "name": "notFound",
       "pattern": "notFound",
@@ -153,10 +183,18 @@
         "TargetView1": {
           "id": "View1",
           "name": "View1"
+           
         },
         "TargetAdmin": {
           "id": "Admin",
-          "name": "Admin"
+          "name": "Admin",
+           "controlAggregation": "beginColumnPages"
+        },
+        "ProjectInformation": {
+          "id": "ProjectInformation",
+          "name": "ProjectInformation",
+           "controlAggregation": "midColumnPages"
+        
         },
         "TargetProjectManager": {
           "id": "ProjectManager",
@@ -166,9 +204,21 @@
           "id": "Employee",
           "name": "Employee"
         },
-        "TargetEmployeeDetails": {
-          "id": "EmployeeDetails",
-          "name": "EmployeeDetails"
+        "ProjectForm": {
+          "id": "ProjectForm",
+          "name": "ProjectForm"
+        },
+        "SubProjectForm": {
+          "id": "SubProjectForm",
+          "name": "SubProjectForm"
+        },
+        "TeamCalendor": {
+          "id": "TeamCalendor",
+          "name": "TeamCalendor"
+        },
+        "HolidayList":{
+          "id":"HolidayList",
+          "name":"HolidayList"
         },
         "notFound": {
           "id": "notFound",
@@ -180,7 +230,8 @@
     "rootView": {
       "viewName": "com.dash.employeedashboard.view.App",
       "type": "XML",
-      "id": "App"
+      "id": "app",
+      "async": true
     }
   }
 }

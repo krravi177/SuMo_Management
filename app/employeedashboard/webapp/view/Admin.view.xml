@@ -1,4 +1,4 @@
-<mvc:View
+<mvc:View xmlns:calendar="sap.ui.unified.calendar"
     controllerName="com.dash.employeedashboard.controller.Admin"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
@@ -6,68 +6,127 @@
     xmlns:core="sap.ui.core"
     xmlns:f="sap.f"
     xmlns:fb="sap.ui.comp.filterbar"
-    xmlns:svm="sap.ui.comp.smartvariants"
+ xmlns:svm="sap.ui.comp.smartvariants"
 >
     <Page
         id="adminWelPage"
         title="Welcome On Admin Page"
-        showNavButton="true"
-        navButtonPress="onNavBack"
+         
     >
         <content>
-        <VBox id="homePageVBox" fitContainer="true">
-				<OverflowToolbar id="homePageFirstVBoxOt" class="sapFDynamicPageAlignContent">
-                <OverflowToolbarButton icon="sap-icon://add" text="Add New Project" type="Transparent" press="newProjectFregOpen"/>
-					<ToolbarSpacer/>
-					<SearchField search=".onSearch" width="17.5rem"/>
-					<OverflowToolbarButton icon="sap-icon://add" text="Add" type="Transparent" press=".onAdd"/>
-					<OverflowToolbarButton icon="sap-icon://sort" text="Sort" type="Transparent" press=".onSort"/>
-                    <OverflowToolbarButton  text="Log Out" type="Transparent" press="onNavBack"/>
-				</OverflowToolbar></VBox>
             <uxap:ObjectPageLayout
                 id="ObjectPageWelAdmin"
                 upperCaseAnchorBar="false"
             >
-                <uxap:headerContent>
-                
-                   
-                </uxap:headerContent>
+               <uxap:headerTitle>
+					<uxap:ObjectPageDynamicHeaderTitle>
+                    <uxap:actions>
+                      <VBox
+                id="homePageVBox"
+                fitContainer="true"
+            >
+                <OverflowToolbar
+                    id="homePageFirstVBoxOt"
+                    class="sapFDynamicPageAlignContent"
+                >
+                    <ToolbarSpacer />
+                    
+                    <Button
+                        icon="sap-icon://add"
+                        text="Add New Project"
+                        tooltip="Add New Project"
+                        press=".addProjectForm"
+                        
+                    />
+                    <Button
+                        icon="sap-icon://sort"
+                        text="Sort"
+                        
+                        press=".onSort"
+                    />
+                    <Button
+                        text="Log Out"
+                        
+                        press="onLogOutAdmin"
+                    />
+                    
+                </OverflowToolbar>
+            </VBox>
+                    	</uxap:actions>
+					</uxap:ObjectPageDynamicHeaderTitle>
+                    	</uxap:headerTitle>
                 <uxap:sections>
                     <uxap:ObjectPageSection
                         id="adminWelProjectSTatusTile"
                         titleUppercase="false"
-                        title="Project Details"
+                        title="Project Status"
                     >
+                    
                         <uxap:subSections>
                             <uxap:ObjectPageSubSection
                                 id="adminWelProjectSTatusSubSection"
                                 titleUppercase="false"
                             >
+                            	
                                 <uxap:blocks>
-                                   
-                                       <VBox>
-    <HBox justifyContent="SpaceAround">
-        <GenericTile header="Total Projects" class="sapUiTinyMargin" press=".onTilePress">
-            <TileContent>
-                <NumericContent id="totalProject" value="0"/>
-            </TileContent>
-        </GenericTile>
+                                    <VBox>
+                                        <HBox justifyContent="SpaceAround">
+                                            <GenericTile
+                                                header="Total Projects"
+                                                class="customTileBackground" 
+                                                press=".onProjectTilePress"
+                                                frameType="OneByHalf"
+                                            >
+                                                <TileContent>
+                                                    <NumericContent
+                                                        id="totalProject"
+                                                        value="0"
+                                                    />
+                                                </TileContent>
+                                            </GenericTile>
 
-        <GenericTile header="Total Employees" class="sapUiTinyMargin" press=".onTilePress">
-            <TileContent>
-                <NumericContent id="totalEmployees" value="0"/>
-            </TileContent>
-        </GenericTile>
+                                            <GenericTile
+                                                header="Total Employees"
+                                                class="customTileBackground" 
+                                                press=".onEmployeeTilePress"
+                                                frameType="OneByHalf"
+                                            >
+                                                <TileContent>
+                                                    <NumericContent
+                                                        id="totalEmployees"
+                                                        value="0"
+                                                    />
+                                                </TileContent>
+                                            </GenericTile>
 
-        <GenericTile header="Running Projects" class="sapUiTinyMargin" press=".onTilePress">
-            <TileContent>
-                <NumericContent id="runningProjects" value="0"/>
-            </TileContent>
-        </GenericTile>
-    </HBox>
-</VBox>
-
-                                
+                                            <GenericTile
+                                                header="Running Projects"
+                                                 class="customTileBackground" 
+                                                press=".onRunningProjectsTilePress"
+                                                frameType="OneByHalf"
+                                            >
+                                                <TileContent>
+                                                    <NumericContent
+                                                        id="runningProjects"
+                                                        value="0"
+                                                    />
+                                                </TileContent>
+                                            </GenericTile>
+                                             <GenericTile
+                                                header="Delayed Projects"
+                                                 class="customTileBackground" 
+                                                press=".onDelayedProjectsTilePress"
+                                                frameType="OneByHalf"
+                                            >
+                                                <TileContent>
+                                                    <NumericContent
+                                                        id="runningLateProjects"
+                                                        value="0"
+                                                    />
+                                                </TileContent>
+                                            </GenericTile>
+                                        </HBox>
+                                    </VBox>
                                 </uxap:blocks>
                             </uxap:ObjectPageSubSection>
                         </uxap:subSections>
@@ -75,99 +134,101 @@
 
                     <uxap:ObjectPageSection>
                         <uxap:subSections>
-                            <uxap:ObjectPageSubSection title="Projects Status" titleUppercase="false">
+                            <uxap:ObjectPageSubSection
+                                title="Projects Table"
+                                titleUppercase="false"
+                            >
                                 <uxap:blocks>
                                     <VBox>
-                                        <fb:FilterBar
-                                            id="filterbarAdmin"
-                                            persistencyKey="myPersKey"
-                                            useToolbar="false"
-                                            search=".onSearch"
-                                            filterChange=".onFilterChange"
-                                            afterVariantLoad=".onAfterVariantLoad"
-                                            xmlns:fb="sap.ui.comp.filterbar"
-                                            xmlns:core="sap.ui.core"
-                                            xmlns="sap.m"
-                                        >
-                                            <fb:filterGroupItems>
-                                                <fb:FilterGroupItem
-                                                    name="ProjectID"
-                                                    label="Project ID"
-                                                    groupName="Group1"
-                                                    visibleInFilterBar="true"
-                                                >
-                                                    <fb:control>
-                                                        <MultiComboBox
-                                                            selectionChange=".onSelectionChange"
-                                                            items="{/Projects}"
-                                                        >
-                                                            <core:Item
-                                                                key="{projectId}"
-                                                                text="{projectId}"
-                                                            />
-                                                        </MultiComboBox>
-                                                    </fb:control>
-                                                </fb:FilterGroupItem>
-
-                                                <fb:FilterGroupItem
-                                                    name="ProjectName"
-                                                    label="Project Name"
-                                                    groupName="Group1"
-                                                    visibleInFilterBar="true"
-                                                >
-                                                    <fb:control>
-                                                        <MultiComboBox
-                                                            selectionChange=".onSelectionChange"
-                                                            items="{/Projects}"
-                                                        >
-                                                            <core:Item
-                                                                key="{projectName}"
-                                                                text="{projectName}"
-                                                            />
-                                                        </MultiComboBox>
-                                                    </fb:control>
-                                                </fb:FilterGroupItem>
-
-                                                <fb:FilterGroupItem
-                                                    name="ClientName"
-                                                    label="Client Name"
-                                                    groupName="Group1"
-                                                    visibleInFilterBar="true"
-                                                >
-                                                    <fb:control>
-                                                        <MultiComboBox
-                                                            selectionChange=".onSelectionChange"
-                                                            items="{/Projects}"
-                                                        >
-                                                            <core:Item
-                                                                key="{clientName}"
-                                                                text="{clientName}"
-                                                            />
-                                                        </MultiComboBox>
-                                                    </fb:control>
-                                                </fb:FilterGroupItem>
-                                            </fb:filterGroupItems>
-                                        </fb:FilterBar>
-
+                                    <fb:FilterBar id="filterbarAdmin" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+							<fb:filterGroupItems>
+								<fb:FilterGroupItem name="projectId" label="Project Id" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<MultiComboBox
+											name="projectId"
+											selectionChange=".onSelectionChange"
+											items="{
+												path: '/Projects',
+												templateShareable: true
+											}"
+										>
+											<core:Item key="{projectId}" text="{projectId}"/>
+										</MultiComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+								<fb:FilterGroupItem name="projectName" label="Project Name" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<MultiComboBox
+											name="projectName"
+											selectionChange=".onSelectionChange"
+											items="{
+												path: '/Projects',
+												templateShareable: true
+											}"
+										>
+											<core:Item key="{projectName}" text="{projectName}"/>
+										</MultiComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+								<fb:FilterGroupItem name="clientName" label="Client Name" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<MultiComboBox
+											name="clientName"
+											selectionChange=".onSelectionChange"
+											items="{
+												path: '/Projects',
+												templateShareable: true
+											}"
+										>
+											<core:Item key="{clientName}" text="{clientName}"/>
+										</MultiComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+							</fb:filterGroupItems>
+						</fb:FilterBar>
+                                       
                                         <Table
                                             id="projectTableSeeingAdmin"
                                             items="{ path: '/Projects' }"
                                             itemPress="onItemPress"
+                                            inset="false"
                                             mode="SingleSelectMaster"
                                             growing="true"
                                             growingThreshold="10"
+                                            visible="true"
                                         >
+                                         <!-- <headerToolbar>
+                                                <Toolbar>
+                                                    <Title
+                                                        text="{i18n>Employees}"
+                                                        level="H2"
+                                                    />
+                                                    <ToolbarSpacer />
+                                                    <SearchField
+                                                        id="searchFieldh"
+                                                        search=".onSearchEmployeesTable"
+                                                        width="50%"
+                                                    />
+                                                    <Button
+                                                        icon="sap-icon://sort"
+                                                        press=".onSortButtonPressed"
+                                                    />
+                                                </Toolbar>
+                                            </headerToolbar> -->
                                             <columns>
                                                 <Column
                                                     id="adminPageTabProjIdCol"
+                                                    
                                                 >
                                                     <Text
                                                         id="adminPageTabProjIdTxt"
                                                         text="Project ID"
+                                                       
                                                     />
                                                 </Column>
                                                 <Column
                                                     id="adminPageTabProjNameCol"
+                                                    minScreenWidth="Tablet" demandPopin="true"
                                                 >
                                                     <Text
                                                         id="adminPageTabProjNameTxt"
@@ -175,7 +236,7 @@
                                                     />
                                                 </Column>
                                                 <Column
-                                                    id="adminPageTabAssignToCol"
+                                                    id="adminPageTabAssignToCol" minScreenWidth="Tablet" demandPopin="true"
                                                 >
                                                     <Text
                                                         id="adminPageTabAssignToTxt"
@@ -183,7 +244,7 @@
                                                     />
                                                 </Column>
                                                 <Column
-                                                    id="adminPageTabTimeAssignCol"
+                                                    id="adminPageTabTimeAssignCol" minScreenWidth="Tablet" demandPopin="true"
                                                 >
                                                     <Text
                                                         id="adminPageTabTimeAssignToTxt"
@@ -191,7 +252,7 @@
                                                     />
                                                 </Column>
                                                 <Column
-                                                    id="adminPageTabChangesCol"
+                                                    id="adminPageTabChangesCol" minScreenWidth="Tablet" demandPopin="true"
                                                 >
                                                     <Text
                                                         id="adminPageTabChangesTxt"
@@ -199,7 +260,7 @@
                                                     />
                                                 </Column>
                                                 <Column
-                                                    id="adminPageTabClientNameCol"
+                                                    id="adminPageTabClientNameCol" minScreenWidth="Tablet" demandPopin="true"
                                                 >
                                                     <Text
                                                         id="adminPageTabClientNameTxt"
@@ -207,15 +268,15 @@
                                                     />
                                                 </Column>
                                                 <Column
-                                                    id="adminPageTabStatusCol"
+                                                    id="adminPageTabStatusCol" minScreenWidth="Tablet" demandPopin="true"
                                                 >
                                                     <Text
                                                         id="adminPageTabStatusTxt"
-                                                        text="Status"
+                                                        text="Description"
                                                     />
                                                 </Column>
                                                 <Column
-                                                    id="adminPageTabUrgencyCol"
+                                                    id="adminPageTabUrgencyCol" minScreenWidth="Tablet" demandPopin="true"
                                                 >
                                                     <Text
                                                         id="adminPageTabUrgencyTxt"
@@ -223,19 +284,23 @@
                                                     />
                                                 </Column>
                                                 <Column
-                                                    id="adminPageTabStartDateCol"
+                                                    id="adminPageTabStartDateCol" minScreenWidth="Tablet" demandPopin="true"
                                                 >
                                                     <Text
                                                         id="adminPageTabStartDateTxt"
                                                         text="Start Date"
                                                     />
                                                 </Column>
-                                                <Column>
+
+                                                <Column minScreenWidth="Tablet" demandPopin="true">
                                                     <Text text="End Date" />
+                                                </Column>
+                                                 <Column minScreenWidth="Tablet" demandPopin="true">
+                                                    <Text text="Status" />
                                                 </Column>
                                             </columns>
                                             <items>
-                                                <ColumnListItem type="Active">
+                                                <ColumnListItem vAlign="Middle" type="Active">
                                                     <cells>
                                                         <Text
                                                             id="adProjectId"
@@ -268,15 +333,16 @@
                                                         <Text
                                                             id="adUrgency"
                                                             text="{urgency}"
+                                                            
                                                         />
-                                                        <Text
+                                                        <!-- <Text
                                                             id="adCreatedBy"
                                                             text="{createdBy}"
                                                         />
                                                         <Text
                                                             id="adModifiedBy"
                                                             text="{modifiedBy}"
-                                                        />
+                                                        /> -->
 
                                                         <Text
                                                             id="adStartDate"
@@ -291,6 +357,184 @@
                                                             state="{= ${status} === 'Completed' ? 'Success' : ${status} === 'InProgress' ? 'Warning' : 'Error'}"
                                                             class="myStatus{= ${status} === 'Completed' ? 'Success' : ${status} === 'InProgress' ? 'Warning' : 'Error'}"
                                                         />
+
+                                                       
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
+                                        </Table>
+                                     <fb:FilterBar
+                                            id="filterbarEmployees"
+                                            persistencyKey="myPersKey"
+                                            useToolbar="false"
+                                            search=".onSearch"
+                                            filterChange=".onFilterChange"
+                                            afterVariantLoad=".onAfterVariantLoad"
+                                            visible="false"
+                                        >
+                                            <fb:filterGroupItems>
+                                                <fb:FilterGroupItem
+                                                    name="empCode"
+                                                    label="Employee ID"
+                                                    groupName="Group1"
+                                                    visibleInFilterBar="true"
+                                                >
+                                                    <fb:control>
+                                                        <MultiComboBox
+                                                            name="empCode"
+                                                            selectionChange=".onSelectionChange"
+                                                            items="{
+												path: '/Employees',
+												templateShareable: true
+											}"
+                                                        >
+                                                            <core:Item
+                                                                key="{empCode}"
+                                                                text="{empCode}"
+                                                            />
+                                                        </MultiComboBox>
+                                                    </fb:control>
+                                                </fb:FilterGroupItem>
+                                                <fb:FilterGroupItem
+                                                    name="empName"
+                                                    label="Employee Name"
+                                                    groupName="Group1"
+                                                    visibleInFilterBar="true"
+                                                >
+                                                    <fb:control>
+                                                        <MultiComboBox
+                                                            name="empName"
+                                                            selectionChange=".onSelectionChange"
+                                                            items="{
+												path: '/Employees',
+												templateShareable: true
+											}"
+                                                        >
+                                                            <core:Item
+                                                                key="{empName}"
+                                                                text="{empName}"
+                                                            />
+                                                        </MultiComboBox>
+                                                    </fb:control>
+                                                </fb:FilterGroupItem>
+                                                <fb:FilterGroupItem
+                                                    name="managerId"
+                                                    label="Manager ID"
+                                                    groupName="Group1"
+                                                    visibleInFilterBar="true"
+                                                >
+                                                    <fb:control>
+                                                        <MultiComboBox
+                                                            name="managerId"
+                                                            selectionChange=".onSelectionChange"
+                                                            items="{
+												                                       path: '/Employees',
+											                                        	templateShareable: true
+										                                            	}"
+                                                        >
+                                                            <core:Item
+                                                                key="{managerId}"
+                                                                text="{managerId}"
+                                                            />
+                                                        </MultiComboBox>
+                                                    </fb:control>
+                                                </fb:FilterGroupItem>
+                                            </fb:filterGroupItems>
+                                        </fb:FilterBar>
+                                        <Table
+                                            id="employeeTable"
+                                            items="{/Employees}"
+                                            itemPress=".onItemPressed"
+                                            mode="SingleSelectMaster"
+                                            visible="false"
+                                             growing="true" 
+                                            growingThreshold="10"
+                                        >
+                                          
+                                            <columns>
+                                                <Column>
+                                                    <Text
+                                                        text="Employee Code"
+                                                    />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Employee Name"
+                                                    />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Rating" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Manager" />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Time Taken (hours)"
+                                                    />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Permission to Edit"
+                                                    />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Permission to View"
+                                                    />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Permission to Create Project"
+                                                    />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Permission to Create Sub-Project"
+                                                    />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Permission to Create Employee"
+                                                    />
+                                                </Column>
+                                                
+                                            </columns>
+
+                                            <items>
+                                                <ColumnListItem type="Active">
+                                                    <cells>
+                                                        <Text
+                                                            text="{empCode}"
+                                                        />
+                                                        <Text
+                                                            text="{empName}"
+                                                        />
+                                                        <Text text="{rating}" />
+                                                        <Text
+                                                            text="{managerId}"
+                                                        />
+                                                        <!-- Manager's Name from the Association -->
+                                                        <Text
+                                                            text="{timeTaken}"
+                                                        />
+                                                        <Text
+                                                            text="{permissionToEdit}"
+                                                        />
+                                                        <Text
+                                                            text="{permissionToView}"
+                                                        />
+                                                        <Text
+                                                            text="{permissionToCreateP}"
+                                                        />
+                                                        <Text
+                                                            text="{permissionToCreateSP}"
+                                                        />
+                                                        <Text
+                                                            text="{permissionToCreateE}"
+                                                        />
+
+                                                       
                                                     </cells>
                                                 </ColumnListItem>
                                             </items>

@@ -1,0 +1,182 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+
+    xmlns:uxap="sap.uxap"
+   controllerName="com.dash.employeedashboard.controller.ProjectForm">
+<Page id="adminProjectForm" title="Add Project Form" showNavButton="true" navButtonPress="onNavAdminProjectInfoPage">
+        <content>
+         <uxap:ObjectPageLayout>
+                <uxap:sections>
+                    <uxap:ObjectPageSection
+                        id="adminWelProjectSTatusTilee"
+                        titleUppercase="false"
+                        title="General Details"
+                    >
+                    
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection
+                                id="adminWelProjectSTatusSubSectionn"
+                                titleUppercase="false"
+                            >
+                            	
+                                <uxap:blocks>
+                                        <f:SimpleForm
+            id="SimpleFormToolbarAdminPF"
+            editable="true"
+            layout="ColumnLayout"
+           
+            columnsL="2"
+            columnsM="1"
+            singleContainerFullSize="false"
+        >
+            <f:content>
+
+                <Label text="Project ID" />
+                <Input id="pProjectId" width="100%" />
+
+                <Label text="Project Name" />
+                <Input id="pProjectName" width="100%" />
+
+                <Label text="Assigned To Project" />
+                <Input id="pAssignedTo" width="100%" />
+
+                <Label text="Time Assigned" />
+                <Input id="pTimeAssigned" width="100%" />
+
+                <Label text="Changes" />
+                <Input id="pChanges" width="100%" />
+
+                <Label text="Client Name" />
+                <Input id="pClientName" width="100%" />
+                </f:content>
+                </f:SimpleForm>
+
+                  </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+                    <uxap:ObjectPageSection
+                        id="adminPageFormPageSectionDrop"
+                        titleUppercase="false"
+                        title="Status"
+                    >
+                    
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection
+                                id="adminPageFormSubSectionDrop"
+                                titleUppercase="false"
+                            >
+                            	
+                                <uxap:blocks>
+                                 <f:SimpleForm
+            id="SimpleFormToolbarAdminPFDrop"
+            editable="true"
+            layout="ColumnLayout"
+            columnsL="2"
+            columnsM="2"
+           
+        >
+            <f:content>
+           <Label text="Urgency" />
+                <Select id="pUrgency" width="100%">
+                    <items>
+                        <core:Item text="Low" key="Low"/>
+                        <core:Item text="Medium" key="Medium"/>
+                        <core:Item text="High" key="High"/>
+                    </items>
+                </Select>
+                    <Label text="Status" />
+                <Select id="pStatus" width="100%" selectedKey="{pStatus}">
+                    <items>
+                        <core:Item text="Running" key="OnTime"/>
+                        <core:Item text="Delayed" key="Delayed"/>
+                        <core:Item text="Completed" key="Completed"/>
+                    </items>
+                </Select>
+                <Label text="Description" />
+                <TextArea id="pnDescription" width="100%" rows="4" />
+                </f:content>
+                </f:SimpleForm>
+                
+                 
+                   </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+ 
+                  <uxap:ObjectPageSection
+                        id="adminPageFormPageSectionDateT"
+                        titleUppercase="false"
+                        title="Duration"
+                    >
+                    
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection
+                                id="adminPageFormSubSectionDateT"
+                                titleUppercase="false"
+                            >
+                            	
+                                <uxap:blocks>
+                                 <f:SimpleForm
+            id="SimpleFormToolbarAdminPFDateT"
+            editable="true"
+            layout="ColumnLayout"
+            columnsL="2"
+            columnsM="2"
+        >
+            <f:content>
+
+                  <Label text="Created By" />
+                <Input id="pCreateBy" width="100%" />
+
+                <Label text="Modified By" />
+                <Input id="pModifieBy" width="100%" />
+
+                <Label text="Start Date" />
+                <DateTimePicker id="pStartDate" width="100%" />
+
+                <Label text="End Date" />
+                <DateTimePicker id="pEndDate" width="100%" />
+                </f:content>
+                </f:SimpleForm>
+               
+                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+                
+         <!-- <uxap:ObjectPageSection
+                        id="adminPageFormPageSectionBtn"
+                        titleUppercase="false"
+                        title="Finish"
+                    >
+                    
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection
+                                id="adminPageFormSubSectionBtn"
+                                titleUppercase="false"
+                            >
+                            	
+                                <uxap:blocks>
+                              
+
+                       </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection> -->
+ 
+                </uxap:sections>
+            </uxap:ObjectPageLayout>
+</content>
+<footer>
+<Toolbar>
+            <ToolbarSpacer/>
+            <Button id="newProjectFormSubmitBton" text="Submit" type="Accept" press="onSubmitNewProjectFormAdmin"/>
+            <Button id="newProjectFormCancelBton" text="Cancel" type="Reject" press="onCancelNewProjectFormAdmin"/>
+        </Toolbar>
+</footer>
+       </Page> 
+</mvc:View>

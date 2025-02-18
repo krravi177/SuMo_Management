@@ -1,0 +1,28 @@
+<mvc:View xmlns:odata="sap.ui.comp.odata" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" 
+xmlns:upload="sap.m.upload" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+ xmlns:unified="sap.ui.unified" controllerName="" >
+ 
+<uxap:ObjectPageLayout id="ObjectPageLayout1"  upperCaseAnchorBar="false" showAnchorBar="true">
+<uxap:sections>
+<uxap:ObjectPageSection titleUppercase="false" id="GSIsection" title="Section 1" class="custom-section-spacing"  >
+<uxap:subSections>
+<uxap:ObjectPageSubSection id="sectionSS1"  titleUppercase="false">
+<uxap:blocks>
+<Label text="Block1"></Label>
+</uxap:blocks>
+</uxap:ObjectPageSubSection>
+</uxap:subSections>
+</uxap:ObjectPageSection>
+<uxap:ObjectPageSection titleUppercase="false" id="POIsection" title="{i18n>PriSuppDoc}" showTitle="false" class="custom-section-spacing">
+<uxap:subSections>
+<uxap:ObjectPageSubSection id="section2SS1" titleUppercase="false">
+<uxap:blocks>
+<Label text="Block2"></Label>
+</uxap:blocks>
+</uxap:ObjectPageSubSection>
+</uxap:subSections>
+</uxap:ObjectPageSection>
+
+</uxap:sections>
+</uxap:ObjectPageLayout>
+</mvc:View>

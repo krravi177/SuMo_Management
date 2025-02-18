@@ -1,0 +1,177 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:uxap="sap.uxap"
+    displayBlock="true"
+   controllerName="com.dash.employeedashboard.controller.SubProjectForm">
+<Page id="subProjectFormPage" title="SubProject Form" >
+        <content>
+         <uxap:ObjectPageLayout >
+                <uxap:sections>
+                    <uxap:ObjectPageSection
+                        id="subProjectFormObjectPageSec1"
+                        titleUppercase="false"
+                        title="General Details"
+                    >
+                    
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection
+                                id="subProjectFormObjectPageSubSec1"
+                                titleUppercase="false"
+                            >
+                            	
+                                <uxap:blocks>
+                                        <f:SimpleForm
+            id="subProjectForm"
+            editable="true"
+            layout="ColumnLayout"
+           
+            columnsL="2"
+            columnsM="1"
+            singleContainerFullSize="false"
+        >
+            <f:content>
+
+                <Label text="Module ID" />
+        <Input id="npModuleId" />
+
+        <Label text="Project ID" />
+        <Input id="npSPProjectID" />
+
+        <Label text="Assigned To" />
+        <Input id="npAssignedToE" />
+
+        <Label text="Time Assigned" />
+        <Input id="npTimeSPAssigned" />
+
+        <Label text="ProjectManager ID" />
+        <Input id="npProjectManagerID" />
+                </f:content>
+                </f:SimpleForm>
+
+                  </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+                    <uxap:ObjectPageSection
+                        id="subProjectFormObjectPageSec2"
+                        titleUppercase="false"
+                        title="Status"
+                    >
+                    
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection
+                                id="subProjectFormObjectPageSubSec2"
+                                titleUppercase="false"
+                            >
+                            	
+                                <uxap:blocks>
+                                 <f:SimpleForm
+            id="subProjectForm2"
+            editable="true"
+            layout="ColumnLayout"
+            columnsL="2"
+            columnsM="2"
+           
+        >
+            <f:content>
+          <Label text="ModuleStatus" />
+                <Select id="npModuleStatus" width="100%">
+                    <items>
+                        <core:Item text="Active" key="Active"/>
+                        <core:Item text="Inactive" key="Inactive"/>
+                        <core:Item text="Completed" key="Completed"/>
+                    </items>
+                </Select>
+                    <Label text="Status" />
+                <Select id="npSPStatus" width="100%" selectedKey="{pStatus}">
+                    <items>
+                        <core:Item text="Running" key="OnTime"/>
+                        <core:Item text="Delayed" key="Delayed"/>
+                        <core:Item text="Completed" key="Completed"/>
+                    </items>
+                </Select>
+                 
+                </f:content>
+                </f:SimpleForm>
+                
+                 
+                   </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+         <uxap:ObjectPageSection
+                        id="subProjectFormObjectPageSecBtn"
+                        titleUppercase="false"
+                        title="Finish"
+                    >
+                    
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection
+                                id="subProjectFormObjectPageSubSecBtn"
+                                titleUppercase="false"
+                            >
+                            	
+                                <uxap:blocks>
+                            
+                                 <f:SimpleForm
+            id="subProjectForm3"
+            editable="true"
+            layout="ColumnLayout"
+            columnsL="2"
+            columnsM="2"
+           
+        >
+            <f:content>
+                                <Label text="Created By" />
+        <Input id="npCreatedBy" />
+
+        <Label text="Modified By" />
+        <Input id="npModifiedBy" />
+
+       
+
+        <Label text="Start Date" />
+        <DateTimePicker id="npSPStartDate" />
+
+        <Label text="End Date" />
+        <DateTimePicker id="npSPEndDate" />
+   </f:content>
+                </f:SimpleForm>
+                       </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+ 
+                </uxap:sections>
+            </uxap:ObjectPageLayout>
+</content>
+<footer>
+<Toolbar>
+            <ToolbarSpacer/>
+             <Button
+            id="newSubProjectFormSubmitBtn"
+            text="Submit"
+            type="Accept"
+            press="onSubmitNewSubProjectForm"
+        />
+         <Button
+            id="newSubProjectFormCancelBtn"
+            text="Cancel"
+            type="Reject"
+            press="onCancelNewSubProjectForm"
+        />
+        </Toolbar>
+</footer>
+       </Page> 
+</mvc:View>
+
+       
+
+        
+      
+
+    

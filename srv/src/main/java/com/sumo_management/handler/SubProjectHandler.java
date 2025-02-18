@@ -71,7 +71,6 @@ public class SubProjectHandler implements EventHandler{
     }
 
     //Update method of SubProjects
-
     @On(event = CqnService.EVENT_UPDATE, entity = "ManagementService.SubProjects")
     public void updateSubProject(CdsUpdateEventContext context, CdsData projectData) {
         try {
@@ -80,26 +79,26 @@ public class SubProjectHandler implements EventHandler{
             }
     
             // Extract projectId dynamically
-            Object projectIdObj = projectData.get("projectId");
+            Object projectIdObj = projectData.get("moduleId");
             if (projectIdObj == null) {
                 throw new RuntimeException("SubProject ID is missing in the request.");
             }
     
-            String projectId = String.valueOf(projectIdObj); // Converts Integer/String safely
+            String moduleId = String.valueOf(projectIdObj); // Converts Integer/String safely
     
             // Creating an Update statement
             CqnUpdate updateQuery = Update.entity("ManagementService.SubProjects")
                                         .data(projectData)
-                                        .where(p -> p.get("projectId").eq(projectId));
+                                        .where(p -> p.get("moduleId").eq(moduleId));
     
             // Running the update
             long updatedRows = db.run(updateQuery).rowCount();
     
             if (updatedRows == 0) {
-                throw new RuntimeException("No records updated for SubProject ID: " + projectId);
+                throw new RuntimeException("No records updated for SubProject ID: " + moduleId);
             }
     
-            System.out.println("SubProject updated successfully: " + projectId);
+            System.out.println("SubProject updated successfully: " + moduleId);
     
         } catch (Exception e) {
             throw new RuntimeException("Failed to update SubProject. Reason: " + e.getMessage(), e);
@@ -159,8 +158,6 @@ public class SubProjectHandler implements EventHandler{
             throw new RuntimeException("Failed to delete SubProject. Reason: " + e.getMessage(), e);
         }
     }
-
-
     
     private int generateNewId(String tableName, String idColumn) {
         Optional<Integer> maxId = db.run(Select.from(tableName)

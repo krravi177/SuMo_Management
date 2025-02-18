@@ -1,13 +1,33 @@
-<mvc:View
-	controllerName="com.dash.employeedashboard.controller.NotFound"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc">
-	<IllustratedMessage id="notFoundMessage"
-		illustrationType="sapIllus-PageNotFound"
-		title="{i18n>NotFound}"
-		description="{i18n>NotFound.description}">
-		<additionalContent>
-			<Button text="{i18n>NotFound.backToHome}" press=".onNavBack"></Button>
-		</additionalContent>
-	</IllustratedMessage>
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m"
+ xmlns:upload="sap.m.upload" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+  xmlns:unified="sap.ui.unified" controllerName="com.dash.employeedashboard.controller.NotFound" >
+<Page >
+<!--  testing   -->
+
+<IconTabBar id="tabBar" select="onTabSelect">
+<items>
+<!-- <IconTabFilter text="Purchasing Form" key="Purchasing" id="Purchasing" visible="true" design="Vertical">
+<mvc:XMLView viewName="com.onboardingwfui.onboardingworkflow.view.Purchasing" type="XML"/>
+</IconTabFilter>
+<IconTabFilter text="Finance Form" key="Finance" id="Finance" visible="true" design="Vertical">
+<mvc:XMLView viewName="com.onboardingwfui.onboardingworkflow.view.Finance" type="XML"/>
+</IconTabFilter>
+<IconTabFilter text="Buyer Request Form" key="Request" id="Request" visible="true" design="Vertical">
+<mvc:XMLView viewName="com.onboardingwfui.onboardingworkflow.view.SupplierRequest" type="XML"/>
+</IconTabFilter> -->
+<IconTabFilter text="Supplier Registration Form" key="Registration" id="Registration" visible="true" showAll="true" >
+
+</IconTabFilter>
+<IconTabSeparator />
+<IconTabFilter text="Supplier Registration Form" key="Registration" id="Registration1" visible="true" showAll="true" >
+
+</IconTabFilter>
+</items>
+</IconTabBar>
+<content>
+<mvc:XMLView viewName="com.dash.employeedashboard.view.sp" type="XML"></mvc:XMLView>
+</content>
+</Page>
+
 </mvc:View>
+

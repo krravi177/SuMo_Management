@@ -1,7 +1,11 @@
 <mvc:View controllerName="com.dash.employeedashboard.controller.App"
     displayBlock="true"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
     xmlns="sap.m">
-    <App id="app">
-    </App>
+    	<App id="app">
+       <f:FlexibleColumnLayout id="flexID" layout="{layoutMod>/layout}" >
+       
+       </f:FlexibleColumnLayout>
+</App>
 </mvc:View>
