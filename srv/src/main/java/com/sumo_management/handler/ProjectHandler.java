@@ -35,20 +35,20 @@ public class ProjectHandler implements EventHandler {
         this.db = db;
     }
 
-    @Before(event = CqnService.EVENT_CREATE, entity = "ManagementService.Projects")
-    public void beforeCreateProject(CdsCreateEventContext context, CdsData projectData) {
-        System.out.println("Before Create Handler executed!");
+    // @Before(event = CqnService.EVENT_CREATE, entity = "ManagementService.Projects")
+    // public void beforeCreateProject(CdsCreateEventContext context, CdsData projectData) {
+    //     System.out.println("Before Create Handler executed!");
 
-        try {
-            int projectId = generateNewId("ManagementService.Projects", "projectId");
-            projectData.put("projectId", projectId); 
-            System.out.println("Generated project ID: " + projectId);
-        } catch (Exception e) {
-            System.err.println("Error generating project ID: " + e.getMessage());
-            // e.printStackTrace();
-            throw new RuntimeException("Error generating project ID", e);
-        }
-    }
+    //     try {
+    //         int projectId = generateNewId("ManagementService.Projects", "projectId");
+    //         projectData.put("projectId", projectId); 
+    //         System.out.println("Generated project ID: " + projectId);
+    //     } catch (Exception e) {
+    //         System.err.println("Error generating project ID: " + e.getMessage());
+    //         // e.printStackTrace();
+    //         throw new RuntimeException("Error generating project ID", e);
+    //     }
+    // }
     
     @On(event = CqnService.EVENT_CREATE,  entity ="ManagementService.Projects")
     public void createProject(CdsCreateEventContext context, CdsData projectData) {
@@ -68,12 +68,12 @@ public class ProjectHandler implements EventHandler {
         } catch (Exception e) {
             System.err.println("Error creating project: " + e.getMessage());
             // e.printStackTrace();
-            throw new RuntimeException("Error creating project: " + e.getMessage(), e);
+            // throw new RuntimeException("Error creating project: " + e.getMessage(), e);
+            System.out.println("Project Not Found");
         }
     }
 
     // Update Method of Project
-
     @On(event = CqnService.EVENT_UPDATE, entity = "ManagementService.Projects")
     public void updateProject(CdsUpdateEventContext context, CdsData projectData) {
         try {

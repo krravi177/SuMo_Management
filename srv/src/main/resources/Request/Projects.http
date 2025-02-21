@@ -1,0 +1,49 @@
+### Create Project
+POST http://localhost:8080/odata/v4/ManagementService/Projects
+Authorization: Basic privileged:
+Content-Type: application/json
+
+{
+  "projectName": "AR/BR Integration",
+  "assignedToP": 210,
+  "timeAssigned": 175,
+  "projectChanges": 5,
+  "clientName": "ImmersiveTech",
+  "description": "Implementing AR/VR features in existing products",
+  "urgency": "MEDIUM",
+  "createdBy": 317,
+  "modifiedBy": 318,
+  "status": "Completed"
+}
+
+### Update Project
+PUT http://localhost:8080/odata/v4/ManagementService/Projects(1)
+Authorization: Basic privileged:
+Content-Type: application/json
+
+{
+  "projectName": "Advanced AI Chatbot",
+  "timeAssigned": 180,
+  "assignedToP": 305,
+  "projectChanges": 4,
+  "clientName": "NextGen AI",
+  "status": "Late_Running",
+  "description": "Enhancing chatbot with deep learning",
+  "urgency": "HIGH",
+  "createdBy": 501,
+  "modifiedBy": 503
+}
+
+
+ 
+
+### Delete Project
+DELETE http://localhost:8080/odata/v4/ManagementService/Projects
+Authorization: Basic privileged:
+Content-Type: application/json
+
+ 
+ 
+### Get All Projects
+GET http://localhost:8080/odata/v4/ManagementService/Projects
+Authorization: Basic privileged:

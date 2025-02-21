@@ -43,19 +43,19 @@
 		</TileContent>
 	</GenericTile>
 	<GenericTile class="sapUiMediumMarginBegin sapUiMediumMarginTop tileLayout" header="Bank Account Information"
-		 press=".onNavToAdmin">
+		 press="">
 		<TileContent  footer="Admin Information">
 			<ImageContent src="sap-icon://account" />
 		</TileContent>
 	</GenericTile>
 	<GenericTile class="sapUiMediumMarginBegin sapUiMediumMarginTop tileLayout" header="Apply Leave"
-		 press=".onNavToAdmin">
+		 press="">
 		<TileContent  footer="Admin Information">
 			<ImageContent src="sap-icon://account" />
 		</TileContent>
 	</GenericTile>
 	<GenericTile class="sapUiMediumMarginBegin sapUiMediumMarginTop tileLayout" header="My Inbox"
-		 press=".onNavToAdmin">
+		 press="">
 		<TileContent  footer="Admin Information">
 			<ImageContent src="sap-icon://account" />
 		</TileContent>

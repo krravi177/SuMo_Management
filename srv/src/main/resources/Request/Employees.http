@@ -1,0 +1,58 @@
+### Create Employee
+POST http://localhost:8080/odata/v4/ManagementService/Employees
+Authorization: Basic privileged:
+Content-Type: application/json
+
+{
+  "empName": "Jack Anderson",
+  "projectId": 110,
+  "managerId": 210,
+  "timeTaken": 145,
+  "role": "Admin",
+  "projects": [
+    {
+      "assignedToP": 110
+    }
+  ],
+  "empManager": {
+    "empCode": 210
+  },
+  "subProjects": [
+    {
+      "assignedToE": 110
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Update Employee
+PUT http://localhost:8080/odata/v4/ManagementService/Employees(106)
+Authorization: Basic privileged:
+Content-Type: application/json
+
+{
+  "empName": "Bob Williams",
+  "projectId": 20,
+  "managerId": 202,
+  "timeTaken": 140
+}
+
+### Delete Employee
+DELETE http://localhost:8080/odata/v4/ManagementService/Employees(106)
+Authorization: Basic privileged:
+
+
+### Get All Employees
+GET http://localhost:8080/odata/v4/ManagementService/Employees
+Authorization: Basic privileged:

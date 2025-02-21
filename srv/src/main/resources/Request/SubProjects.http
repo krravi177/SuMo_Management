@@ -1,0 +1,60 @@
+### Create SubProject
+POST http://localhost:8080/odata/v4/ManagementService/SubProjects
+Authorization: Basic privileged:
+Content-Type: application/json
+ 
+{
+  "projectId": 110,
+  "moduleName": "IoT Device Integration",
+  "assignedToE": 210,
+  "projectManagerId": 310,
+  "timeAssigned": 130,
+  "moduleStatus": "Completed",
+  "createdBy": 419,
+  "modifiedBy": 420,
+  "project": {
+    "projectId": 110
+  },
+  "createdByEmp": {
+    "empCode": 419
+  },
+  "modifiedByEmp": {
+    "empCode": 420
+  },
+  "assignedToEmp": {
+    "empCode": 210
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+### Update SubProject
+PUT http://localhost:8080/odata/v4/ManagementService/SubProjects(1001) 
+Authorization: Basic privileged:
+Content-Type: application/json
+ 
+{
+  "moduleName": "This is a Project of Update",
+  "moduleStatus": "Not_Started_Yet",
+  "createdBy": 556,
+  "modifiedBy": 556
+}
+
+
+
+### Delete SubProject
+DELETE http://localhost:8080/odata/v4/ManagementService/SubProjects(1001)
+Authorization: Basic privileged:
+
+
+### Get All SubProjects
+GET http://localhost:8080/odata/v4/ManagementService/SubProjects
+Authorization: Basic privileged:

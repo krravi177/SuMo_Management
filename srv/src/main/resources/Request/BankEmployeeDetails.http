@@ -1,0 +1,33 @@
+### Employee Bank Details API
+POST http://localhost:8080/odata/v4/ManagementService/EmployeeBankDetails
+Authorization: Basic privileged:
+Content-Type: application/json
+
+{
+  "BankAcNo": "1234567890",
+  "ifscCode": "ABC123456",
+  "bankName": "XYZ Bank",
+  "empCode": 111,
+  "bankAcName": "SEQ"
+}
+
+###Update Employee Bank Details
+PUT http://localhost:8080/odata/v4/ManagementService/EmployeeBankDetails('1234567890')
+Authorization: Basic privileged:
+Content-Type: application/json
+
+{
+  "ifscCode": "DEF987654",
+  "bankName": "PQR Bank",
+  "bankAcName": "SEQ Updated"
+}
+
+
+###Delete Employee Bank Details
+DELETE http://localhost:8080/odata/v4/ManagementService/EmployeeBankDetails('1234567890')
+Authorization: Basic privileged:
+
+###Get All Employee Bank Details
+GET http://localhost:8080/odata/v4/ManagementService/EmployeeBankDetails
+Authorization: Basic privileged:
+

@@ -26,22 +26,10 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: SuMo_Management-db
-      - name: SuMo_Management-auth
       - name: app-api
         properties:
           CDS_MULTITENANCY_APPUI_URL: ~{url}
-
-  - name: SuMo_Management-db-deployer
-    type: hdb
-    path: db
-    parameters:
-      buildpack: nodejs_buildpack
-    build-parameters:
-      builder: custom
-      commands:
-        - npm run build
-    requires:
+      - name: SuMo_Management-auth
       - name: SuMo_Management-db
 
   - name: SuMo_Management
@@ -66,12 +54,19 @@ modules:
           app-uri: ${default-uri}
           url: ${default-url}
 
-resources:
-  - name: SuMo_Management-db
-    type: com.sap.xs.hdi-container
+  - name: SuMo_Management-db-deployer
+    type: hdb
+    path: db
     parameters:
-      service: hana
-      service-plan: hdi-shared
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: custom
+      commands:
+        - npm run build
+    requires:
+      - name: SuMo_Management-db
+
+resources:
   - name: SuMo_Management-auth
     type: org.cloudfoundry.managed-service
     parameters:
@@ -81,3 +76,8 @@ resources:
       config:
         xsappname: SuMo_Management-${org}-${space}
         tenant-mode: dedicated
+  - name: SuMo_Management-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared

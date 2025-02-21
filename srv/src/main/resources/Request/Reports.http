@@ -1,0 +1,14 @@
+### ProjectReport
+
+GET http://localhost:8080/odata/v4/ManagementService/Projects
+Authorization: Basic privileged:
+
+
+### EmployeeReport
+GET http://localhost:8080/odata/v4/ManagementService/Employees
+Authorization: Basic privileged:
+
+
+### SubProjectReport
+GET http://localhost:8080/odata/v4/ManagementService/SubProjects
+Authorization: Basic privileged:
