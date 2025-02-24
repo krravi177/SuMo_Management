@@ -92,7 +92,7 @@ entity TeamSchedule : managed {
  
 // LeaveRequest Entity
 entity LeaveRequest {
-    key leaveRequestId  : Integer;    
+    key leaveRequestId  : String;    
     empCode             : Integer;    
     leaveType           : String(50) @assert.range enum { Sick; Vacation; Personal; };  // Type of leave (e.g., "Sick", "Vacation", "Personal")
     startDate           : DateTime;   

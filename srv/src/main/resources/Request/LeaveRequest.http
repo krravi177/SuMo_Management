@@ -4,8 +4,7 @@ Authorization: Basic privileged:
 Content-Type: application/json
 
 {
-  "leaveRequestId": 7002,
-  "empCode": 106,
+  "empCode": 1,
   "leaveType": "Vacation",
   "startDate": "2024-04-05T00:00:00Z",
   "endDate": "2024-04-07T00:00:00Z",
@@ -22,7 +21,8 @@ Authorization: Basic privileged:
 Content-Type: application/json
 
 ###Delete a Leave Request
-DELETE http://localhost:8080/odata/v4/ManagementService/LeaveRequest(7002)
+DELETE http://localhost:8080/odata/v4/ManagementService/LeaveRequest('LR-1')
 Authorization: Basic privileged:
 Content-Type: application/json
+
 

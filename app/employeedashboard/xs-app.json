@@ -3,7 +3,7 @@
   "authenticationMethod": "route",
   "routes": [
     {
-      "source": "^/v2/odata/v4/ManagementService/(.*)$",
+      "source": "^/v2/odata/v4/Management/(.*)$",
       "target": "/resources/$1",
       "authenticationType": "none",
       "destination": "ui5"

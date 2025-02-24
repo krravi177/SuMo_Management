@@ -10,7 +10,7 @@ Content-Type: application/json
   "requestStatus": "Approved",
   "requestDate": "2024-03-21T10:00:00Z",
   "responseDate": "2024-03-22T12:00:00Z",
-  "response": "Rejected"
+  "response": "Approved"
 }
 
 ### Delete Approval Inbox Entry

@@ -65,6 +65,7 @@ management:
       enabled: true
 spring:
   profiles:
+  
     active: cloud
  
 ---

@@ -13,10 +13,6 @@ Content-Type: application/json
   "description": "Code Review Meeting"
 }
 
-###Get All Employee Schedules 
-GET http://localhost:8080/odata/v4/ManagementService/EmployeeSchedule
-Authorization: Basic privileged:
-
 ###Update an Employee Schedule
 PATCH http://localhost:8080/odata/v4/ManagementService/EmployeeSchedule(301)
 Authorization: Basic privileged:
@@ -26,5 +22,6 @@ Content-Type: application/json
 DELETE http://localhost:8080/odata/v4/ManagementService/EmployeeSchedule(301)
 Authorization: Basic privileged:
 
-
-
+###Get All Employee Schedules 
+GET http://localhost:8080/odata/v4/ManagementService/EmployeeSchedule
+Authorization: Basic privileged:
