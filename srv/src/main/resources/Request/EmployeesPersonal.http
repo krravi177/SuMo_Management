@@ -1,0 +1,58 @@
+### Create API for EmployeesPersonal
+
+POST http://localhost:8080/odata/v4/ManagementService/EmployeesPersonal
+Authorization: Basic privileged:
+Content-Type: application/json
+
+{
+  "email": "x@example.com",
+  "empCode": 1,
+  "mobileNo": "9876543210",
+  "DOB": "1990-05-15T00:00:00Z",
+  "gender": "Male",
+  "baseLocation": "New York",
+  "designation": "Software Engineer",
+  "DOJ": "2023-01-10T00:00:00Z",
+  "fatherName": "Robert Doe",
+  "Address": "123 Main St, New York, NY",
+  "UANno": 1234567890,
+  "PANno": "ABCDE1234F"
+}
+
+
+### GET API for EmployeesPersonal
+
+GET http://localhost:8080/odata/v4/ManagementService/EmployeesPersonal('2')
+Authorization: Basic privileged:
+
+
+### Update API for EmployeesPersonal
+PUT http://localhost:8080/odata/v4/ManagementService/EmployeesPersonal('x@example.com')
+Authorization: Basic privileged:
+Content-Type: application/json
+
+{
+  "email": "x@example.com",
+  "empCode": 1,
+  "mobileNo": "9876543211",
+  "DOB": "1990-05-15T00:00:00Z",
+  "gender": "Male",
+  "baseLocation": "London",
+  "designation": "Senior Software Engineer",
+  "DOJ": "2023-01-10T00:00:00Z",
+  "fatherName": "Robert Doe",
+  "Address": "123 Main St, New York, NY",
+  "UANno": 1234567890,
+  "PANno": "ABCDE1234F"
+}
+
+
+
+
+
+
+### DELETE API for EmployeesPersonal
+DELETE http://localhost:8080/odata/v4/ManagementService/EmployeesPersonal('x@example.com')
+Authorization: Basic privileged:
+
+

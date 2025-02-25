@@ -5,10 +5,8 @@ Content-Type: application/json
 
 {
   "ID": 401,
-  "projectId": 101,
-  "empCode": 1001,
-  "startDateTime": "2025-02-25T10:00:00Z",
-  "endDateTime": "2025-02-25T12:00:00Z",
+  "projectId": 1,
+  "empCode": 2,
   "type": "Meeting",
   "remarks": "Sprint Planning Meeting"
 }

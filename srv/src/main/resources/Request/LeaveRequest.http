@@ -6,13 +6,9 @@ Content-Type: application/json
 {
   "empCode": 1,
   "leaveType": "Vacation",
-  "startDate": "2024-04-05T00:00:00Z",
-  "endDate": "2024-04-07T00:00:00Z",
   "reason": "Family Emergency",
   "status": "Approved",
-  "appliedAt": "2024-03-20T14:00:00Z",
-  "approvedBy": 201,
-  "approvalDate": "2024-03-22T10:00:00Z"
+  "approvedBy": 201
 }
 
 ###Get All Leave Requests

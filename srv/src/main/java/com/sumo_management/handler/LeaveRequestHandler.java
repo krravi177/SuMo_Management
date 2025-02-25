@@ -66,12 +66,6 @@ public class LeaveRequestHandler implements EventHandler {
                 throw new RuntimeException("Invalid Leave Type. Allowed values: " + VALID_LEAVE_TYPES);
             }
 
-
-            String managerEmail = empResult.first().get().get("managerEmail").toString();
-            if (managerEmail == null || managerEmail.isEmpty()) {
-                throw new RuntimeException("Manager email not found for Employee " + empCode);
-            }
-
             // Validate Status (Default to "Pending" if not provided)
             Object statusObj = leaveRequestData.get("status");
             String status = (statusObj != null && VALID_STATUSES.contains(statusObj.toString())) ? statusObj.toString() : "Pending";

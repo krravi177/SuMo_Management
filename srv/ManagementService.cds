@@ -37,7 +37,6 @@ service ManagementService {
         empName            : String,
         empId              : Integer,
         projectId          : Integer,
-        rating             : Integer,
         timeTaken          : Integer,
         managerId          : Integer,
         createdBy          : Integer,
@@ -48,7 +47,6 @@ service ManagementService {
         empId              : Integer,
         empName            : String,
         projectId          : Integer,
-        rating             : Integer,
         timeTaken          : Integer,
         managerId          : Integer,
         modifiedBy         : Integer

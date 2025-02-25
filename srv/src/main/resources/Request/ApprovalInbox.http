@@ -5,20 +5,15 @@ Content-Type: application/json
 
 {
   "inboxEntryId": 1001,
-  "leaveRequestId": 7001,
+  "leaveRequestId": "LR-1",
   "managerEmpCode": 201,
   "requestStatus": "Approved",
-  "requestDate": "2024-03-21T10:00:00Z",
-  "responseDate": "2024-03-22T12:00:00Z",
   "response": "Approved"
 }
 
 ### Delete Approval Inbox Entry
-DELETE http://localhost:8080/odata/v4/ManagementService/ApprovalInbox(1001)
+DELETE http://localhost:8080/odata/v4/ManagementService/ApprovalInbox(1002)
 Authorization: Basic privileged:
 Content-Type: application/json
 
-### Filter Approval Inbox
-GET http://localhost:8080/odata/v4/ManagementService/ApprovalInbox?$filter=response eq 'Rejected'
-Authorization: Basic privileged:
-Content-Type: application/json
+

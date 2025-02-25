@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "ID": 301,
-  "empCode": 1001,
+  "empCode": 1,
   "date": "2025-02-22",
   "startDateTime": "2025-02-22T09:00:00Z",
   "endDateTime": "2025-02-22T17:00:00Z",
@@ -17,6 +17,16 @@ Content-Type: application/json
 PATCH http://localhost:8080/odata/v4/ManagementService/EmployeeSchedule(301)
 Authorization: Basic privileged:
 Content-Type: application/json
+
+{
+  "empCode": 1,
+  "date": "2025-02-24",
+  "startDateTime": "2025-02-24T09:00:00Z",
+  "endDateTime": "2025-02-24T10:00:00Z",
+  "type": "Meeting"
+}
+
+
 
 ###DELETE an Employee Schedule
 DELETE http://localhost:8080/odata/v4/ManagementService/EmployeeSchedule(301)

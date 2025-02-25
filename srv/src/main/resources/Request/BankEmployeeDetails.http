@@ -4,32 +4,29 @@ Authorization: Basic privileged:
 Content-Type: application/json
 
 {
-  "BankAcNo": "12345678909781",
-  "ifscCode": "ABC123456",
+  "BankAcNo": "1234567897812",
+  "ifscCode": "ABC123356",
   "bankName": "SBI Bank",
   "accountType": "Saving",
-  "empCode": 4,
-  "bankAcName": "Tenva"
+  "empCode": 2,
+  "bankAcName": "AX"
 }
 
-
-
-
 ###Update Employee Bank Details
-PUT http://localhost:8080/odata/v4/ManagementService/EmployeeBankDetails('12345678909781')
+PUT http://localhost:8080/odata/v4/ManagementService/EmployeeBankDetails('123456789781')
 Authorization: Basic privileged:
 Content-Type: application/json
 
 {
   "ifscCode": "DEF987654",
-  "bankName": "SBI Bank",
+  "bankName": "HDFC Bank",
   "accountType": "Current",
   "bankAcName": "Ravindra"
 }
 
 
 ###Delete Employee Bank Details
-DELETE http://localhost:8080/odata/v4/ManagementService/EmployeeBankDetails('1234567892')
+DELETE http://localhost:8080/odata/v4/ManagementService/EmployeeBankDetails('123456789781')
 Authorization: Basic privileged:
 
 ###Get All Employee Bank Details

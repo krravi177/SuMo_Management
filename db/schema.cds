@@ -67,7 +67,7 @@ entity EmployeeBankDetails {
  
 // Employee Schedule (Personal Events)
 entity EmployeeSchedule : managed {
-    key ID            : Integer; // Integer ID to uniquely identify each schedule event
+    key ID            : Integer; 
     empCode           : Integer;
     date              : Date;
     startDateTime     : DateTime;
@@ -78,10 +78,10 @@ entity EmployeeSchedule : managed {
 }
  
 // Team Schedule (All Employees' Events)
-entity TeamSchedule : managed {
-    key ID             : Integer;
+entity TeamSchedule   : managed {
+    key ID            : Integer;
     projectId         : Integer;
-    empCode             : Integer;
+    empCode           : Integer;
     startDateTime     : DateTime;
     endDateTime       : DateTime;
     type              : String(20) @assert.range enum { Meeting; Deadline; Work; }; 
@@ -94,11 +94,11 @@ entity TeamSchedule : managed {
 entity LeaveRequest {
     key leaveRequestId  : String;    
     empCode             : Integer;    
-    leaveType           : String(50) @assert.range enum { Sick; Vacation; Personal; };  // Type of leave (e.g., "Sick", "Vacation", "Personal")
+    leaveType           : String(50) @assert.range enum { Sick; Vacation; Personal; };  
     startDate           : DateTime;   
     endDate             : DateTime;   
     reason              : String(255); 
-    status              : String(20) @assert.range enum { Pending; Approved; Rejected; };  // Leave status (e.g., "Pending", "Approved", "Rejected")
+    status              : String(20) @assert.range enum { Pending; Approved; Rejected; };  
     appliedAt           : DateTime;   
     approvedBy          : Integer;    
     approvalDate        : DateTime;   
@@ -109,7 +109,7 @@ entity LeaveRequest {
 // ApprovalInbox Entity
 entity ApprovalInbox {
     key inboxEntryId     : Integer;   
-    leaveRequestId       : Integer;   
+    leaveRequestId       : String;   
     managerEmpCode       : Integer;   
     requestStatus        : String(20) @assert.range enum { Pending; Approved; Rejected}; 
     requestDate          : DateTime;  
@@ -121,15 +121,15 @@ entity ApprovalInbox {
  
 entity EmployeesAuthentication {
     key id           : String;
-    password        : String;
-    empCode        : Integer;
+    password         : String;
+    empCode          : Integer;
     
-    empCodeAssoc   : Association to Employees on empCodeAssoc.empCode = empCode;
+    empCodeAssoc     : Association to Employees on empCodeAssoc.empCode = empCode;
 }
 
 entity EmployeesPersonal {
-    key email         : String;
-    empCode         : Integer;
+    key email      : String;
+    empCode        : Integer;
     mobileNo       : String(10);
     DOB            : DateTime;
     gender         : String(10) @assert.range enum{Male; Female}; 
